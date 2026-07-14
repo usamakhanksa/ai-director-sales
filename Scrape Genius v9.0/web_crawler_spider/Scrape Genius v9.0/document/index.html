@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth !important;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Header (Mobile Toggle) -->
+    <header
+      class="md:hidden flex items-center justify-between bg-slate-900 text-white p-4 sticky top-0 z-50"
+    >
+      <div class="text-lg font-bold">Documentation</div>
+      <button id="mobileMenuBtn">
+        <i class="ri-menu-line text-2xl"></i>
+      </button>
+    </header>
+
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="w-64 bg-slate-900 text-white space-y-4 p-6 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50 md:relative md:block"
+      >
+        <div class="text-xs font-bold tracking-widest text-gray-400 mb-4">
+          MAIN
+        </div>
+        <nav class="space-y-4">
+          <a href="#home" class="flex items-center gap-2 hover:text-sky-300">
+            <i class="ri-home-line text-xl"></i> <span>Home</span>
+          </a>
+          <a
+            href="#gettingstart"
+            class="flex items-center gap-2 hover:text-sky-300"
+          >
+            <i class="ri-time-line text-xl"></i> <span>Getting Started</span>
+          </a>
+          <!-- Setup with dropdown -->
+          <div>
+            <button
+              onclick="toggleDropdown()"
+              class="w-full flex items-center justify-between hover:text-sky-300"
+            >
+              <span class="flex items-center gap-2">
+                <i class="ri-settings-3-line text-xl"></i> <span>
+                  Application Setup</span>
+              </span>
+              <i class="ri-arrow-down-s-line text-sm"></i>
+            </button>
+            <div id="setupDropdown" class="ml-6 mt-2 space-y-3 hidden">
+              <a
+                href="#installation"
+                class="block text-sm hover:text-sky-300"
+                onclick="toggleDropdown()"
+                >○ Installation</a
+              >
+              <a
+                href="#requirement"
+                class="block text-sm hover:text-sky-300"
+                onclick="toggleDropdown()"
+                >○ Prerequisites</a
+              >
+              <a
+                href="#start"
+                class="block text-sm hover:text-sky-300"
+                onclick="toggleDropdown()"
+                >○ Start Application</a
+              >
+              <a
+                href="#quickstart"
+                class="block text-sm hover:text-sky-300"
+                onclick="toggleDropdown()"
+                >○ Quick Start</a
+              >
+              <a
+                href="#purchasecode"
+                class="block text-sm hover:text-sky-300"
+                onclick="toggleDropdown()"
+                >○ Purchase Code</a
+              >
+            </div>
+          </div>
+          <a
+            href="#features"
+            class="flex items-center gap-2 hover:text-sky-300"
+          >
+            <i class="ri-sparkling-line text-xl"></i> <span>Features</span>
+          </a>
+          <a
+          href="#services"
+          class="flex items-center gap-2 hover:text-sky-300"
+          >
+          <i class="ri-apps-2-line text-xl"></i> <span>Services</span>
+        </a>
+        <a href="#logs" class="flex items-center gap-2 hover:text-sky-300">
+          <i class="ri-loop-left-line text-xl"></i> <span>Change Logs</span>
+        </a>
+
+          <a
+            href="#thanks"
+            class="flex items-center gap-2 hover:text-sky-300"
+          >
+            <i class="ri-user-smile-line text-xl"></i> <span>Thank you :)</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 px-4 overflow-y-auto">
+        <div class="max-w-6xl mx-auto pt-10" id="home">
+          <h1 class="text-4xl font-bold text-center hidden md:block">
+            Documentation
+          </h1>
+          <p class="text-center text-gray-500 mt-2">
+            An advanced web scraping solution that uses multiple legal tools to
+            efficiently extract and manage data, ensuring full compliance with
+            relevant regulations.
+          </p>
+
+          <section class="mt-12 pt-10" id="gettingstart">
+            <h2
+              class="text-sm font-semibold uppercase tracking-widest text-pink-600"
+            >
+              Installation
+            </h2>
+            <h3 class="text-2xl font-bold mt-2">Getting Started</h3>
+            <p class="mt-4 text-gray-600 space-y-2">
+              Welcome and thanks for choosing our product :)<br />
+              It is our great pleasure that you chose our scraping tools. We are so happy to have you as our customer! Your decision to trust us with your scrapping needs is something we don’t take lightly, and we are really excited to accompany you on this journey.
+              Our team has worked hard to create a product that is not only powerful but also user-friendly, and we’re confident that it will help you achieve your goals with ease.
+            </p>
+          </section>
+
+          <!-- Installation Section -->
+          <section class="mt-12 pt-10" id="installation">
+            <h2 class="text-2xl font-bold mb-4">Installation</h2>
+
+            <!-- YouTube Alert -->
+            <div
+              class="bg-red-100 border border-red-300 text-red-800 px-6 py-4 rounded-md mb-6 text-center"
+            >
+              <p class="font-semibold">Watch On YouTube</p>
+              <p class="text-sm">
+                For a comprehensive, step-by-step installation guide, we also
+                offer a detailed instructional video on YouTube.
+              </p>
+              <a
+                href="https://www.youtube.com/watch?v=tOLGsRr9V5Q"
+                target="_blank"
+                class="inline-block mt-3 px-4 py-2 bg-red-600 text-white text-sm rounded hover:bg-red-700"
+              >
+                <i class="ri-youtube-fill mr-1"></i> Watch Now
+              </a>
+            </div>
+
+            <!-- Initial Setup -->
+            <h3 class="text-xl font-semibold mb-2">Initial Setup</h3>
+            <p class="text-gray-700 mb-4">
+              First download the zip file by
+              <b>sign in</b> or
+              <b>signup</b>.<br />
+              Once you've downloaded the product, you’ll find a file named
+              <code class="text-red-600 font-mono">Web-Crawler-Spider.zip</code
+              >. Simply follow the steps below to get started:
+            </p>
+
+            <!-- Extract Zip -->
+            <h3 class="text-xl font-semibold mb-2">Extract The Zip File</h3>
+            <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+              <li>
+                Locate the downloaded file,
+                <code class="text-red-600 font-mono"
+                  >Web-Crawler-Spider.zip</code
+                > and simply unzip it.
+              </li>
+              <li>After unzipping the file, open the folder and navigate to the <code class="text-red-600 font-mono"
+                >'/web_crawler_spider'</code
+              ></li>
+            </ul>
+
+            <img
+              src="public/img/root_folder.png"
+              alt="Folder structure"
+              class="rounded shadow-md mb-8"
+            />
+          </section>
+
+          <section class="mt-12 pt-10" id="requirement">
+            <!-- Prerequisites -->
+            <h2 class="text-2xl font-bold mb-4">Prerequisites</h2>
+            <p class="text-gray-700 mb-4">
+              Before running the application, make sure your system meets these
+              requirements:
+            </p>
+            <p>Download <a target="_blank" href="https://nodejs.org/en" class="text-blue-600 underline">Node LTS version</a>.</p>
+            <p>
+              This project was developed using <b>Node.js v20.11.0</b>.
+              You can download the same version below, based on your system:
+              <ul class="text-sm ml-2 italic flex flex-col gap-1 py-2">
+                <li>
+                  <b>Windows (x64):</b> <a target="_blank" href="https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi" class="text-blue-600 underline">node-v20.11.0-x64.msi</a>
+                </li>
+                <li>
+                  <b>Ubuntu/Linux (x64):</b> <a target="_blank" href="https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.gz" class="text-blue-600 underline">node-v20.11.0-linux-x64.tar.gz</a></li>
+                <li>
+                  <b>macOS (Apple Silicon):</b> <a target="_blank" href="https://nodejs.org/dist/v20.11.0/node-v20.11.0-darwin-arm64.tar.gz" class="text-blue-600 underline">node-v20.11.0-darwin-arm64.tar.gz</a></li>
+                <li>
+                  <b>macOS (Intel):</b> <a target="_blank" href="https://nodejs.org/dist/v20.11.0/node-v20.11.0-darwin-x64.tar.gz" class="text-blue-600 underline">node-v20.11.0-darwin-x64.tar.gz</a></li>
+              </ul>
+            </p>
+            <br/>
+            <p>
+              To check if Node.js successfully installed, follow below steps:<br/>
+              <ul class="text-sm ml-2 italic flex flex-col gap-1 py-2">
+                <li><b>Windows Users:</b> open the command prompt using <code class="text-red-600 font-mono">'Win + R and type cmd'</code> and press enter and run:<br/>
+                  <code class="text-red-600 font-mono">'node -v'</code>
+                </li>
+                <li>
+                  <b>Ubuntu/Linux Users:</b> Open your terminal and run:<br/>
+                  <code class="text-red-600 font-mono">'node -v'</code>
+                </li>
+                <li>
+                  <b>macOS Users:</b> Open Terminal (press Cmd + Space, type "Terminal", then press Enter) and run:<br/>
+                  <code class="text-red-600 font-mono">'node -v'</code>
+                </li>
+                <div
+                  class="bg-gray-800 text-white font-mono p-4 rounded mb-4 text-sm my-5"
+                >
+                  node -v
+                </div>
+              </ul>
+            </p>
+
+            <p class="text-sm italic mb-4">
+              <b>Note:</b> If you have Node.js version below 20, download and install <a class="text-blue-600 underline" href="https://github.com/coreybutler/nvm-windows/releases/download/1.2.2/nvm-setup.exe">NVM </a> (node package manager) to manage and switch nodejs version into <code class="text-red-600 font-mono">v20.11.0</code>
+                Follow the official NVM documentation for installation. <a class="text-blue-600 underline" title="Read docs" href="https://github.com/coreybutler/nvm-windows">Read docs</a>:
+                to install it.
+            </p>
+
+            <!-- Steps to Install & Run -->
+            <h3 class="text-xl font-semibold mt-8 mb-2">
+              Steps To Install And Run The Application
+            </h3>
+
+            <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+              <li>
+                Once you opened <code class="font-mono">/web_crawler_spider</code>, run the <code class="font-mono">'/installer'</code> file.
+                <p class="text-sm italic"><b>Note:</b> If the <b>/installer</b> file will not work on your system, checkout our 
+                  <a href="#alternate" class="text-blue-600 underline">Alternate option</a>.</p>
+                <img
+                src="public/img/installer.png"
+                alt="cmd open folder"
+                class="rounded shadow-md mb-8 mt-4"
+                />
+                <p class="text-sm italic mb-4"><b>Note:</b> Ensure a stable internet connection, as the process may take time.</p>
+              </li>
+              <h3 class="mt-12 pt-10 text-xl font-semibold mt-8 mb-2" id="alternate">
+                Alternate (Optional)
+              </h3>
+              <p class="text-sm italic"><b>Note:</b> If the <b>/installer</b> is not supported or not working on your system, follow the steps below:</p>
+              <li>
+                Open your project directory <b>/web_crawler_spider</b> in terminal or command prompt:
+                <div class="my-2">
+                  <p class="text-sm italic">
+                    <b>For Windows:</b> Type cmd on browser's address bar and press enter. <br/>
+                    <b>For macOS:</b> Open the folder in Finder, Right-click the folder (or inside the folder background), Choose "Services" - "New Terminal at Folder".<br/>
+                    <b>For Ubuntu / Linux:</b> Open the folder in Finder, Right-click the folder (or inside the folder background), Choose "Services" - "New Terminal at Folder".<br/>
+                    Now run follow below commands:
+                  </p>
+                </div>
+                <div class="grid grid-cols-2 space-x-5 mt-5">
+                  <div>
+                    <code class="text-red-600 font-mono block my-2">npm install:</code>
+                    <img
+                      src="public/img/install.png"
+                      alt="Folder structure"
+                      class="rounded shadow-md mb-8"
+                    />
+                  </div>
+                  <div>
+                    <code class="text-red-600 font-mono block my-2">npx playwright install:</code>
+                    <img
+                      src="public/img/install_play.png"
+                      alt="Folder structure"
+                      class="rounded shadow-md mb-8"
+                    />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Start Application Section -->
+          <section class="mt-12 pt-10" id="start">
+            <h2 class="text-2xl font-bold mb-4">Start The Application</h2>
+            <ul
+              class="list-disc list-inside text-gray-700 space-y-2 mt-10 mb-6"
+            >
+              <li>
+                Now simply run the
+                <code class="text-red-600 font-mono">npm start</code> command to
+                start the server:
+              </li>
+            </ul>
+
+            <div class="rounded overflow-hidden shadow-md">
+              <img
+                src="public/img/start.png"
+                alt="Start Command"
+                class="w-full object-contain"
+              />
+            </div>
+
+            <ul
+              class="list-disc list-inside text-gray-700 space-y-2 mt-10 mb-6"
+            >
+              <li>
+                After a few moments, the application will generate a URL (e.g.,
+                <a
+                  href="http://localhost:3000"
+                  target="_blank"
+                  class="text-blue-500 hover:underline"
+                  >http://localhost:3000</a
+                >). Simply click on this URL and open it on your preferred
+                browser to access the application.
+              </li>
+              <li>
+                Now you will see the below interface on your browser. Just login
+                or create a new account and start your work!
+              </li>
+            </ul>
+            <div class="rounded overflow-hidden shadow-md">
+              <img
+                src="public/img/home.png"
+                alt="Home"
+                class="w-full object-contain"
+              />
+            </div>
+
+            <p class="text-center text-2xl font-bold my-10">
+              🎉Congratulations! Your setup is complete.🥳
+            </p>
+          </section>
+
+          <section class="mt-12 pt-10" id="quickstart">
+            <h2 class="text-2xl font-bold mb-4">⚡Quick Start</h2>
+            <p class="text-gray-700 mb-2 font-semibold">
+              <b>Note:</b> After the <a href="#installation" class="text-blue-600 underline italic">installation process</a>, you don't need to
+              follow each step to run the application. Instead, simply open the
+              project folder and open file by name <strong>/starter</strong> this will start your server (Only for Windows User):
+            </p>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+              <li>
+                <div class="rounded overflow-hidden shadow-md my-2">
+                  <img
+                    src="public/img/starterbat.png"
+                    alt="Starter"
+                    class="w-full object-contain"
+                  />
+                </div>
+              </li>
+            </ul>
+
+            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+              <li>
+                That's it! Your application is ready to use at:
+                <a
+                  href="http://localhost:3000"
+                  target="_blank"
+                  class="text-blue-500 hover:underline"
+                  >http://localhost:3000</a
+                >.
+                <div class="rounded overflow-hidden shadow-md my-2">
+                  <img
+                    src="public/img/start.png"
+                    alt="Chrome Remote Debugging Screenshot"
+                    class="w-full object-contain"
+                  />
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <section class="mt-12 pt-10" id="purchasecode">
+            <h2 class="text-2xl font-bold mb-4">Purchase Code</h2>
+            <h3 class="text-xl font-semibold mt-5 mb-4">
+              What is an Access or Purchase Code?
+            </h3>
+            <p class="text-gray-700 mb-2 font-semibold">
+              When you purchase our product, you will receive a purchase code
+              via email. This code acts as your key to unlock full access to the
+              product.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-5 mb-4">Why Do I Need It?</h3>
+            <p class="text-gray-700 mb-2 font-semibold">
+              The purchase code is essential to gain unrestricted access to all
+              the features and functionalities of the product. Without it, your
+              usage will be limited.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-5 mb-4">How Do I Get It?</h3>
+            <p class="text-gray-700 mb-2 font-semibold">
+              Once you complete the purchase, the access or purchase code will
+              be sent to your email. Check your inbox (and spam folder just in
+              case) for an email containing the code.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-5 mb-4">
+              How to Apply the Purchase Code?
+            </h3>
+            <p class="text-gray-700 mb-2 font-semibold">
+              To apply the purchase code, go to the "Profile" section of your
+              account. Look for the "Purchase Code" option and enter the
+              code you received. Once applied, you'll have full access to the
+              product.
+            </p>
+
+            <div class="rounded overflow-hidden shadow-md my-5">
+              <img
+                src="public/img/profile.png"
+                alt="Profile"
+                class="w-full object-contain"
+              />
+            </div>
+          </section>
+
+          <!-- Features Section -->
+          <section class="mt-12 pt-10" id="features">
+            <h2 class="text-2xl font-bold mb-4">Features</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>Easy sign-in and sign-up</li>
+              <li>
+                Scrape data from our <strong>Live website scraper</strong>.
+              </li>
+              <li>
+                Scrape data from
+                <strong
+                  >Search engines such as Google.com, Bing.com, Yahoo and
+                  more.</strong
+                >
+              </li>
+              <li>Scrape data from <strong>'Maps.google.com'</strong></li>
+              <li>
+                Scrape data based on Keywords such as
+                <em><strong>"Schools contact details in London."</strong></em>
+              </li>
+              <li>
+                Instant Phone calls, Text SMS, WhatsApp Message and Email
+                sending feature.
+              </li>
+              <li>Scrape text content from images.</li>
+              <li>Scraped data may be up to 80% accurate</li>
+              <li>Scrape email IDs, contact numbers, website URLs, and more</li>
+              <li>Receive filtered data</li>
+              <li>Download data in <strong>CSV</strong> file format</li>
+            </ul>
+          </section>
+
+          <!-- Services & Tools Section -->
+          <section class="mt-12 pt-10" id="services">
+            <h2 class="text-2xl font-bold mb-2">Services & Tools</h2>
+            <p class="text-gray-600 mb-6">
+              Explore our top tools & services and generate your business leads.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Card Template -->
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/bing.png"
+                  alt="Bing"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Bing Search Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Collect Bing search data: URLs, titles, and contacts.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/yahoo.png"
+                  alt="Yahoo"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Yahoo Search Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Filter out the results from Yahoo search engine and get
+                  important data.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/duckduckgo.png"
+                  alt="DuckDuckGo"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">DuckDuckGo Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Get search results from DuckDuckGo, including websites,
+                  description, and contact details.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/google.png"
+                  alt="Google"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">
+                  Google Search Scraper
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Extract search results from Google, including titles, URLs,
+                  and descriptions.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/gmapIcon.png"
+                  alt="Google Maps"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Google Map Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Scrape business details from Google Maps, including name,
+                  phone, and address.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/live.png"
+                  alt="Live Scraping"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">
+                  Live Website Scraping
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Get the contact information, social media links, and more data
+                  directly from live websites.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/websiteIcon.png"
+                  alt="Live Data"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Live Website Data</h3>
+                <p class="text-sm text-gray-600">
+                  Instant business leads and faster engagement, powered by our
+                  next-gen live website data.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/facebook.png"
+                  alt="Facebook"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Facebook Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Get the Followers, Phone, Email and more public data easily
+                  from Facebook.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/youtube.png"
+                  alt="YouTube"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">YouTube Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Know about subscribers, viewers, and other important data of
+                  YouTubers.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/website.png"
+                  alt="Website Data"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Website Data Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Extract valuable data from websites for research and
+                  marketing.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/directoryIcon.png"
+                  alt="Business Directory"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">
+                  Business Directory Scraper
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Extract contact details from online business directories
+                  easily.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/docIcon.png"
+                  alt="Document Scraper"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">
+                  Document Data Scraper
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Extract data from CSV, Excel, Doc, and other documents
+                  automatically.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/imageIcon.png"
+                  alt="Image Scraper"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">Image Data Scraper</h3>
+                <p class="text-sm text-gray-600">
+                  Extract text and contact information from images with OCR
+                  technology.
+                </p>
+              </div>
+
+              <div
+                class="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="public/img/domain.png"
+                  alt="Whois"
+                  class="w-12 h-12 mx-auto mb-3"
+                />
+                <h3 class="font-semibold text-lg mb-1">
+                  Whois Domain Database
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Retrieve domain ownership details like name, address, and
+                  country.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Change Log Section -->
+          <section class="mt-12 pt-10" id="logs">
+            <h2 class="text-2xl font-bold mb-6">Change Log</h2>
+            <div class="space-y-6 text-gray-700">
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 9.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>
+                    Added a new tool called <strong>Website URLs Checker</strong> to check whether a website is active or inactive.
+                  </li>
+                  <li>
+                    Implemented <strong>Verified Domains</strong>, a tool to filter and retrieve a list of verified domains along with their registered countries.
+                  </li>
+                  <li>
+                    Added the ability to generate latitude and longitude for specific map addresses in <strong>Google Map Scraper</strong>.
+                  </li>
+                  <li>
+                    You can now retrieve the <strong>CID (Customer ID)</strong> of map addresses using <strong>Google Map Scraper</strong>.
+                  </li>
+                  <li>
+                    We have fixed some bugs and improved functionalities.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 8.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>
+                    Implement <strong>Google Sign-In</strong> feature.
+                  </li>
+                  <li>Added <strong>YouTube demo</strong> videos as <strong>tutorials</strong> for each scraper tool.</li>
+                  <li>Users can now change their country to receive a relevant phone number for that region.</li>
+                  <li>Fixed several bugs related to the UI and core functionality.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 7.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>
+                    Introduced a <strong>Live Website Scraper</strong> for retrieving real-time
+                    website data.
+                  </li>
+                  <li>Added <strong>Yahoo Search Scraper</strong> functionality.</li>
+                  <li>Integrated <strong>DuckDuckGo Search Scraper</strong>.</li>
+                  <li>Launched <strong>Facebook</strong> and <strong>YouTube</strong> Scrapers.</li>
+                  <li>And fixed some bugs.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 6.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li><strong>Added Bing Search Scraper</strong>.</li>
+                  <li>
+                    <strong>Improved Google Search Data Accuracy</strong>, Users
+                    get more precise results.
+                  </li>
+                  <li>
+                    Enhanced Phone Number Accuracy in Google Maps Scraper,
+                    Better extraction reliability.
+                  </li>
+                  <li>
+                    <strong>Added Social Media URL Extraction</strong>, Now
+                    available in Website Data Scraper.
+                  </li>
+                  <li>
+                    <strong>Bug Fixes & Performance Improvements</strong>,
+                    General enhancements for a smoother experience.
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 5.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>Google Search Scraper now available on Cloud Service</li>
+                  <li>Google Maps Scraper now available on Cloud Service</li>
+                  <li>Live Website Data now hosted on Cloud Service</li>
+                  <li>Website Scraper now available on Cloud Service</li>
+                  <li>Introduced Direct Call & Text SMS features</li>
+                  <li>
+                    Added Direct WhatsApp Messaging & Email sending features
+                  </li>
+                  <li>Video tutorial available on YouTube</li>
+                  <li>Enhanced data response speed</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 4.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>Added Business Directory Scraper</li>
+                  <li>Added Whois Domain Database</li>
+                  <li>Introduced WhatsApp Messaging Feature</li>
+                  <li>Introduced Email Sending Feature</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 3.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>Added Image Data Scraper</li>
+                  <li>Introduced New Dashboard UI</li>
+                  <li>Fixed Minor Bugs</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 2.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>Added Document Data Scraper</li>
+                  <li>Redesigned Dashboard</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-blue-800">
+                  ::VERSION 1.0 RELEASED::
+                </h3>
+                <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li>Initial Release</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Thank You Section -->
+          <section class="mt-16 mb-12 pt-10" id="thanks">
+            <div
+              class="max-w-xl mx-auto text-center bg-gradient-to-b from-white to-blue-50 p-10 rounded-lg shadow border border-gray-200"
+            >
+              <div class="text-5xl mb-4">😊</div>
+              <h2 class="text-2xl font-bold text-blue-700 mb-2">
+                Thank You for Choosing Us!
+              </h2>
+              <p class="text-gray-600">
+                We’re dedicated to supporting you — thanks for being part of our
+                journey!
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById("setupDropdown");
+        dropdown.classList.toggle("hidden");
+        dropdown.classList.toggle("block");
+      }
+
+      const sidebar = document.getElementById("sidebar");
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+
+      mobileMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents the outside click handler from firing
+        sidebar.classList.toggle("-translate-x-full");
+      });
+
+      // Close sidebar on outside click
+      document.addEventListener("click", function (e) {
+        const isClickInsideSidebar = sidebar.contains(e.target);
+        const isClickOnToggle = mobileMenuBtn.contains(e.target);
+
+        if (
+          !isClickInsideSidebar &&
+          !isClickOnToggle &&
+          window.innerWidth < 768
+        ) {
+          sidebar.classList.add("-translate-x-full");
+        }
+      });
+    </script>
+  </body>
+</html>

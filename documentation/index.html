@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>BeePost Documentation</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="BeePost software installation Documentation and guide">
+    <meta name="author" content="BeePost software installation Documentation and guide">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
+     
+    <link rel="stylesheet" href="assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+    <style type="text/css">
+    	.logo-icon{
+    		width: 30px;
+    	}
+    	span>small{
+    		font-size: 8px;
+    	}
+    </style>
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href=""><img width="30" class="logo-icon me-2" src="assets/logo.png" alt="logo"><span class="logo-text">Bee<span class="text-alt">Post</span></span> <span><small>Usage Guide</small></span></a></div>    
+                </div>
+            </div> 
+        </div> 
+    </header> 
+    
+    
+    <div class="docs-wrapper">
+	    <div id="docs-sidebar" class="docs-sidebar">
+		    <nav id="docs-nav" class="docs-nav navbar">
+			    <ul class="section-items list-unstyled nav flex-column pb-3">
+
+				    <li class="nav-item section-title">
+				    	<a class="nav-link scrollto active" href="#introduction">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-map-signs"></i>
+				    		</span>Introduction
+				    	</a>
+				    </li> 
+				    <li class="nav-item section-title mt-3">
+				    	<a class="nav-link scrollto" href="#installation">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-arrow-down text-white"></i>
+				    		</span>Installation
+				    	</a>
+				    </li> 
+				    <li class="nav-item"><a class="nav-link scrollto" href="#install-overview">Overview & Requirements</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#localhost-install">Localhost Config</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#cpanel-install">cPanel Config</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#installation-process">Installation Process</a></li> 
+
+				    <li class="nav-item"><a class="nav-link scrollto" href="#installation-video-guide">Installation Video</a></li> 
+
+				    <li class="nav-item section-title mt-3">
+				    	<a class="nav-link scrollto" href="#admin-panel">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-arrow-down text-white"></i>
+				    		</span>Admin Panel
+				    	</a>
+				    </li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#website-appearance">Website Appearance</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#setup-configuration">Setup & Configuration</a></li>
+ 
+				    <li class="nav-item"><a class="nav-link scrollto" href="#ai-configuration">AI Configuration</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#notification-configuration">Mail & SMS Config</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#language-configuration">Language Management</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#social-account-manage">Social Account Management</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#ai-template-configuration">AI Template Config</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#subscription-configuration">Subscription Plan Create</a></li>
+
+				    <li class="nav-item section-title mt-3">
+				    	<a class="nav-link scrollto" href="#social-platform-configuration">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-arrow-down text-white"></i>
+				    		</span>Social Account API Configuration
+				    	</a>
+				    </li>
+				    <li class="nav-item"><a class="nav-link scrollto"  href="#facebook-configuration">Facebook Platform</a>
+				    <li class="nav-item"><a class="nav-link scrollto"  href="#instagram-configuration">Instagram Platform</a>
+				    <li class="nav-item"><a class="nav-link scrollto"  href="#LinkedIn-configuration">LinkedIn Platform</a>
+				    <li class="nav-item"><a class="nav-link scrollto"  href="#Twitter-configuration">Twitter Platform</a>
+ 					
+					<li class="nav-item section-title mt-3">
+				    	<a class="nav-link scrollto" href="#user-panel">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-arrow-down text-white"></i>
+				    		</span>User Panel
+				    	</a>
+				    </li>
+				    <li class="nav-item">
+				    	<a class="nav-link scrollto" href="#registration-process-user">Register Account</a>
+				    </li>
+				    <li class="nav-item">
+				    	<a class="nav-link scrollto" href="#connect-social-acccount">Connect Socail Account</a>
+				    </li>
+				    <li class="nav-item">
+				    	<a class="nav-link scrollto" href="#subscription-plan">Plan Subscription/Upgrade</a>
+				    </li>
+				    <li class="nav-item">
+				    	<a class="nav-link scrollto" href="#create-post">Create Post</a>
+				    </li>
+				     
+				   
+
+					<li class="nav-item section-title mt-3">
+				    	<a class="nav-link scrollto" href="#support">
+				    		<span class="theme-icon-holder me-2">
+				    			<i class="fas fa-arrow-down text-white"></i>
+				    		</span>Support
+				    	</a>
+				    </li>
+				</ul>
+
+		    </nav> 
+	    </div> 
+
+
+	    <div class="docs-content">
+		    <div class="container">
+
+			    <article class="docs-article" id="introduction">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 22<sup>th</sup> December, 2024</span></h1>
+					    <section class="docs-intro">
+						    <p>Welcome to <strong>BeePost</strong>, a cutting-edge social media marketing and automation tool designed to simplify and amplify your online presence. With <strong>BeePost</strong>, managing multiple social media platforms becomes effortless, empowering businesses, influencers, and marketers to achieve their goals with efficiency and precision.</p>
+						    <p>
+							<strong>BeePost</strong> integrates seamlessly with popular social media platforms like Facebook, Instagram, LinkedIn, and Twitter, providing a centralized hub for content management. Whether you want to create posts, schedule them for optimal engagement, or generate compelling articles using advanced AI, <strong>BeePost</strong> has got you covered. Our intuitive interface and powerful features ensure that you spend less time on logistics and more time focusing on your strategy.</p>
+							<p>
+							For administrators, <strong>BeePost</strong> offers an excellent opportunity to monetize the platform through a flexible subscription model. Create custom subscription plans tailored to various user needs, enabling scalable revenue generation while providing exceptional value to your customers.</p>
+							<p>
+							<strong>BeePost</strong> isn’t just a tool—it’s your partner in navigating the dynamic landscape of social media marketing. Whether you’re a seasoned marketer or just starting, <strong>BeePost</strong> equips you with everything you need to succeed in the digital age.</p>
+						</section>
+				    </header> 
+
+				    <section class="docs-section">
+						<h5>Website, Admin Panel & User Panel:</h5>  
+						
+						<div class="simplelightbox-gallery row mb-3">
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/intro/frontend.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/intro/frnt.png" alt="" title="BeePost Frontend"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/intro/admin.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/intro/admin.png" alt="" title="BeePost Admin Panel"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/intro/user.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/intro/user.png" alt="" title="BeePost User Panel"/></a>
+							</div>
+						</div>
+					</section>
+			    </article>
+			    
+			    <article class="docs-article" id="installation">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Installation</h1>
+					    <section class="docs-intro">
+						    <p>Setting up the BeePost application is a straightforward process. </p>
+						</section>
+				    </header>
+
+				    <section class="docs-section" id="install-overview">
+						<h2 class="section-heading">Overview & Requirements</h2>
+						<h5>Overview</h5>
+						<p>Just follow these steps to get your application up and running in no time:</p>
+						<ul>
+							<li>
+								<strong>Download the Script:</strong> Begin by downloading the script from Codecanyon. You'll receive a zip file containing all the necessary files.
+							</li>
+							<li>
+								<strong>Unzip the File:</strong> After downloading, unzip the zip file to access the installation files.
+							</li>
+							<li>
+								<strong>Locate Installation Zip:</strong> Within the unzipped files, you'll find the installation zip file. Locate this file, as it contains the necessary setup files and instructions.
+							</li>
+							<li>
+								<strong>Installation Steps:</strong> Follow the instructions provided in the installation zip file to complete the setup. This typically involves configuring your server or localhost environment and specifying certain settings.
+							</li>
+							<li>
+								<strong>Completion:</strong> Once you've followed the installation steps, your BeePost application will be ready to use. You can then proceed to configure and customize it according to your needs.
+							</li>
+						</ul>
+						<h5>Requirements</h5>
+						<p>Before you begin the installation process, ensure that your server or localhost environment meets the following requirements:</p>
+						<ul>
+							<li>
+								<strong>PHP >= 8.*:</strong> BeePost requires PHP version 8 or higher to function correctly.
+							</li>
+
+							<li>
+								<strong>GD PHP Extension:</strong> Make sure that the GD PHP extension is enabled on your server. It's essential for image processing tasks.
+							</li>
+
+							<li>
+								<strong>Ctype PHP Extension:</strong> The Ctype PHP extension should be enabled to handle character type checking.
+
+							</li>
+
+							<li>
+								<strong>BCMath PHP Extension:</strong> BCMath is necessary for arbitrary-precision mathematics, which may be used in various calculations within the application.
+							</li>
+
+							<li>
+								<strong>Fileinfo PHP Extension:</strong> Ensure that the Fileinfo PHP extension is enabled to handle file-related information.
+							</li>
+
+							<li>
+								<strong>Mbstring PHP Extension:</strong> Mbstring is important for multibyte character encoding support, which may be needed for internationalization features.
+							</li>
+
+							<li>
+								<strong>JSON PHP Extension:</strong> BeePost relies on JSON for data interchange, so the JSON PHP extension must be enabled.
+							</li>
+
+							<li>
+								<strong>Tokenizer PHP Extension:</strong> The Tokenizer PHP extension is used for parsing code, which is essential for certain functionalities.
+							</li>
+
+							<li>
+								<strong>OpenSSL PHP Extension:</strong> OpenSSL is necessary for secure connections and cryptographic operations.
+							</li>
+
+							<li>
+								<strong>PDO PHP Extension:</strong> Make sure that the PDO PHP extension is enabled, as it is used for database access.
+							</li>
+
+							<li>
+								<strong>XML PHP Extension:</strong> The XML PHP extension is required for handling XML data and may be used in certain parts of the application.
+							</li>
+						</ul>
+					</section> 
+					
+					<section class="docs-section" id="localhost-install">
+						<h2 class="section-heading">Config on Localhost/XAMPP/WAMP/LAMP/Laragon</h2>
+						<p>You can easily install BeePost on your local development environment using popular tools like XAMPP, WAMP, LAMP, or Laragon. Follow these steps to set up the software locally:</p>
+						<h5>Database Setup</h5>
+						<ol>
+							<li><p><strong>Start XAMPP:</strong> Open the XAMPP Control Panel. You can do this by searching for "XAMPP Control Panel" and running it as an administrator.</p></li><li><p><strong>Start Apache and MySQL:</strong> In the XAMPP Control Panel, click the "Start" button next to "Apache" and "MySQL." This will start the Apache web server and MySQL database server.</p></li><li><p><strong>Access phpMyAdmin:</strong> Open your web browser and type the following URL into the address bar: <a target="_new">http://localhost/phpmyadmin/</a></p></li><li><p><strong>Login to phpMyAdmin:</strong> You will be taken to the phpMyAdmin login page. Log in with the default credentials:</p><ul><li><strong>Username:</strong> root</li><li><strong>Password:</strong> (Leave this field empty)</li></ul><p>Note: If you've set a password for MySQL during XAMPP installation or later, use that password instead of leaving it empty.</p></li><li><p><strong>Create a New Database:</strong></p><ul><li>On the phpMyAdmin dashboard, click on the "Databases" tab located at the top.</li><li>In the "Create database" section, enter a name for your new database in the "Database name" field.</li><li>Choose the appropriate collation (usually, you can leave it as the default).</li><li>Click the "Create" button.</li></ul></li><li><p><strong>Confirmation:</strong> You will receive a confirmation message indicating that the database has been created successfully.</p></li>
+						</ol>
+						<p class="text-danger">
+							[N:B]- Please note the Database Username, Database Name, Database Host, and Database Password for a later part of this installation process.
+						</p>
+						<h5>File Setup for Your Application</h5>
+						<p>After downloading the application zip file from Codecanyon, follow these steps to set up your files in the right location:</p>
+						<ol><li><p><strong>Download and Unzip:</strong> Start by downloading the application zip file from your source (e.g., Codecanyon). Once downloaded, unzip the main application package to access its contents.</p></li><li><p><strong>Locate Installer Zip:</strong> Within the unzipped folder, look for the installer zip file. This zip file typically contains all the necessary files for installing and setting up your application.</p></li><li><p><strong>Extract to Project Directory:</strong> Unzip the installer zip file into your project directory or the root directory of your web server. This step ensures that your application files are correctly placed and organized for installation.</p></li></ol>
+						<h5>Visual Guide: Installation Steps with Screenshots:</h5>  
+							
+						<div class="simplelightbox-gallery row mb-3">
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/localhost/lc_st_1.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/localhost/lc_st_1.png" alt="" title="Launching the Local Server (I Recommend Using Laragon)"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/localhost/lc_st_2.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/localhost/lc_st_2.png" alt="" title="Loing into MySQL using phpMyAdmin"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/localhost/lc_st_3.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/localhost/lc_st_3.png" alt="" title="Create database for this application"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/localhost/lc_st_4.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/localhost/lc_st_4.png" alt="" title="Placed your application file on root or your project file"/></a>
+							</div>
+						</div>
+					</section> 
+					
+					<section class="docs-section" id="cpanel-install">
+						<h2 class="section-heading">Config On cPanel</h2>
+						<p>You can easily install BeePost on your cPanel or any Hosting web panel. Follow these steps to set up the software locally:</p>
+						<p><strong>Access cPanel:</strong> Log in to your cPanel hosting account. You can typically access cPanel by navigating to your hosting provider's website and logging in with your credentials.</p>
+						<h5>Database Setup</h5>
+						<ol>
+							<ul>
+								<li><strong>Database Wizard:</strong> Return to cPanel's main dashboard and find the "MySQL Database Wizard" or "MySQL Databases" option. Create a new database for BeePost and take note of the database name, username, and password you set during this process.</li>
+							</ul>
+						</ol>
+						<p class="text-danger">
+							[N:B]- Please note the Database Username, Database Name, Database Host, and Database Password for a later part of this installation process.
+						</p>
+						<h5>File Setup for Your Application</h5>
+						<ol>
+							<ul>
+								<li><strong>File Manager:</strong> Once inside cPanel, look for the "File Manager" icon or option. Click on it to access your website's files.</li>
+
+								<li><strong>Upload Files:</strong> Navigate to the public_html directory or if you create sub-directory for ("BeePost") and click on it. Then, use the "Upload" option to upload the BeePost application zip file from your computer into this directory. Once the upload is complete, select the zip file and choose "Extract" to unzip its contents.</li>
+							</ul>
+						</ol>
+						<h5>Visual Guide: Installation Steps with Screenshots:</h5>  
+							
+						<div class="simplelightbox-gallery row mb-3">
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/cp_db_1.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/cp_db_1.png" alt="" title="Database Wizard"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/cp_db_2.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/cp_db_2.png" alt="" title="Create database name"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/cp_db_3.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/cp_db_3.png" alt="" title="Create database username & password"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/cp_db_4.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/cp_db_4.png" alt="" title="Allow permission and privileges"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/file_manager.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/file_manager.png" alt="" title="Open File Manager"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/file_manager_1.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/file_manager_1.png" alt="" title="Placed your application file on root or your project file"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/file_manager_2.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/file_manager_2.png" alt="" title="Unzip application zip file"/></a>
+							</div>
+							<div class="col-12 col-md-4 mb-3">
+						        <a href="assets/images/cpanel/file_manager_3.png"><img class="figure-img img-fluid shadow rounded" src="assets/images/cpanel/file_manager_3.png" alt="" title="Application directory structure"/></a>
+							</div>
+						</div>
+					</section>
+
+					<section class="docs-section" id="installation-process">
+						<h2 class="section-heading">Installation Process</h2>
+						<p>After successfully configuring your server, whether it's a local environment or cPanel hosting, you are now ready to proceed with the application installation. Simply follow the instructions provided below to seamlessly set up the application on your system:</p>
+						<ul>
+							<li>
+								<strong>Step-1 Access Installer:</strong> Access the installation script through your web browser <code>(e.g., http://localhost/BeePost or https://yourdomainname.com)</code> and follow the 	on-screen instructions to complete the setup.
+
+								<img class="mt-3 w-100" src="assets/images/installation_process/step-1.png" alt="" title="Installation Wizard">
+
+							</li>
+
+							<li>
+								<strong>Step-2 Permissions & Requirements:</strong> Permissions are assigned to ensure that the Requirements application can execute operations smoothly within your system's setup directory.
+ 								<img class="mt-3 w-100" src="assets/images/installation_process/step-2.png" alt="" title="Installation Wizard">
+							</li>
+
+							<li>
+								<strong>Step-3 Database Setup:</strong> Please ensure that you enter the correct database name, database user, and password that you previously created.
+ 								<img class="mt-3 w-100" src="assets/images/installation_process/step-3.png" alt="" title="Installation Wizard">
+							</li>
+
+							<li>
+								<strong>Step-4 Account Setup:</strong> During this step, you'll establish your admin access credentials, including the username needed for logging into the admin panel upon successful installation. Afterward, click the <button class="button btn-sm">Import</button> button to initiate the database import as part of the installation process.
+
+								<p class="text-danger">[Note: The <span class="logo-text">Force Import</span> button is intended for forcefully importing the database into an existing non-empty database. Please exercise caution, as this action may overwrite or delete your existing data.</p>
+	 							<img class="mt-3 w-100" src="assets/images/installation_process/step-4.png" alt="" title="Installation Wizard">
+							</li>
+
+							<li>
+								<strong>Step-5 Installation Completed Successfully:</strong> Congratulations! The installation has been successfully completed. You can now access your admin panel for this application. For further configuration of the application's internal settings, please refer to the additional instructions provided in this documentation.
+ 								<img class="mt-3 w-100" src="assets/images/installation_process/step-5.png" alt="" title="Installation Wizard">
+							</li>
+						</ul>  
+					</section>
+
+					<section class="docs-section" id="installation-video-guide">
+					    <h2 class="section-heading">Video Guide for Installation</h2>
+					    <p>Watch this step-by-step video guide to quickly and effortlessly install the application on your system. Whether you're using a local environment or cPanel hosting, this video will help you through the entire process.</p>
+					    <div class="d-flex">
+					    	<div>
+					    		<h4>Windows Installation</h4>
+					    		<iframe width="500" height="300" src="https://www.youtube.com/embed/OK40DnUgea0" title="BeePost Installation On Windows Local Server" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					    	</div>
+
+					    	<div style="margin-left: 10px;">
+					    		<h4>MAC OS Installation</h4>
+					    		<iframe width="500" height="300" src="https://www.youtube.com/embed/fyPpB5hBFjQ" title="Installation BeePost On MAC OS XAMPP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					    	</div>
+					    </div>
+					     
+					</section>
+
+
+			    </article> 
+
+				<article class="docs-article" id="admin-panel">
+			    	<header class="docs-header">
+					    <h2 class="docs-heading">Admin Panel Overview</h2>
+					    <section class="docs-intro">
+						    <div>
+						        <p><strong>Admin Panel Overview</strong></p>
+						        <p>The BeePost Admin Panel is designed to provide comprehensive control and insights for administrators. Key features include:</p>
+						        <ul>
+						            <li><strong>Dashboard:</strong> Displays an overview of subscription packages, categories, AI templates, and subscription income.</li>
+						            <li><strong>Access Control:</strong> Manage user roles and permissions efficiently.</li>
+						            <li><strong>Subscription Services:</strong> Create and manage subscription plans for monetization.</li>
+						            <li><strong>Social Media Management:</strong> Oversee connected platforms, accounts, and scheduled posts.</li>
+						            <li><strong>User Statistics & Support:</strong> Monitor user activity, manage accounts, and handle support tickets effectively.</li>
+						            <li><strong>AI Content Management:</strong> Access and manage AI templates and generated content.</li>
+						            <li><strong>Frontend Configuration:</strong> Customize sections, blogs, and other content for the user-facing interface.</li>
+						        </ul>
+						        <p>This intuitive and feature-rich admin panel ensures smooth operation and management of the BeePost platform.</p>
+						    </div>
+						</section>
+				    </header>
+
+				    <section class="docs-section" id="website-appearance">
+						<h2 class="section-heading">Frontend Section Management</h2>
+						<div class="mt-3"> 
+						    <p>The <strong>Frontend Section Management</strong> in the BeePost Admin Panel allows administrators to configure and customize various sections of the frontend site. This feature provides flexibility to manage and display content effectively to the end-users. Below is an explanation of key functionalities:</p>
+
+						    <h4>Key Functionalities</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to Frontend Sections:</strong>
+						            <ul>
+						                <li>Click on <strong>Sections</strong> in the sidebar menu under <strong>Frontend Configuration</strong>.</li>
+						                <li>Select the desired section (e.g., <strong>About Us</strong>, <strong>FAQ Section</strong>, <strong>Team Section</strong>, etc.) to manage its content.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Manage Section Content:</strong>
+						            <ul>
+						                <li><strong>Title:</strong> Set the main title for the section.</li>
+						                <li><strong>Sub Title:</strong> Add a subtitle to provide additional context for the section.</li>
+						                <li><strong>Description:</strong> Write a brief description about the section to engage users effectively.</li>
+						                <li>Click <strong>Update</strong> to save changes.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Add New Section Items:</strong>
+						            <ul>
+						                <li>Click the <strong>+ Add New</strong> button to add a new item to the section.</li>
+						                <li>Fill out the fields, such as:
+						                    <ul>
+						                        <li><strong>Icon:</strong> Choose an icon that visually represents the item.</li>
+						                        <li><strong>Title:</strong> Add a title for the item.</li>
+						                        <li><strong>Description:</strong> Provide a short description for the item.</li>
+						                        <li><strong>Status:</strong> Toggle the status to activate or deactivate the item.</li>
+						                    </ul>
+						                </li>
+						                <li>Click <strong>Save</strong> to add the item to the section.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Editing and Deleting Section Items:</strong>
+						            <ul>
+						                <li>Click the <strong>Edit Icon</strong> (pencil icon) to modify an existing item.</li>
+						                <li>Make the necessary updates and click <strong>Save</strong> to apply changes.</li>
+						                <li>Click the <strong>Delete Icon</strong> (trash icon) to remove an item permanently from the section.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Common Sections and Their Purpose</h4>
+						    <ul>
+						        <li><strong>About Us:</strong> Share your organization's values and mission with users.</li>
+						        <li><strong>FAQ Section:</strong> Provide answers to common user queries to enhance user experience.</li>
+						        <li><strong>Team Section:</strong> Showcase the team members to build credibility and trust.</li>
+						        <li><strong>Feature Section:</strong> Highlight the key features and benefits of your platform.</li>
+						    </ul>
+
+						    <p>By effectively managing these sections, administrators can ensure the frontend site is visually appealing, informative, and engaging for users.</p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/frontend.png">
+						</div>
+					</section>
+
+				    <section class="docs-section" id="setup-configuration">
+						<h2 class="section-heading">Setup & Configuration</h2> 
+						 <div>
+						    <p><strong>System Configuration Overview</strong></p>
+						    <p>
+						        The <strong>System Configuration</strong> section in the BeePost Admin Panel provides tools to customize and optimize the platform's functionality. Key options include:
+						    </p>
+						    <ul> 
+						        <li><strong>App Settings:</strong> Configure application-specific preferences.</li>
+						        <li><strong>System Preferences:</strong> Adjust system-wide operational parameters.</li>
+						        <li><strong>Languages:</strong> Manage multilingual support for a global audience.</li>
+						        <li><strong>AI Configuration:</strong> Fine-tune AI-driven features and functionalities.</li>
+						        <li><strong>Webhook Configuration:</strong> Set up and manage integrations via webhooks.</li>
+						        <li><strong>Affiliate Configuration:</strong> Configure affiliate marketing settings.</li>
+						        <li><strong>KYC Configuration:</strong> Manage Know Your Customer (KYC) processes for secure user verification.</li>
+						    </ul>
+						    <p>
+						        This section enables administrators to tailor the platform to meet business needs and ensure seamless operations.
+						    </p> 
+						</div>
+
+						<div class="mt-3">
+						    <p><strong>App Settings Overview</strong></p>
+						    <p>
+						        The <strong>App Settings</strong> section in the BeePost Admin Panel allows administrators to configure fundamental and advanced settings for the platform. Key features include:
+						    </p>
+						    <ul>
+						        <li><strong>Basic Settings:</strong> Set site name, user site name, contact details, time zone, date format, and country information.</li>
+						        <li><strong>SEO Settings:</strong> Manage SEO-related configurations to optimize visibility and search engine rankings.</li>
+						        <li><strong>Logging:</strong> Enable and monitor system logging for better diagnostics and tracking.</li>
+						        <li><strong>Rate Limiting:</strong> Configure rate limits to manage API requests and enhance platform security.</li>
+						        <li><strong>Theme Settings:</strong> Customize the appearance and theme of the platform.</li>
+						        <li><strong>Storage Settings:</strong> Manage file storage preferences and configurations.</li>
+						        <li><strong>Recaptcha Settings:</strong> Enable CAPTCHA for enhanced security against bots and spam.</li>
+						        <li><strong>Social Login Settings:</strong> Configure login options for users using social platforms.</li>
+						        <li><strong>Login Settings:</strong> Manage login-related parameters to enhance user access and security.</li>
+						        <li><strong>Logo Settings:</strong> Upload and manage platform logos for branding.</li>
+						        <li><strong>Ticket Settings:</strong> Configure support ticket settings to enhance user support operations.</li>
+						    </ul>
+						    <p>
+						        This section ensures administrators can tailor the BeePost platform to align with their operational requirements and branding goals.
+						    </p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/app_setting.png">
+						</div>
+					</section> 
+
+					<section class="docs-section" id="ai-configuration">
+						<h2 class="section-heading">AI Configuration Overview</h2> 
+						<div class="mt-3"> 
+						    <p>The <strong>AI Configuration</strong> section in the BeePost Admin Panel provides tools to manage AI-related settings and optimize AI-powered features. Key areas include:</p>
+						    <ul>
+						        <li>
+						            <strong>Basic Configuration:</strong> 
+						            <ul>
+						                <li><strong>Open AI Model:</strong> Select the AI model to be used, such as ChatGPT-4.</li>
+						                <li><strong>Default Tone:</strong> Configure the default tone for AI-generated responses (e.g., professional, casual).</li>
+						                <li><strong>Default Creativity Level:</strong> Set the creativity level for AI outputs (e.g., low, medium, high).</li>
+						                <li><strong>Default Max Result Length:</strong> Specify the maximum length of AI-generated outputs.</li>
+						                <li><strong>Bad Words Filter:</strong> Define restricted words to ensure content appropriateness.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Open AI Secret Key:</strong> Securely manage and input the API key for AI integration.
+						        </li>
+						    </ul>
+						    <p>This section allows administrators to fine-tune AI features to meet platform requirements while ensuring proper control over content and performance.</p>
+
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/ai_config.png">
+						</div>
+					</section>
+
+					<section class="docs-section" id="notification-configuration">
+						<h2 class="section-heading">Notification Gateway Configuration</h2> 
+						<div class="mt-3"> 
+						    <p>The Notification Gateway section in the BeePost Admin Panel allows administrators to configure Mail and SMS gateways for automated notifications. Follow these steps to set up and manage notification gateways:</p>
+						    
+						    <h4>Mail Gateway Setup</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to the Mail Gateway:</strong> 
+						            <ul>
+						                <li>Go to <strong>System Configuration</strong> from the sidebar menu.</li>
+						                <li>Click on <strong>Notification Gateway</strong>, then select <strong>Mail Gateway</strong>.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Edit Mail Gateway:</strong> 
+						            <ul>
+						                <li>Click on the <strong>Edit</strong> icon (pencil icon) next to the desired mail gateway (e.g., SMTP, PHPMailer, SendGrid).</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Fill in Necessary Fields:</strong> 
+						            <ul>
+						                <li>Provide the required details such as host, port, username, password, and encryption method based on the mail service provider.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Save Changes:</strong> 
+						            <ul>
+						                <li>After entering all details, click <strong>Save</strong> to apply the configuration.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Custom Notification Templates</h4>
+						    <ol>
+						        <li>
+						            <strong>Create Templates:</strong> 
+						            <ul>
+						                <li>Go to <strong>Notification Templates</strong> under the <strong>Notification Gateway</strong> menu.</li>
+						                <li>Select <strong>Add New Template</strong> or edit an existing one.</li>
+						                <li>Customize the template content and variables according to the notification requirements.</li>
+						                <li>Save the template for future use.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>SMS Gateway Setup</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to the SMS Gateway:</strong> 
+						            <ul>
+						                <li>Go to <strong>System Configuration</strong> from the sidebar menu.</li>
+						                <li>Click on <strong>Notification Gateway</strong>, then select <strong>SMS Gateway</strong>.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Edit SMS Gateway:</strong> 
+						            <ul>
+						                <li>Click on the <strong>Edit</strong> icon next to the desired SMS gateway provider.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Fill in Necessary Fields:</strong> 
+						            <ul>
+						                <li>Provide details such as API key, sender ID, and any additional parameters required by the SMS service provider.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Save Changes:</strong> 
+						            <ul>
+						                <li>Click <strong>Save</strong> to apply the SMS gateway configuration.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <p>By following these steps, administrators can configure both Mail and SMS gateways for seamless notification delivery and customize templates for various notification scenarios.</p>
+
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/notification-config.png">
+						</div>
+					</section> 
+
+					<section class="docs-section" id="language-configuration">
+						<h2 class="section-heading">Language Management</h2> 
+						<div class="mt-3"> 
+						    <p>The <strong>Language Management</strong> section in the BeePost Admin Panel allows administrators to add, update, and manage the languages available on the platform. Follow these steps for effective management:</p>
+
+						    <h4>Adding a New Language</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to the Languages Section:</strong>
+						            <ul>
+						                <li>Click on <strong>System Configuration</strong> in the sidebar menu.</li>
+						                <li>Select <strong>Languages</strong> from the dropdown menu.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Add a New Language:</strong>
+						            <ul>
+						                <li>Click the <strong>+ Add New</strong> button at the top of the page.</li>
+						                <li>Fill in the required fields, such as <strong>Language Name</strong> and <strong>Code</strong>.</li>
+						                <li>Click <strong>Save</strong> to add the new language to the platform.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Managing Existing Languages</h4>
+						    <ol>
+						        <li>
+						            <strong>Change Language Status:</strong>
+						            <ul>
+						                <li>Toggle the <strong>Status</strong> button next to a language to activate or deactivate it.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Set a Default Language:</strong>
+						            <ul>
+						                <li>Click the <strong>Star Icon</strong> next to a language to make it the platform's default language.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Translate Language Content:</strong>
+						            <ul>
+						                <li>Click the <strong>Translate Icon</strong> to open the translation editor for the selected language.</li>
+						                <li>Update the translations as needed and save changes.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Delete a Language:</strong>
+						            <ul>
+						                <li>Click the <strong>Delete Icon</strong> to remove a language from the platform.</li>
+						                <li>Confirm the action when prompted to permanently delete the language.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <p>
+						        The Language Management section ensures that the platform can support multiple languages for a global audience, with options to customize translations and set default language preferences.
+						    </p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/language.png">
+						</div>
+					</section>
+
+					<section class="docs-section" id="social-account-manage">
+						<h2 class="section-heading">Social Account/Platform Management</h2>
+						<div class="mt-3"> 
+						    <p>The <strong>Platform Management</strong> section in the BeePost Admin Panel allows administrators to integrate and manage social media platforms. Follow these steps to set up and manage platforms effectively:</p>
+
+						    <h4>Adding Accounts to a Platform</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to the Platforms Section:</strong>
+						            <ul>
+						                <li>Click on <strong>Social Media</strong> in the sidebar menu.</li>
+						                <li>Select <strong>Platforms</strong> from the dropdown menu.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Add an Account:</strong>
+						            <ul>
+						                <li>Find the platform you want to add an account to (e.g., Facebook, Instagram, Twitter).</li>
+						                <li>Click the <strong>+ Add Account</strong> button under the <strong>Options</strong> column.</li>
+						                <li>Provide the required credentials or connect the account as prompted.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Configuring a Platform with API Keys</h4>
+						    <ol>
+						        <li>
+						            <strong>Locate the Platform:</strong>
+						            <ul>
+						                <li>In the platform list, find the platform you want to configure (e.g., Twitter, LinkedIn).</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Configure API Key:</strong>
+						            <ul>
+						                <li>Click the <strong>Configure Icon</strong> (gear icon) under the <strong>Options</strong> column.</li>
+						                <li>Input the necessary API keys or credentials required by the platform.</li>
+						                <li>Save the configuration to integrate the platform successfully.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Editing an Account</h4>
+						    <ol>
+						        <li>
+						            <strong>Edit Existing Account:</strong>
+						            <ul>
+						                <li>Click the <strong>Edit Icon</strong> (pencil icon) next to the desired platform.</li>
+						                <li>Update the account details or settings as required.</li>
+						                <li>Save the changes to apply the updates.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <p>This section enables seamless integration and management of social media platforms to ensure efficient posting and account control for all supported platforms.</p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/platform.png">
+
+						    <p><strong>Connected Account</strong> You can see the connected account here</p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/connected_account.png">
+
+						    <p><strong>How to connect Account</strong> You can connect social media account by using API</p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/process_account_connect.png">
+						</div>
+					</section>
+
+					<section class="docs-section" id="ai-template-configuration">
+						<h2 class="section-heading">AI Template Management</h2>
+						<div class="mt-3">
+						    <p><strong>AI Template Management</strong></p>
+						    <p>The <strong>AI Template Management</strong> section in the BeePost Admin Panel allows administrators to create and customize AI templates dynamically. This feature enables users to generate AI-powered content tailored to specific use cases with dynamic prompt variables. Follow these steps:</p>
+
+						    <h4>Creating an AI Template</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to the Templates Section:</strong>
+						            <ul>
+						                <li>Go to <strong>AI Content</strong> in the sidebar menu.</li>
+						                <li>Select <strong>Templates</strong> from the dropdown menu.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Fill in Basic Information:</strong>
+						            <ul>
+						                <li>Enter the <strong>Name</strong> of the template.</li>
+						                <li>Provide a unique <strong>Slug</strong> for the template.</li>
+						                <li>Select the appropriate <strong>Category</strong> and <strong>Subcategory</strong>.</li>
+						                <li>Search for and assign an <strong>Icon</strong> to the template.</li>
+						                <li>Add a <strong>Short Description</strong> to describe the template's purpose.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Add Prompt Information:</strong>
+						            <ul>
+						                <li>Click the <strong>+ Add New Field</strong> button to add dynamic prompt fields.</li>
+						                <li>Provide the <strong>Prompt Name</strong> and a <strong>Placeholder</strong> for the input field.</li>
+						                <li>The system will automatically create a variable based on the prompt name for use in the template (e.g., <code>{topic}</code>).</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Enter Prompt Text:</strong>
+						            <ul>
+						                <li>In the <strong>Prompt</strong> field, provide the instruction or request the AI should follow. For example:</li>
+						                <li><code>Write the YouTube funny video title for {topic}, where {topic} is the subject provided by the user.</code></li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Save the Template:</strong>
+						            <ul>
+						                <li>Click <strong>Save</strong> to finalize and add the template to the system.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Understanding Dynamic Prompts</h4>
+						    <p>
+						        A <strong>Prompt</strong> in the AI Template is a structured instruction that guides the AI to generate the desired output. Dynamic prompts enhance flexibility by allowing the use of variables, which are placeholders for user-provided input. For instance:
+						    </p>
+						    <p>
+						        <code>Write a blog title about {topic}, targeting {audience}.</code>
+						    </p>
+						    <p>Here, <code>{topic}</code> and <code>{audience}</code> are variables dynamically replaced by user input when the template is used. This approach enables the creation of highly customizable and reusable templates.</p>
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/ai-template-configuration.png">
+						</div>
+					</section>
+
+					<section class="docs-section" id="subscription-configuration">
+						<h2 class="section-heading">Subscription Plan Management</h2>
+						<div class="mt-3"> 
+						    <p>The <strong>Subscription Plan Management</strong> section in the BeePost Admin Panel allows administrators to create, customize, and manage subscription packages for users. Below are the steps and details for creating a plan, including descriptions of the highlighted fields:</p>
+
+						    <h4>Creating a New Subscription Plan</h4>
+						    <ol>
+						        <li>
+						            <strong>Navigate to Subscription Services:</strong>
+						            <ul>
+						                <li>Click on <strong>Subscription Services</strong> in the sidebar menu.</li>
+						                <li>Select <strong>Packages</strong> and then click <strong>Add New</strong> to create a new plan.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Fill in Basic Information:</strong>
+						            <ul>
+						                <li><strong>Title:</strong> Enter a name for the subscription package.</li>
+						                <li><strong>Icon:</strong> Search and select an icon to represent the plan visually.</li>
+						                <li><strong>Duration:</strong> Choose the plan duration (e.g., Monthly, Yearly, etc.) from the dropdown menu.</li>
+						                <li><strong>Price:</strong> Enter the cost of the plan.</li>
+						                <li><strong>Discount Price:</strong> Specify any discounted price for promotions.</li>
+						                <li><strong>Affiliate Commission:</strong> Input the percentage commission for affiliates promoting this plan.</li>
+						            </ul>
+						        </li>
+						    </ol>
+
+						    <h4>Red-Marked Sections Explained</h4>
+						    <ul>
+						        <li>
+						            <strong>Template Access:</strong>
+						            <ul>
+						                <li>Select the templates that users subscribing to this plan will have access to.</li>
+						                <li>Templates include AI-generated content categories like <strong>Latest Blog</strong>, <strong>Instagram Photo Captions</strong>, <strong>Ad Copy Creator</strong>, etc.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>Platform Configuration:</strong>
+						            <ul>
+						                <li><strong>Platform Access:</strong> Define which platforms (e.g., Facebook, Instagram, Twitter) users can manage through this plan.</li>
+						                <li><strong>Total Posts:</strong> Set the total number of posts users can create or schedule within the plan's duration.</li>
+						                <li><strong>Total Profiles:</strong> Specify the maximum number of social media profiles users can connect.</li>
+						                <li><strong>Webhook & Schedule:</strong> Enable options for <strong>Webhook Access</strong> and <strong>Schedule Posting</strong> as part of the plan.</li>
+						            </ul>
+						        </li>
+						        <li>
+						            <strong>AI Configuration:</strong>
+						            <ul>
+						                <li>Customize access to AI-powered features, such as specific templates, for this plan.</li>
+						            </ul>
+						        </li>
+						    </ul>
+
+						    <p>After filling out all necessary fields, click <strong>Save</strong> to create the subscription plan. This flexible structure allows administrators to tailor subscription options to suit different user needs and maximize revenue opportunities.</p>
+
+						    <img class="mt-3 w-100" src="assets/images/admin-panel/plan.png">
+						</div>
+					</section>
+				</article> 
+
+
+				<article class="docs-article" id="social-platform-configuration">
+			    	<header class="docs-header">
+					    <h2 class="docs-heading">Social Media Account API Configuration in BeePost</h2>
+					    <section class="docs-intro">
+						     <div class="mt-3">  
+								<p>
+								    Platform configuration in BeePost is designed to allow users to connect and manage their social media platforms seamlessly. This section is the gateway to integrate and oversee platforms like Facebook, Instagram, Twitter, LinkedIn, and more. Through this interface, users can view the status of their integrations, manage active features, and ensure smooth communication between BeePost and their social media accounts.
+								</p>
+
+								<h3>Features in the "Social Media" Section:</h3>
+								<ul>
+								    <li><strong>View Supported Platforms:</strong> See a list of available social media platforms, including Facebook, Instagram, Twitter, and LinkedIn.</li>
+								    <li><strong>Check Integration Status:</strong> Confirm if a platform is successfully integrated.</li>
+								    <li><strong>Enable or Disable Features:</strong> Toggle platform-specific features based on preferences.</li>
+								    <li><strong>Add or Edit Accounts:</strong> Link new accounts or modify existing ones to maintain accuracy.</li>
+								</ul>
+
+								<p>
+								    This functionality streamlines the management of multiple platforms, ensuring users can schedule posts, analyze performance, and maintain a cohesive social media strategy all within BeePost.
+								</p> 
+
+							    <img class="mt-3 w-100" src="assets/images/platfrom-facebook/all.png">
+							</div>
+						</section>
+				    </header>
+				    <section class="docs-section" id="facebook-configuration">
+						<h2 class="section-heading">Facebook Platform Configuration</h2> 
+						 <p>
+						    To configure the Facebook platform in BeePost, follow these steps to integrate your Facebook account seamlessly.
+						</p>
+
+						<h3>Steps to Configure:</h3>
+						<ol>
+						    <li>
+						        Navigate to the <strong>Platforms</strong> section in the BeePost dashboard and locate the <strong>Facebook</strong> platform in the list.
+						    </li>
+						    <li>
+						        Click on the <strong>Settings</strong> button (settings icon) under the "Options" column for the Facebook platform.
+						    </li>
+						    <li>
+						        A modal titled <strong>Update Configuration</strong> will appear, displaying the following fields:
+						        <ul>
+						            <li><strong>Client ID:</strong> Enter the Client ID from your Facebook developer account.</li>
+						            <li><strong>Client Secret:</strong> Enter the Client Secret from your Facebook developer account.</li>
+						            <li><strong>App Version:</strong> Specify the API version (e.g., v21.0).</li>
+						            <li><strong>Graph API URL:</strong> The default URL is <code>https://graph.facebook.com</code>.</li>
+						            <li><strong>Group URL:</strong> The default URL is <code>https://www.facebook.com/groups</code>.</li>
+						            <li>
+						                <strong>Callback URL:</strong> Copy this URL using the copy button provided and paste it into your Facebook app's configuration in the Facebook Developer account.
+						            </li>
+						        </ul>
+						    </li>
+						</ol>
+						<img class="mt-3 w-100" src="assets/images/platfrom-facebook/1.png">
+
+						<div class="mt-3">
+							<h3>Next Step: Create a Facebook App</h3>
+							<p>
+							    To find the required <strong>Client ID</strong> and <strong>Client Secret</strong>, you need to create a Facebook App. Follow these steps:
+							</p>
+							<ol>
+							    <li>
+							    	Go to the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers</a> website and log in to your account.
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f1.png">
+							    </li>
+							    <li>
+							    	Click on <strong>My Apps</strong> and select <strong>Create App</strong>.
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f2.png">
+							    </li>
+							    <li>
+							    	Provide your <strong>App Name</strong> and put <strong>valid mail</strong>.
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f3.png">
+							    </li>
+							    <li>
+							    	Select <strong>Other</strong>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f4.png">
+							    </li>
+							    <li>
+							    	Select App type <strong>Business</strong>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f5.png">
+							    </li>
+							    <li>
+							    	Now here you have to select your verified business if you have
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f6.png">
+							    </li>
+							    <li>
+							    	After complte app create now you can see the dashboard of fcebook developer and 
+							    	<strong>Set up login for business</strong>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f7-fb.png">
+							    </li>
+							    <li>
+							    	Set up a redirect URI back to the application, calback URI found in Accounts Config modal.
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f8-auth.png">
+							    	<h5 class="mt-3">OAuth2 Redirect URI Configuration for BeePost</h5>
+									<p>
+									    The <strong>OAuth2 Redirect URI</strong> is the location where the provider will redirect users after attempting to log in or authenticate their social accounts. You need to configure the following two callback URLs in your Facebook App's settings:
+									</p>
+
+									<h3>Required Callback URLs:</h3>
+									<ul>
+									    <li>
+									        <strong>For Login:</strong><br>
+									        <code>https://your-hosted-domain.com/login/facebook/callback</code>
+									    </li>
+									    <li>
+									        <strong>For Social Account Connectivity:</strong><br>
+									        <code>https://your-hosted-domain.com/account/facebook/callback?medium=facebook</code>
+									    </li>
+									</ul>
+
+									<h3>Examples Based on Environment:</h3>
+									<ul>
+									    <li>
+									        <strong>If running on a production server:</strong><br>
+									        Use the above URLs exactly as they are with <code>https://your-hosted-domain.com</code>.
+									    </li>
+									    <li>
+									        <strong>If running locally:</strong><br>
+									        Replace the base URL with <code>http://localhost:4200</code>. For example:
+									        <ul>
+									            <li>Login Callback: <code>http://localhost:4200/login/facebook/callback</code></li>
+									            <li>Social Account Connectivity Callback: <code>http://localhost:4200/account/facebook/callback?medium=facebook</code></li>
+									        </ul>
+									    </li>
+									</ul>
+							    </li>
+							    <li>
+							    	<p>Request Advanced Permissions for Facebook Integration</p>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f8.png">
+							    	<p>
+									    To enable advanced functionality for Facebook integration in BeePost, you need to request access to specific permissions from the Facebook Developer Console. These permissions will allow BeePost to manage pages, retrieve insights, and handle posts on your behalf.
+									</p>
+
+									<h3>Required Scopes:</h3>
+									<p>
+									    Go to the <strong>Advanced Permission</strong> section in your Facebook App and request access for the following scopes:
+									</p>
+									<code>pages_show_list</code> <code>business_management</code> <code>pages_manage_posts</code> <code>pages_manage_engagement</code> <code>pages_read_engagement</code> <code>read_insights</code>
+									</pre>
+							    </li>
+							    <li>
+							    	Now, Goto the <strong>App Settings</strong> > <strong>Basic</strong>. Now you can found the <strong>App ID/Client ID</strong> & <strong>App Secret/Client Secret</strong>. 
+							    	<code>Note: Here App domain, privacy policy, terms and service url provide must for go live mode</code>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f9.png">
+							    	Now you copy and paste it to BeePost account config modal and save it.
+							    </li>
+							    <li>
+							    	Once your app is review from <strong>Meta</strong> and you provided the all information correctly then you just click to <strong>development</strong> to <strong>live</strong>
+							    	<img class="mt-3 w-100" src="assets/images/platfrom-facebook/f10.png">
+							    </li> 
+							</ol> 
+						</div>
+					</section>
+					<section class="docs-section" id="instagram-configuration">
+						<h2 class="section-heading">Instagram Platform Configuration</h2> 
+						<div>
+						    <strong>NOTE:</strong> Please be advised that Instagram and Facebook can use the same app (no need to create two separate apps).
+						</div>
+						<h3>Steps to Configure:</h3>
+						<ol>
+						    <li>
+						        Navigate to the <strong>Platforms</strong> section in the BeePost dashboard and locate the <strong>Facebook</strong> platform in the list.
+						    </li>
+						    <li>
+						        Click on the <strong>Settings</strong> button (settings icon) under the "Options" column for the Facebook platform.
+						    </li>
+						    <li>
+						        A modal titled <strong>Update Configuration</strong> will appear, displaying the following fields:
+						        <ul>
+						            <li><strong>Client ID:</strong> Enter the Client ID from your Facebook developer account.</li>
+						            <li><strong>Client Secret:</strong> Enter the Client Secret from your Facebook developer account.</li>
+						            <li><strong>App Version:</strong> Specify the API version (e.g., v21.0).</li>
+						            <li><strong>Graph API URL:</strong> The default URL is <code>https://graph.facebook.com</code>.</li>
+						            <li><strong>Group URL:</strong> The default URL is <code>https://www.facebook.com/groups</code>.</li>
+						            <li>
+						                <strong>Callback URL:</strong> Copy this URL using the copy button provided and paste it into your Facebook app's configuration in the Facebook Developer account.
+						            </li>
+						        </ul>
+						    </li>
+						</ol>
+						<img class="mt-3 w-100" src="assets/images/platfrom-facebook/ins-con.png">
+						<ol class="mt-3">
+							<li>
+								<p>
+								    Once you have successfully created the app in your Meta Developer account, proceed to add a new product. To do this, navigate to the <strong>Menu</strong> options in the Meta Developer account. From there, select <strong>Instagram</strong> and click on the <strong>Set Up</strong> button, as shown in the screenshot. Follow the subsequent steps to complete the setup process.
+								</p>
+
+								<img class="mt-3 w-100" src="assets/images/platfrom-facebook/ins-setup.png">
+							</li>
+
+							<li>
+								<h5>API Setup for Instagram Business Login</h5>
+
+								<p>
+								    Follow these steps to set up the Instagram API for Business Login in your Meta Developer account. This process allows you to use the Instagram API to create, publish, and manage content, interact with users, and moderate comments.
+								</p>
+
+								<h6>Steps for API Setup:</h6>
+
+								<ol>
+								    <li>
+								        <strong>Generate Access Tokens:</strong><br>
+								        Add an Instagram account to generate access tokens and set up webhook subscriptions. Click on the <strong>Add Account</strong> button to link your Instagram account.
+								    </li>
+								    <li>
+								        <strong>Configure Webhooks:</strong><br>
+								        Set up a custom webhook URL or use services that help you create an endpoint. Ensure the app mode is set to <strong>Live</strong> to receive webhooks. Click the <strong>Configure</strong> button to set this up.
+								    </li>
+								    <li>
+								        <strong>Set Up Instagram Business Login:</strong><br>
+								        Provide a secure way for businesses to grant your app permissions to access data using Instagram Business Login. Click the <strong>Set Up</strong> button to configure this.
+								    </li>
+								    <li>
+								        <strong>Complete App Review:</strong><br>
+								        To access live data, your app must successfully complete the app review process. Go through the review to request advanced access to Instagram permissions. Submit your app for review when you are ready.
+								    </li>
+								</ol>
+
+								<h6>Important Information:</h6>
+								<ul>
+								    <li><strong>Instagram App Name:</strong> BeePost-IG</li>
+								    <li><strong>Instagram App ID:</strong> 605508678636718</li>
+								    <li><strong>Instagram App Secret:</strong> [Hidden for security]</li>
+								</ul>
+
+								<p>
+								    Refer to the Meta Developer documentation for more details:<br>
+								    <a href="https://developers.facebook.com/docs/instagram-api/" target="_blank">Instagram API Documentation</a>
+								</p>
+
+								<img class="mt-3 w-100" src="assets/images/platfrom-facebook/ins-config.png">
+							</li>
+						</ol>
+					</section>
+
+					<section class="docs-section" id="LinkedIn-configuration">
+						<h2 class="section-heading">LinkedIn Platform Configuration</h2> 
+						<p>
+						    Follow these steps to create and configure a LinkedIn developer app for integrating BeePost with LinkedIn pages.
+						</p>
+
+						<h5>Step 1: Create a LinkedIn Developer App</h5>
+						<ol>
+						    <li>
+						        Go to the <a href="https://developer.linkedin.com/" target="_blank">LinkedIn Developer Portal</a> and log in to your account.
+						    </li>
+						    <li>
+						        Click on the <strong>My Apps</strong> button in the top-right corner, as highlighted in the screenshot.
+						        <img class="mt-3 w-100" src="assets/images/link/1.png">
+						    </li>
+						    <li>
+						        Click <strong>Create App</strong> and fill in the required fields:
+						        <ul>
+						            <li><strong>App Name:</strong> Enter a suitable name for your app.</li>
+						            <li><strong>LinkedIn Page:</strong> Provide your company's LinkedIn page URL (e.g., <code>https://www.linkedin.com/company/your-company-name/</code>).</li>
+						            <li><strong>Privacy Policy URL:</strong> Provide a valid URL for your privacy policy (e.g., <code>https://yourwebsite.com/privacy-policy</code>).</li>
+						            <li><strong>App Logo:</strong> Upload a logo for your app (minimum dimensions: 100px).</li>
+						            <li><strong>Legal Agreement:</strong> Check the box to agree to LinkedIn's API Terms of Use.</li>
+						        </ul>
+						        <img class="mt-3 w-100" src="assets/images/link/2.png">
+						    </li>
+						    <li>
+						        Click <strong>Create App</strong> to complete the creation process.
+						    </li>
+						</ol>
+
+						<h5>Step 2: Add Products</h5>
+						<ol>
+						    <li>
+						        Navigate to the <strong>Products</strong> tab of your app.
+						    </li>
+						    <li>
+						        Add the following products:
+						        <ul>
+						            <li><strong>Share on LinkedIn:</strong> Enables sharing content on LinkedIn.</li>
+						            <li><strong>Sign In with LinkedIn:</strong> Allows authentication using LinkedIn credentials.</li>
+						        </ul>
+						    </li>
+						    <li>
+						        If additional products like the Advertising API are needed, request access from LinkedIn.
+						    </li>
+						    <img class="mt-3 w-100" src="assets/images/link/3.png">
+						</ol>
+
+						<h5>Step 3: Configure Authentication</h5>
+						<ol>
+						    <li>
+						        Navigate to the <strong>Auth</strong> tab of your app.
+						    </li>
+						    <li>
+						        Copy the following details:
+						        <ul>
+						            <li><strong>Client ID:</strong> Unique identifier for your app.</li>
+						            <li><strong>Client Secret:</strong> Secure key for authentication. You can generate a new one if needed.</li>
+						        </ul>
+						    </li>
+						    <li>
+						        Set the <strong>Authorized Redirect URLs</strong> for your app:
+						        <pre>
+						https://beepost.kodepixel.com/account/linkedin/callback
+						        </pre>
+						    </li>
+						    <li>
+						        Save the changes.
+						    </li>
+						    <img class="mt-3 w-100" src="assets/images/link/4.png">
+						</ol>
+
+						<h5>Step 4: Finalize the Setup</h5>
+						<ol>
+						    <li>
+						        Ensure all settings are correctly configured, and the app status is set to <strong>Live</strong>.
+						    </li>
+						    <li>
+						        Use the Client ID, Client Secret, and redirect URL to integrate BeePost with LinkedIn through the BeePost platform.
+						    </li>
+						</ol>
+
+						<h5>Setup to BeePost LinkedIn Config Info</h5>
+
+						<ol>
+							<li>
+								Now provide all the necessary fields from the LinkedIn Developer account's created app
+								<img class="mt-3 w-100" src="assets/images/link/5.png">
+							</li>
+						</ol>
+
+						<p>
+						    For more details, refer to the official <a href="https://developer.linkedin.com/" target="_blank">LinkedIn Developer Documentation</a>.
+						</p>
+
+					</section>
+
+					<section class="docs-section" id="Twitter-configuration">
+						<h2 class="section-heading">X/Twitter Platform Configuration</h2> 
+						<h3>Steps to Configure:</h3>
+						<ol>
+						    <li>
+						        Navigate to the <strong>Platforms</strong> section in the BeePost dashboard and locate the <strong>X/Twitter</strong> platform in the list.
+						    </li>
+						    <li>
+						        Click on the <strong>Settings</strong> button (settings icon) under the "Options" column for the Facebook platform.
+						    </li>
+						    <li>
+							    A modal titled <strong>Update Configuration</strong> will appear, displaying the following fields:
+							    <ul>
+							        <li><strong>API Key:</strong> Enter the API Key provided by your LinkedIn Developer account.</li>
+							        <li><strong>API Secret:</strong> Enter the API Secret associated with your LinkedIn Developer account.</li>
+							        <li><strong>Access Token:</strong> Provide the Access Token obtained from the LinkedIn Developer account.</li>
+							        <li><strong>Access Token Secret:</strong> Provide the Access Token Secret for your LinkedIn app.</li>
+							        <li><strong>Client ID:</strong> Enter the Client ID generated by your LinkedIn Developer account.</li>
+							        <li><strong>Client Secret:</strong> Enter the Client Secret provided for your LinkedIn app.</li>
+							        <li><strong>App Version:</strong> Specify the API version to be used (e.g., v2).</li>
+							    </ul>
+							</li>
+						</ol>
+						<img class="mt-3 w-100" src="assets/images/x/1.png">
+						<img class="mt-3 w-100" src="assets/images/x/2.png">
+						<p class="mt-3">
+							<strong>Setting Up X (Twitter) Integration for BeePost</strong>
+							Twitter uses an OAuth2 flow for most features with its v2 API. However, to upload pictures, the older Twitter v1 API must be used. BeePost leverages the normal OAuth1 flow to ensure compatibility with both APIs.
+
+							Follow these steps to set up the integration:
+						</p>
+
+						<h5>Step 1: Create a New App in Twitter Developer Portal</h5>
+						<ol>
+						<li>Head over to the <a href="https://developer.x.com/" target="_new" rel="noopener">Twitter Developer Portal</a> and log in to your account.</li>
+						<li>Sign up for a new free developer account if you haven&rsquo;t already.</li>
+						<img class="mt-3 w-100" src="assets/images/x/x-1.png">
+						<li>Create a new app in the "Projects &amp; Apps" section.</li>
+						</ol>
+						<hr />
+						<h5>Step 2: Configure Your App</h5>
+						<ol>
+						<li>Navigate to the newly created app and click on the <strong>Settings</strong> icon.</li>
+						<li>In the <strong>User Authentication Settings</strong>, click on <strong>Set Up</strong> and follow these configurations:
+						<ul>
+						<li><strong>App Permission</strong>: Set it to <strong>Read and Write</strong>.</li>
+						<li><strong>Type of App</strong>: Select <strong>Web App</strong>, <strong>Automated App</strong>, or <strong>Bot</strong>.</li>
+						<li><strong>Callback URI / Redirect URL</strong>: Enter the following URL:
+						<div> 
+						<div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-plaintext">	https://beepost.kodepixel.com/account/twitter/callback?medium=twitter
+						</code></div>
+						<img class="mt-3 w-100" src="assets/images/x/x-2.png">
+						</div>
+						</li>
+						</ul>
+						</li>
+						<li>Save the settings.</li>
+						</ol>
+						<hr />
+						<h5>Step 3: OAuth2 Redirect URI</h5>
+						<p>The OAuth2 Redirect URI is the location where Twitter will redirect after authentication. Use the URL specific to your setup:</p>
+						<img class="mt-3 w-100" src="assets/images/x/x-3.png">
+						<ul>
+						<li><strong>For production</strong>: <code>https://beepost.kodepixel.com/account/twitter/callback?medium=twitter</code></li>
+						<li><strong>For localhost (development)</strong>: Replace <code>beepost.kodepixel.com</code> with your local development URL (e.g., <code>http://localhost:4200/account/twitter/callback?medium=twitter</code>).</li>
+						</ul>
+						<hr />
+						<h5>Step 4: Obtain Keys and Tokens</h5>
+						<ol>
+						<li>Go to the <strong>Keys and Tokens</strong> tab in your app settings.</li>
+						<li>Copy the following credentials for use in BeePost:
+						<ul>
+						<li><strong>API Key</strong></li>
+						<li><strong>API Secret</strong></li>
+						<li><strong>Access Token</strong></li>
+						<li><strong>Access Token Secret</strong></li>
+						</ul>
+						</li>
+						</ol>
+						<hr />
+						<h5>Step 5: Finalize and Save</h5>
+						<p>Once you have completed the setup and entered the credentials in BeePost&rsquo;s platform configuration, save the settings.</p>
+					</section>
+				</article>
+
+
+
+				<article class="docs-article" id="user-panel">
+			    	<header class="docs-header">
+					    <h2 class="docs-heading">User Panel Overview</h2>
+					    <section class="docs-intro">
+						    <div> 
+							    <p>The <strong>User Panel</strong> in BeePost provides a streamlined and user-friendly dashboard designed to give users full control over their social media management and account activities. Below is an introduction to the key components and features of the User Panel:</p>
+
+							    <h4>Dashboard</h4>
+							    <p>The dashboard serves as the central hub, offering an overview of connected social accounts, post analytics, and recent activities:</p>
+							    <ul>
+							        <li><strong>Connected Social Accounts:</strong> Displays the status and activity of linked accounts such as Facebook, Instagram, Twitter, and LinkedIn. Users can add or manage accounts directly.</li>
+							        <li><strong>Post Performance:</strong> A graphical representation of post metrics, including total posts, pending posts, successful posts, and failed posts, categorized by platform and timeline.</li>
+							        <li><strong>Latest Post:</strong> Highlights the most recent post with details like the platform, caption, and time of posting.</li>
+							    </ul>
+
+							    <h4>Post Feed</h4>
+							    <p>View, create, and schedule posts across multiple social media platforms, ensuring timely content delivery and efficient campaign management.</p>
+
+							    <h4>Social Accounts</h4>
+							    <p>Manage linked social media profiles, add new accounts, or configure platform-specific settings to optimize performance.</p>
+
+							    <h4>AI Contents</h4>
+							    <p>Access AI-powered tools to create engaging content tailored to specific needs, such as captions, blog posts, and ad copies.</p>
+
+							    <h4>Plans</h4>
+							    <p>View subscription details, upgrade or downgrade plans, and explore available features for each plan.</p>
+
+							    <h4>Reports</h4>
+							    <p>Analyze detailed performance metrics and insights to refine social media strategies and track progress effectively.</p>
+
+							    <h4>Tickets</h4>
+							    <p>Submit and manage support tickets to resolve any issues or queries efficiently.</p>
+
+							    <h4>Profile and Settings</h4>
+							    <p>Update personal details, adjust settings, and manage account security for a seamless experience.</p>
+
+							    <h4>Quick Actions</h4>
+							    <ul>
+							        <li><strong>Total Balance:</strong> Displays the user's current balance, enabling them to manage payments and services.</li>
+							        <li><strong>Logout:</strong> Securely sign out of the system.</li>
+							    </ul>
+
+							    <p>The BeePost User Panel is designed to simplify social media management, empower users with insights, and ensure a smooth user experience across all features.</p>
+							    <img class="mt-3 w-100" src="assets/images/user-panel/user_dashboard.png">
+							</div>
+						</section>
+				    </header>
+
+				    <section class="docs-section" id="registration-process-user">
+						<h2 class="section-heading">Sign-Up/Registration New Account</h2>
+						<div class="mt-3"> 
+						    <p>The <strong>Sign-Up/Registration New Account</strong> provides a user-friendly interface for new users to create an account on the BeePost platform. It allows users to register quickly while ensuring all necessary details are collected for a smooth onboarding experience. Below are the key components:</p>
+
+						    <h4>Registration Form</h4>
+						    <ul>
+						        <li><strong>Enter Name:</strong> Input the full name of the user.</li>
+						        <li><strong>Enter Username:</strong> Choose a unique username for account identification.</li>
+						        <li><strong>Enter Email:</strong> Provide a valid email address for account verification and communication.</li>
+						        <li><strong>Enter Phone:</strong> Enter a phone number for additional verification or support.</li>
+						        <li><strong>Country:</strong> Select the user’s country from the dropdown menu (pre-filled with a default country if applicable).</li>
+						        <li><strong>Enter Password:</strong> Create a secure password for the account.</li>
+						        <li><strong>Confirm Password:</strong> Re-enter the password to confirm and avoid errors.</li>
+						        <li><strong>Terms and Conditions:</strong> Agree to the terms and conditions to proceed with the registration process.</li>
+						    </ul>
+
+						    <h4>Registration Button</h4>
+						    <ul>
+						        <li>Click on the <strong>Register</strong> button to complete the sign-up process.</li>
+						    </ul>
+
+						    <h4>Alternative Sign-Up Methods</h4>
+						    <ul>
+						        <li><strong>Sign In With Google:</strong> Use your Google account for quick registration.</li>
+						        <li><strong>Sign In With Facebook:</strong> Register using your Facebook account.</li>
+						    </ul>
+
+						    <h4>Login Link</h4>
+						    <ul>
+						        <li>If the user already has an account, they can click on <strong>Login</strong> to navigate to the login page.</li>
+						    </ul> 
+						    <img class="mt-3 w-100" src="assets/images/user-panel/user_registration.png">
+						</div>
+					</section>
+
+					<section class="docs-section" id="connect-social-acccount">
+						<h2 class="section-heading">Connect Social Account</h2>
+						<div class="mt-3"> 
+						    <p>The BeePost platform allows users to seamlessly connect their social media accounts for efficient management and automation. Follow the steps below to connect your social accounts:</p>
+
+						    <h4>Step 1: Navigate to Social Accounts</h4>
+						    <ul>
+						        <li>From the left-hand sidebar, click on <strong>Social Accounts</strong> under the <strong>Main</strong> section.</li>
+						        <li>Click on <strong>Account List</strong> to view and manage your connected accounts.</li>
+						    </ul>
+
+						    <h4>Step 2: Add a New Social Account</h4>
+						    <ul>
+						        <li>Click the <strong>+ Add New</strong> button in the top-right corner of the Social Accounts page.</li>
+						        <li>Select the social media platform you wish to connect (e.g., Facebook, Instagram, Twitter, or LinkedIn).</li>
+						    </ul>
+
+						    <h4>Step 3: Authenticate and Authorize</h4>
+						    <ul>
+						        <li>After selecting a platform, you will be redirected to the respective platform’s authentication page.</li>
+						        <li>Log in with your social media credentials and authorize BeePost to access your account.</li>
+						    </ul>
+
+						    <h4>Step 4: Configure Account Details</h4>
+						    <ul>
+						        <li>Once connected, you can configure account-specific details such as:
+						            <ul>
+						                <li><strong>Status:</strong> Toggle the account’s status to enable or disable its activity.</li>
+						                <li><strong>Connection Type:</strong> Ensure the connection is <strong>Official</strong> for full functionality.</li>
+						                <li><strong>Account Type:</strong> Specify if the account is a <strong>Page</strong>, <strong>Profile</strong>, or other type.</li>
+						            </ul>
+						        </li>
+						    </ul>
+
+						    <h4>Step 5: Manage Connected Accounts</h4>
+						    <ul>
+						        <li>All connected accounts are displayed in the Social Accounts list with their respective details:
+						            <ul>
+						                <li><strong>View:</strong> Click the <strong>Eye Icon</strong> to view account information.</li>
+						                <li><strong>Delete:</strong> Click the <strong>Trash Icon</strong> to remove the account if no longer needed.</li>
+						            </ul>
+						        </li>
+						    </ul>
+
+						    <p>By following these steps, you can easily connect and manage your social media accounts on the BeePost platform, ensuring seamless integration and improved workflow.</p>
+						</div>
+						<img class="mt-3 w-100" src="assets/images/user-panel/connect_account.png">
+					</section>
+
+					<section class="docs-section" id="subscription-plan">
+						<h2 class="section-heading">Subscribe to a New Plan</h2>
+						<div class="mt-3"> 
+						    <p><strong>How to Subscribe to a New Plan or Upgrade an Existing Plan</strong></p>
+						    <p>The BeePost platform allows users to easily subscribe to a new plan or upgrade their existing plan to access enhanced features and capabilities. Follow the steps below:</p>
+
+						    <h4>Step 1: Navigate to the Plans Section</h4>
+						    <ul>
+						        <li>On the left-hand sidebar, click on <strong>Plans</strong>.</li>
+						        <li>You will be presented with the available plans categorized by duration: <strong>Monthly</strong>, <strong>Yearly</strong>, and <strong>Unlimited</strong>.</li>
+						    </ul>
+
+						    <h4>Step 2: Review Plan Options</h4>
+						    <ul>
+						        <li>Each plan card includes key details such as:
+						            <ul>
+						                <li>Price and duration of the plan (e.g., $19/month for Basic Monthly).</li>
+						                <li>Included features such as the number of social profiles, total posts, AI templates, and word tokens.</li>
+						            </ul>
+						        </li>
+						        <li>Compare the plans (Basic, Gold, Premium) and choose the one that best fits your requirements.</li>
+						    </ul>
+
+						    <h4>Step 3: Subscribe to a New Plan</h4>
+						    <ul>
+						        <li>If you are not subscribed to any plan, click the <strong>Subscribe</strong> button on the desired plan.</li>
+						        <li>Follow the on-screen instructions to complete the payment process.</li>
+						        <li>Once payment is confirmed, the plan will be activated, and its features will become available.</li>
+						    </ul>
+
+						    <h4>Step 4: Upgrade an Existing Plan</h4>
+						    <ul>
+						        <li>If you are already subscribed to a plan and want to upgrade, locate the plan you wish to switch to.</li>
+						        <li>Click on the <strong>Subscribe</strong> or <strong>Upgrade</strong> button (e.g., if you’re on Basic Monthly and want to switch to Gold Monthly).</li>
+						        <li>Follow the payment process. The system will automatically adjust the billing based on your current plan’s remaining duration and the upgrade.</li>
+						    </ul>
+
+						    <h4>Step 5: Running Plan</h4>
+						    <ul>
+						        <li>Your currently active plan will display a <strong>Running</strong> label for easy identification.</li>
+						    </ul>
+
+						    <h4>Step 6: Confirmation and Access</h4>
+						    <ul>
+						        <li>After subscribing or upgrading, you will receive a confirmation notification.</li>
+						        <li>All features included in the new or upgraded plan will be immediately accessible.</li>
+						    </ul>
+
+						    <p>With BeePost, subscribing or upgrading plans is simple, allowing you to unlock advanced tools and capabilities to streamline your social media management.</p>
+						</div>
+						<img class="mt-3 w-100" src="assets/images/user-panel/plan.png">
+					</section>
+
+					<section class="docs-section" id="create-post">
+						<h2 class="section-heading">Post on BeePost</h2>
+						<div class="mt-3">
+						    <p><strong>How to Create a Post on BeePost</strong></p>
+						    <p>The BeePost platform allows users to create, schedule, and post content seamlessly across multiple social media platforms. Follow the steps below to create a post:</p>
+
+						    <h4>Step 1: Navigate to the Create Post Section</h4>
+						    <ul>
+						        <li>Click on <strong>Post Feed</strong> from the left-hand sidebar menu.</li>
+						        <li>Select <strong>Create Post</strong> to open the post creation interface.</li>
+						    </ul>
+
+						    <h4>Step 2: Select Where to Post</h4>
+						    <ul>
+						        <li>Choose the platforms where you want to publish your post (e.g., Facebook, Instagram, Twitter, LinkedIn).</li>
+						        <li>Toggle between <strong>Feed</strong> and <strong>Reels</strong> depending on the type of content you want to create.</li>
+						    </ul>
+
+						    <h4>Step 3: Choose a Profile</h4>
+						    <ul>
+						        <li>Select the specific social media profile from the dropdown list for the chosen platform.</li>
+						    </ul>
+
+						    <h4>Step 4: Create Your Post</h4>
+						    <ul>
+						        <li>Write your post content in the <strong>Create Your Post</strong> text box.</li>
+						        <li>Use the <strong>AI Assistant</strong> to generate or enhance content ideas for your post.</li>
+						        <li>Attach images or videos by clicking the <strong>Photo/Video</strong> button.</li>
+						        <li>Use <strong>Predefined Content</strong> for pre-saved templates or predefined text options.</li>
+						        <li>Schedule your post by clicking the clock icon to set a specific date and time for posting.</li>
+						    </ul>
+
+						    <h4>Step 5: Add Links</h4>
+						    <ul>
+						        <li>Include any relevant URLs in the <strong>Links</strong> section to direct your audience to external content.</li>
+						    </ul>
+
+						    <h4>Step 6: Preview and Post</h4>
+						    <ul>
+						        <li>View a preview of your post in the <strong>Network Preview</strong> section on the right-hand side.</li>
+						        <li>Once satisfied, click the <strong>Post</strong> button to publish immediately or schedule it for later.</li>
+						    </ul>
+
+						    <p>With BeePost, creating and managing social media content is simple and efficient, enabling users to maximize their reach and engagement effortlessly.</p>
+						</div>
+
+						<img class="mt-3 w-100" src="assets/images/user-panel/create_post.png">
+					</section>
+
+				</article>
+
+  
+
+				<article class="docs-article" id="support">
+			    	<section class="docs-section" id="help">
+						<h2 class="section-heading">Support</h2>
+						<p>
+							You can have a customer support services from us 24/7. For any kind of queries, please feel free to contact us for customization, support and suggestion. Your satisfaction is our utmost priority! We are absolutely committed to our valued customers to provide the best services.
+
+							We do appreciate your valuable feedback and your feedback helps us to improve our business and services.
+    						<p>Create Support Ticket: <a href="https://support.kodepixel.com" target="_blank">Help Center</a></p>
+						</p>
+					</section>
+			    </article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5"> 
+			            <small class="copyright">Need more support please visit <a class="theme-link" href="https://support.kodepixel.com" target="_blank">Kode Pixel</a></small>
+				    </div>
+			    </footer>
+
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="assets/plugins/smoothscroll.min.js"></script> 
+    <script src="assets/js/highlight-custom.js"></script> 
+    <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="assets/js/docs.js"></script> 
+
+</body>
+</html> 
+

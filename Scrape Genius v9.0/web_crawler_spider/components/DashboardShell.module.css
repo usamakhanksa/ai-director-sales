@@ -1,0 +1,331 @@
+.shell {
+  --page-bg: #f1f5f9;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --border: #e5e7eb;
+  --muted: #64748b;
+  --hover: #f1f5f9;
+
+  display: flex;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.shell.dark {
+  --page-bg: #0b1220;
+  --surface: #111827;
+  --text: #e2e8f0;
+  --border: #1f2937;
+  --muted: #94a3b8;
+  --hover: #1f2937;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: #0f172a;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.25s ease;
+  z-index: 20;
+}
+
+.sidebarHeader {
+  padding: 1.35rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logoAccent {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-left: 0.15rem;
+}
+
+.navSection {
+  padding: 0.75rem;
+}
+
+.navSectionLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 0.75rem 0.75rem 0.4rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.navItemActive {
+  background: rgba(37, 99, 235, 0.18);
+  color: #fff;
+}
+
+.navIcon {
+  width: 18px;
+  text-align: center;
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.chevron {
+  margin-left: auto;
+  opacity: 0.35;
+  font-size: 0.65rem;
+}
+
+.supportItem {
+  composes: navItem;
+  cursor: default;
+}
+
+/* ---------- Main column ---------- */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.iconButton:hover {
+  background: var(--hover);
+}
+
+.menuButton {
+  composes: iconButton;
+  display: none;
+}
+
+.youtubeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  cursor: default;
+}
+
+.userMenu {
+  position: relative;
+}
+
+.userDropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 0.75rem;
+  min-width: 200px;
+  z-index: 30;
+}
+
+.userDropdownName {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.userDropdownEmail {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0.15rem 0 0.75rem;
+  word-break: break-all;
+}
+
+.userDropdownLogout {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+.content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .menuButton {
+    display: flex;
+  }
+}
+
+/* ---------- RTL (Arabic) ---------- */
+
+.shell[dir="rtl"] {
+  direction: rtl;
+}
+
+.shell[dir="rtl"] .logoAccent {
+  margin-left: 0;
+  margin-right: 0.15rem;
+}
+
+.shell[dir="rtl"] .chevron {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.shell[dir="rtl"] .userDropdown {
+  right: auto;
+  left: 0;
+}
+
+.shell[dir="rtl"] .userDropdownLogout {
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .shell[dir="rtl"] .sidebar {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  .shell[dir="rtl"] .sidebarOpen {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Language switcher ---------- */
+
+.langButton {
+  composes: iconButton;
+  width: auto;
+  padding: 0 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ---------- Live job badge ---------- */
+
+.jobBadge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  margin-left: auto;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.shell[dir="rtl"] .jobBadge {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.jobBadge::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  border: 2px solid rgba(22, 163, 74, 0.5);
+  animation: pulseRing 1.6s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}

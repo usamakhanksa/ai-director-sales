@@ -1,0 +1,377 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+// Mirrors the MySQL ENUM created by Knex migration
+// backend/migrations/20260714120001_create_scrape_jobs.js
+enum ScrapeJobStatus {
+  QUEUED
+  RUNNING
+  DONE
+  FAILED
+  CANCELLED
+}
+
+// Mirrors the MySQL ENUM created by Knex migration
+// backend/migrations/20260714120006_create_scraper_logs.js
+enum ScraperLogLevel {
+  INFO
+  WARN
+  ERROR
+  DEBUG
+}
+
+// Mirrors the MySQL ENUM created by Knex migration
+// backend/migrations/20260714120005_create_export_records.js
+enum ExportFormat {
+  XLSX
+  CSV
+  HTML
+  TXT
+}
+
+enum ScrapeSource {
+  GOOGLE
+  MAP
+  BING
+  YAHOO
+  DUCKDUCKGO
+  WEBSITE
+  EMAIL
+  PHONE
+  DOCUMENT
+  IMAGE
+  WHOIS
+  INDIAMART
+  JUSTDIAL
+  SULEKHA
+  BUSINESS_DIRECTORY
+  CUSTOM_API
+  INSTAGRAM
+  FACEBOOK
+  LINKEDIN
+  TWITTER
+  TIKTOK
+  YOUTUBE
+  ECOMMERCE
+  REVIEW_PLATFORM
+  REAL_ESTATE
+  JOB_BOARD
+  NEWS_RSS
+}
+
+// Knex-owned table: backend/migrations/20260713120001_create_users_table.js
+// Column set below is copied exactly from that migration (Knex is
+// authoritative for schema; Prisma only reads this table).
+model User {
+  id                          Int       @id @default(autoincrement())
+  name                        String    @db.VarChar(191)
+  email                       String    @unique @db.VarChar(191)
+  passwordHash                String?   @map("password_hash") @db.VarChar(255)
+  country                     String?   @db.VarChar(100)
+  isVerified                  Boolean   @default(false) @map("is_verified")
+  verificationCode            String?   @map("verification_code") @db.VarChar(10)
+  verificationCodeExpiresAt   DateTime? @map("verification_code_expires_at")
+  resetToken                  String?   @map("reset_token") @db.VarChar(191)
+  resetTokenExpiresAt         DateTime? @map("reset_token_expires_at")
+  purchaseCode                String?   @map("purchase_code") @db.VarChar(191)
+  purchaseCodeVerified        Boolean   @default(false) @map("purchase_code_verified")
+  role                        Role      @default(USER)
+  googleId                    String?   @unique @map("google_id") @db.VarChar(191)
+  createdAt                   DateTime  @default(now()) @map("created_at")
+  updatedAt                   DateTime  @default(now()) @map("updated_at")
+
+  purchaseCodes  PurchaseCode[]
+  scrapedRecords ScrapedRecord[]
+  dashboardStats DashboardStat[]
+  apiConnectors  ApiConnector[]
+  crmConnections CrmConnection[]
+  scrapeJobs     ScrapeJob[]
+  exportRecords  ExportRecord[]
+  refreshTokens  RefreshToken[]
+  apiClientKeys  ApiClientKey[]
+  userSearchKeys UserSearchKey[]
+
+  @@index([email], map: "idx_users_email")
+  @@map("users")
+}
+
+// Purchase codes are seeded unassigned (userId = null) and get claimed via
+// POST /api/purchase-code/activate, mirroring how a one-time license code
+// bundled with the product would be redeemed by whichever customer enters it.
+model PurchaseCode {
+  id          Int       @id @default(autoincrement())
+  userId      Int?      @map("user_id")
+  user        User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  code        String    @unique @db.VarChar(64)
+  isActive    Boolean   @default(false) @map("is_active")
+  activatedAt DateTime? @map("activated_at")
+  expiresAt   DateTime? @map("expires_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("purchase_codes")
+}
+
+// Knex-owned table: backend/migrations/20260713120003_create_api_keys_table.js
+// This is a shared pool of Google Custom Search API keys (not per-user), so
+// there is no user_id / User relation in the real table.
+model ApiKey {
+  id         Int      @id @default(autoincrement())
+  key        String   @unique @db.VarChar(191)
+  cx         String   @db.VarChar(191)
+  provider   String   @default("google_custom_search") @db.VarChar(50)
+  isActive   Boolean  @default(true) @map("is_active")
+  dailyLimit Int      @default(100) @map("daily_limit")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @map("updated_at")
+
+  usageLogs UsageLog[]
+
+  @@index([provider, isActive], map: "idx_api_keys_provider_active")
+  @@map("api_keys")
+}
+
+// Knex-owned table: backend/migrations/20260713120004_create_usage_logs_table.js
+model UsageLog {
+  id         Int      @id @default(autoincrement())
+  apiKeyId   Int      @map("api_key_id")
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+  date       DateTime @db.Date
+  count      Int      @default(0)
+  searchType String   @default("search") @map("search_type") @db.VarChar(20)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @map("updated_at")
+
+  @@unique([apiKeyId, date, searchType], map: "uniq_usage_key_date_type")
+  @@index([date, searchType], map: "idx_usage_date_type")
+  @@map("usage_logs")
+}
+
+model ScrapedRecord {
+  id        Int          @id @default(autoincrement())
+  userId    Int          @map("user_id")
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  query     String       @db.VarChar(500)
+  source    ScrapeSource
+  data      Json
+  scrapedAt DateTime     @default(now()) @map("scraped_at")
+
+  @@index([userId, scrapedAt])
+  @@map("scraped_records")
+}
+
+// One row per (user, statType) - unique constraint lets /api/saved upsert-
+// increment the running count atomically instead of read-modify-write.
+model DashboardStat {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  statType    String   @map("stat_type") @db.VarChar(100)
+  recordCount Int      @default(0) @map("record_count")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@unique([userId, statType])
+  @@map("dashboard_stats")
+}
+
+// User-defined connector for arbitrary third-party APIs ("add custom any
+// API URL and key" tool): the app substitutes {query} into `url`, attaches
+// the key per `authType`/`authParam`, and maps the JSON response to the
+// normalized record shape using `fieldMap` (dot-path per field).
+model ApiConnector {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @map("user_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String   @db.VarChar(191)
+  method      String   @default("GET") @db.VarChar(10)
+  url         String   @db.VarChar(2048)
+  apiKey      String?  @map("api_key") @db.VarChar(500)
+  authType    String   @default("none") @map("auth_type") @db.VarChar(20)
+  authParam   String?  @map("auth_param") @db.VarChar(100)
+  resultsPath String?  @map("results_path") @db.VarChar(200)
+  fieldMap    Json?    @map("field_map")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("api_connectors")
+}
+
+// Stores a user's own login for a directory's seller/CRM dashboard
+// (Justdial, IndiaMART) so their enquiries can be pulled in without an
+// official API integration. `secret` is encrypted at rest (see lib/crypto.ts).
+model CrmConnection {
+  id           Int       @id @default(autoincrement())
+  userId       Int       @map("user_id")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider     String    @db.VarChar(30)
+  loginId      String    @map("login_id") @db.VarChar(191)
+  secret       String    @db.VarChar(500)
+  lastSyncedAt DateTime? @map("last_synced_at")
+  lastStatus   String?   @map("last_status") @db.VarChar(500)
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@unique([userId, provider])
+  @@map("crm_connections")
+}
+
+// Knex-owned table: backend/migrations/20260714120001_create_scrape_jobs.js
+// Unified job system for all scraping modules. Note: unlike a typical Prisma
+// model there is NO updated_at column in the real table.
+model ScrapeJob {
+  id             Int             @id @default(autoincrement())
+  userId         Int             @map("user_id")
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  module         String          @db.VarChar(50) // "facebook", "linkedin", "google_maps", etc.
+  keywords       Json            // JSON array of keyword strings
+  config         Json?           // optional JSON config (country, engines, proxy, depth, etc.)
+  status         ScrapeJobStatus @default(QUEUED)
+  progress       Int             @default(0)
+  extractedCount Int             @default(0) @map("extracted_count")
+  errorMessage   String?         @map("error_message") @db.VarChar(1000)
+  startedAt      DateTime?       @map("started_at")
+  completedAt    DateTime?       @map("completed_at")
+  createdAt      DateTime        @default(now()) @map("created_at")
+
+  logs      ScraperLog[]
+  exports   ExportRecord[]
+  results   InstagramResult[] // Can be extended to other result types
+
+  @@index([userId, status])
+  @@index([createdAt])
+  @@map("scrape_jobs")
+}
+
+// Knex-owned table: backend/migrations/20260714120006_create_scraper_logs.js
+model ScraperLog {
+  id        Int             @id @default(autoincrement())
+  jobId     Int             @map("job_id")
+  job       ScrapeJob       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  level     ScraperLogLevel @default(INFO)
+  message   String          @db.VarChar(2000)
+  meta      Json?
+  createdAt DateTime        @default(now()) @map("created_at")
+
+  @@index([jobId, createdAt])
+  @@index([level])
+  @@map("scraper_logs")
+}
+
+// Knex-owned table: backend/migrations/20260714120005_create_export_records.js
+model ExportRecord {
+  id        Int          @id @default(autoincrement())
+  userId    Int          @map("user_id")
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobId     Int?         @map("job_id")
+  job       ScrapeJob?   @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  format    ExportFormat
+  filePath  String       @map("file_path") @db.VarChar(2048)
+  fileSize  Int?         @map("file_size") // bytes
+  rowCount  Int?         @map("row_count") // number of data rows
+  createdAt DateTime     @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([jobId])
+  @@map("export_records")
+}
+
+// Refresh tokens for improved security
+model RefreshToken {
+  id         Int       @id @default(autoincrement())
+  userId     Int       @map("user_id")
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token      String    @unique
+  expiresAt  DateTime  @map("expires_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+// User-facing API keys for public API access
+model ApiClientKey {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  key       String    @unique
+  name      String    // label
+  rateLimit Int       @default(1000) @map("rate_limit") // requests per day
+  createdAt DateTime  @default(now()) @map("created_at")
+  expiresAt DateTime?
+  isActive  Boolean   @default(true) @map("is_active")
+
+  usageLogs ApiUsageLog[]
+
+  @@map("api_client_keys")
+}
+
+// Track usage of user-facing API keys
+model ApiUsageLog {
+  id           Int       @id @default(autoincrement())
+  apiKeyId     Int       @map("api_key_id")
+  apiClientKey ApiClientKey @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@index([apiKeyId, createdAt])
+  @@map("api_usage_logs")
+}
+
+// Instagram scraper results
+model InstagramResult {
+  id        Int       @id @default(autoincrement())
+  jobId     Int       @map("job_id")
+  job       ScrapeJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  username  String
+  data      Json      // profile data, posts, etc.
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@index([jobId])
+  @@map("instagram_results")
+}
+
+// Knex-owned table: backend/migrations/20260714160000_create_user_search_keys_table.js
+// Per-user Google Custom Search keys (distinct from the shared ApiKey pool
+// above, which google-search scraping falls back to when a user has none).
+model UserSearchKey {
+  id              Int      @id @default(autoincrement())
+  userId          Int      @map("user_id")
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  googleApiKey    String   @map("google_api_key") @db.VarChar(191)
+  searchEngineId  String   @map("search_engine_id") @db.VarChar(191)
+  dailyLimit      Int      @default(100) @map("daily_limit")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @map("updated_at")
+
+  usageLogs UserSearchUsageLog[]
+
+  @@index([userId, isActive], map: "idx_user_search_keys_user_active")
+  @@map("user_search_keys")
+}
+
+// Knex-owned table: backend/migrations/20260714160001_create_user_search_usage_logs_table.js
+model UserSearchUsageLog {
+  id              Int           @id @default(autoincrement())
+  userSearchKeyId Int           @map("user_search_key_id")
+  userSearchKey   UserSearchKey @relation(fields: [userSearchKeyId], references: [id], onDelete: Cascade)
+  date            DateTime      @db.Date
+  requestCount    Int           @default(0) @map("request_count")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @default(now()) @map("updated_at")
+
+  @@unique([userSearchKeyId, date], map: "uniq_user_search_usage_key_date")
+  @@map("user_search_usage_logs")
+}
+
+// Other social media results could be added similarly
+// TikTokResult, YouTubeResult, etc.
