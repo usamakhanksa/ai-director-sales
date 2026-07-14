@@ -17,7 +17,7 @@ const nextConfig = {
   // worker script; webpack bundling it breaks that path. Keep it external
   // so the route that uses it runs as a plain Node require instead.
   experimental: {
-    serverComponentsExternalPackages: ["tesseract.js", "cheerio", "playwright"],
+    serverComponentsExternalPackages: ["tesseract.js", "cheerio", "playwright", "undici"],
   },
   eslint: {
     // eslint 9 removed the legacy config API that Next.js 14's lint step depends on;

@@ -86,6 +86,15 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         run: { apiRoute: "/api/scrape/yahoo-search/", fieldKind: "query" },
       },
       {
+        slug: "unified-search",
+        title: "Multi-Engine Search",
+        description:
+          "Searches Google, Bing, DuckDuckGo, and Yahoo in parallel, using each engine's API when a key is configured and falling back to server-side scraping otherwise, then merges the results.",
+        iconSrc: `${ICON_BASE}/google.png`,
+        isNew: true,
+        run: { customPage: "/dashboard/tools/unified-search" },
+      },
+      {
         slug: "google-map-scraper",
         title: "Google Map Scraper",
         description:

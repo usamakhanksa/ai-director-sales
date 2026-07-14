@@ -65,6 +65,23 @@ export function extractSocialLinks(text: string): Record<string, string> {
   return links;
 }
 
+/** Resolves every <a href> on the page to an absolute http(s) URL, deduped, excluding the page's own URL. */
+export function extractWebsiteLinks(html: string, baseUrl: string): string[] {
+  const $ = cheerio.load(html);
+  const links: string[] = [];
+  $("a[href]").each((_, el) => {
+    const href = $(el).attr("href");
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) return;
+    try {
+      const resolved = new URL(href, baseUrl).toString();
+      if (resolved !== baseUrl && /^https?:\/\//i.test(resolved)) links.push(resolved);
+    } catch {
+      // malformed href — skip
+    }
+  });
+  return dedupe(links);
+}
+
 export interface PageMeta {
   title?: string;
   metaTitle?: string;
@@ -108,6 +125,7 @@ export function extractFromHtml(html: string, sourceUrl: string) {
   const gst = extractGstNumbers(meta.bodyText);
   const social = extractSocialLinks(html);
   const whatsapp = extractWhatsapp(html);
+  const websites = extractWebsiteLinks(html, sourceUrl);
 
   return {
     companyName: meta.title,
@@ -122,6 +140,7 @@ export function extractFromHtml(html: string, sourceUrl: string) {
     metaDescription: meta.metaDescription,
     allEmails: emails,
     allPhones: phones,
+    allWebsites: websites,
   };
 }
 

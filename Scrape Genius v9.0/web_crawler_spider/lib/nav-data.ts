@@ -17,6 +17,7 @@ import {
   faBullseye,
   faMapLocationDot,
   faPlug,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -41,6 +42,12 @@ export const MAIN_NAV: NavItem[] = [
     labelKey: "nav.searchEngines",
     href: "/dashboard/tools/google-search-scraper",
     icon: faMagnifyingGlass,
+  },
+  {
+    label: "Multi-Engine Search",
+    labelKey: "nav.unifiedSearch",
+    href: "/dashboard/tools/unified-search",
+    icon: faLayerGroup,
   },
   {
     label: "Social Media Scraper",

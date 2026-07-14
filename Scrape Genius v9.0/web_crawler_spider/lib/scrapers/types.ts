@@ -18,5 +18,8 @@ export interface NormalizedRecord {
   address?: string;
   snippet?: string;
   source?: string;
+  allEmails?: string[];
+  allPhones?: string[];
+  allWebsites?: string[];
   [key: string]: unknown;
 }

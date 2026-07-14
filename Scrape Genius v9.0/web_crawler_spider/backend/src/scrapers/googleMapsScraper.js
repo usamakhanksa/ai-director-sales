@@ -108,17 +108,73 @@ async function scrapeBusinessWebsiteWithAI(websiteUrl) {
 }
 
 /**
+ * Dismisses Google's cookie/GDPR consent interstitial if it appears.
+ * Every scrape job starts a brand-new browser context (no cookies), so this
+ * page shows up frequently — especially from EU-region IPs/proxies — and
+ * blocks the results feed from ever rendering if left unhandled.
+ */
+async function dismissConsentDialog(page, logEvent = () => {}) {
+  const CONSENT_BUTTON_SELECTORS = [
+    'button:has-text("Accept all")',
+    'button:has-text("I agree")',
+    'form[action*="consent.google.com"] button',
+    'button[aria-label="Accept all"]',
+    'button[aria-label="I agree"]',
+    '#L2AGLb', // Google's stable "Accept all" button id on many consent pages
+  ];
+
+  if (/consent\.google\.com/.test(page.url())) {
+    await logEvent("DEBUG", "Consent interstitial detected — attempting dismissal");
+  }
+
+  for (const selector of CONSENT_BUTTON_SELECTORS) {
+    try {
+      const btn = page.locator(selector).first();
+      if (await btn.isVisible({ timeout: 1500 })) {
+        await btn.click({ timeout: 3000 });
+        await randomDelay(1000, 2000);
+        return true;
+      }
+    } catch {
+      // Selector not present — try the next one
+    }
+  }
+  return false;
+}
+
+/**
  * Scrolls the Maps results panel to load all listings (up to maxListings).
  * Returns array of listing elements.
  */
-async function collectListingElements(page, maxListings = 60) {
-  // The results panel selector (Google Maps DOM)
-  const PANEL_SELECTOR = 'div[role="feed"]';
+async function collectListingElements(page, maxListings = 60, logEvent = () => {}) {
+  // The results panel selector (Google Maps DOM). Google occasionally tweaks
+  // markup, so we try a couple of known variants rather than a single one.
+  const PANEL_SELECTORS = ['div[role="feed"]', 'div[aria-label][role="feed"]'];
 
-  try {
-    await page.waitForSelector(PANEL_SELECTOR, { timeout: 15000 });
-  } catch {
-    return []; // No results found
+  await dismissConsentDialog(page, logEvent);
+
+  let panelSelector = null;
+  for (const selector of PANEL_SELECTORS) {
+    try {
+      await page.waitForSelector(selector, { timeout: 15000 });
+      panelSelector = selector;
+      break;
+    } catch {
+      // try next selector
+    }
+  }
+
+  if (!panelSelector) {
+    // Still nothing — maybe the consent dialog appeared after the initial
+    // check, or Google served a block/CAPTCHA page. Log enough to diagnose.
+    const url = page.url();
+    const title = await page.title().catch(() => "");
+    await logEvent(
+      "WARN",
+      `Results feed never appeared (url="${url}", title="${title}"). ` +
+        `Possibly a consent/CAPTCHA page or a changed Maps selector.`
+    );
+    return [];
   }
 
   const listings = new Set();
@@ -128,7 +184,7 @@ async function collectListingElements(page, maxListings = 60) {
   while (listings.size < maxListings && stallCount < 4) {
     // Collect all listing link hrefs currently in the DOM
     const hrefs = await page.$$eval(
-      `${PANEL_SELECTOR} a[href*="/maps/place/"]`,
+      `${panelSelector} a[href*="/maps/place/"]`,
       (els) => els.map((el) => el.getAttribute("href"))
     );
     hrefs.forEach((h) => h && listings.add(h));
@@ -144,7 +200,7 @@ async function collectListingElements(page, maxListings = 60) {
     await page.evaluate((selector) => {
       const panel = document.querySelector(selector);
       if (panel) panel.scrollTop += 800;
-    }, PANEL_SELECTOR);
+    }, panelSelector);
 
     await randomDelay(800, 1800);
   }
@@ -340,7 +396,7 @@ async function run(jobId, keywords, config = {}, hooks = {}) {
         await randomDelay(2000, 4000);
 
         // Scroll to collect listing hrefs
-        const listingHrefs = await collectListingElements(page, maxPerKeyword);
+        const listingHrefs = await collectListingElements(page, maxPerKeyword, logEvent);
         await logEvent("INFO", `Collected ${listingHrefs.length} listing URLs for "${keyword}"`);
 
         for (let li = 0; li < listingHrefs.length; li++) {
