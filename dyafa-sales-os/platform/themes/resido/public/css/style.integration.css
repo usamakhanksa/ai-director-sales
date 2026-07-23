@@ -1,0 +1,4 @@
+.choose-property-type [type=radio]:checked, .choose-property-type [type=radio]:not(:checked) {
+    left: unset;
+    position: relative;
+}

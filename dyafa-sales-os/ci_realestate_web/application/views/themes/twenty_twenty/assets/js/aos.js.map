@@ -1,0 +1,882 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://github.githubassets.com">
+  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com">
+  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com">
+  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com">
+  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
+  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
+  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
+
+
+
+  <link crossorigin="anonymous" media="all" integrity="sha512-hddDYPWR0gBbqLRmIZP242WMEiYsVkYI2UCYCVUHB4h5DhD2cbtFJYG+HPh21dZGb+sbgDHxQBNJCBq7YbmlBQ==" rel="stylesheet" href="https://github.githubassets.com/assets/frameworks-02a3eaa24db2bd1ed9b64450595fc2cf.css" />
+  <link crossorigin="anonymous" media="all" integrity="sha512-8BxpFTogSyEi7yQb7rCnH1J/gTxVdHNk1Rrg92rh2zMf++XM8Us8Pcp+5GzjxqRxkax0Ckz52LufuEGch2uE7w==" rel="stylesheet" href="https://github.githubassets.com/assets/site-1faffb77dc8b20778aa60ecb5998972e.css" />
+    <link crossorigin="anonymous" media="all" integrity="sha512-YdIM/FwAk7kxvPGCpeT2JXxPrThv4m9rH7fLzjn+dg3zKb+PWOaxX1ioiOcmOb64+LeDKgBXsGL4b/BJQY/cdA==" rel="stylesheet" href="https://github.githubassets.com/assets/github-102d2679bcc893600ce928d5c6d34297.css" />
+    
+    
+    
+    
+
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>cdnjs/aos.js.map at master · cdnjs/cdnjs · GitHub</title>
+    <meta name="description" content="The #1 free and open source CDN built to make life easier for developers. - cdnjs/cdnjs">
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    <meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/1409811/b5bc8280-6c29-11e9-8917-80c02b3f1ac6" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="cdnjs/cdnjs" /><meta name="twitter:description" content="The #1 free and open source CDN built to make life easier for developers. - cdnjs/cdnjs" />
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/1409811/b5bc8280-6c29-11e9-8917-80c02b3f1ac6" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="cdnjs/cdnjs" /><meta property="og:url" content="https://github.com/cdnjs/cdnjs" /><meta property="og:description" content="The #1 free and open source CDN built to make life easier for developers. - cdnjs/cdnjs" />
+
+  <link rel="assets" href="https://github.githubassets.com/">
+  
+  
+
+    <meta name="request-id" content="C9C5:0568:B2972F:1010C23:5E05BBB9" data-pjax-transient>
+
+
+
+  
+
+  <meta name="selected-link" value="repo_source" data-pjax-transient>
+
+      <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
+
+    <meta name="octolytics-host" content="collector.githubapp.com" /><meta name="octolytics-app-id" content="github" /><meta name="octolytics-event-url" content="https://collector.githubapp.com/github-external/browser_event" /><meta name="octolytics-dimension-request_id" content="C9C5:0568:B2972F:1010C23:5E05BBB9" /><meta name="octolytics-dimension-region_edge" content="ap-south-1" /><meta name="octolytics-dimension-region_render" content="iad" /><meta name="octolytics-dimension-ga_id" content="" class="js-octo-ga-id" /><meta name="octolytics-dimension-visitor_id" content="46521695756144261" />
+
+<meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" />
+
+
+
+    <meta name="google-analytics" content="UA-3769691-2">
+
+
+<meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+  
+
+      <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+      <meta name="expected-hostname" content="github.com">
+
+      <meta name="js-proxy-site-detection-payload" content="NDVjNGVkZjcyMTE4MDBmMDEwNzZjNjJmNmViNDI3MTAzNzFlNDlkNWI2YjdiNTJlMGQ2NTdjMDhjYzIwMDc4OXx7InJlbW90ZV9hZGRyZXNzIjoiMTE2LjE5Ny4xNTUuNTAiLCJyZXF1ZXN0X2lkIjoiQzlDNTowNTY4OkIyOTcyRjoxMDEwQzIzOjVFMDVCQkI5IiwidGltZXN0YW1wIjoxNTc3NDM0MDU2LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+
+    <meta name="enabled-features" content="MARKETPLACE_FEATURED_BLOG_POSTS,MARKETPLACE_INVOICED_BILLING,MARKETPLACE_SOCIAL_PROOF_CUSTOMERS,MARKETPLACE_TRENDING_SOCIAL_PROOF,MARKETPLACE_RECOMMENDATIONS,MARKETPLACE_PENDING_INSTALLATIONS">
+
+    <meta name="html-safe-nonce" content="12c612c6fa1e76c37cdf887392511ef1cc2f9ddf">
+
+  <meta http-equiv="x-pjax-version" content="61f8c219e8739359a3bf9c46bc342ad6">
+  
+
+      <link href="https://github.com/cdnjs/cdnjs/commits/master.atom" rel="alternate" title="Recent Commits to cdnjs:master" type="application/atom+xml">
+
+  <meta name="go-import" content="github.com/cdnjs/cdnjs git https://github.com/cdnjs/cdnjs.git">
+
+  <meta name="octolytics-dimension-user_id" content="637362" /><meta name="octolytics-dimension-user_login" content="cdnjs" /><meta name="octolytics-dimension-repository_id" content="1409811" /><meta name="octolytics-dimension-repository_nwo" content="cdnjs/cdnjs" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="false" /><meta name="octolytics-dimension-repository_network_root_id" content="1409811" /><meta name="octolytics-dimension-repository_network_root_nwo" content="cdnjs/cdnjs" /><meta name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown" content="false" />
+
+
+    <link rel="canonical" href="https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map" data-pjax-transient>
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://github.githubassets.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://github.githubassets.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+
+
+
+  <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials">
+
+  </head>
+
+  <body class="logged-out env-production page-responsive page-blob">
+    
+
+  <div class="position-relative js-header-wrapper ">
+    <a href="#start-of-content" tabindex="1" class="px-2 py-4 bg-blue text-white show-on-focus js-skip-to-content">Skip to content</a>
+    <span class="Progress progress-pjax-loader position-fixed width-full js-pjax-loader-bar">
+      <span class="progress-pjax-loader-bar top-0 left-0" style="width: 0%;"></span>
+    </span>
+
+    
+    
+    
+
+
+        <header class="Header-old header-logged-out js-details-container Details position-relative f4 py-2" role="banner">
+  <div class="container-lg d-lg-flex flex-items-center p-responsive">
+    <div class="d-flex flex-justify-between flex-items-center">
+        <a class="mr-4" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+          <svg height="32" class="octicon octicon-mark-github text-white" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </a>
+
+          <div class="d-lg-none css-truncate css-truncate-target width-fit p-2">
+            
+              <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+    <a class="Header-link" href="/cdnjs">cdnjs</a>
+    /
+    <a class="Header-link" href="/cdnjs/cdnjs">cdnjs</a>
+
+
+          </div>
+
+        <div class="d-flex flex-items-center">
+            <a href="/join?source=header-repo"
+              class="d-inline-block d-lg-none f5 text-white no-underline border border-gray-dark rounded-2 px-2 py-1 mr-3 mr-sm-5"
+              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="9f6314d49d2673986eb497782c3a8ee507083b3ff57071e833a286cdd884c0b5"
+              data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">
+              Sign&nbsp;up
+            </a>
+
+          <button class="btn-link d-lg-none mt-1 js-details-target" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <svg height="24" class="octicon octicon-three-bars text-white" viewBox="0 0 12 16" version="1.1" width="18" aria-hidden="true"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
+          </button>
+        </div>
+    </div>
+
+    <div class="HeaderMenu HeaderMenu--logged-out position-fixed top-0 right-0 bottom-0 height-fit position-lg-relative d-lg-flex flex-justify-between flex-items-center flex-auto">
+      <div class="d-flex d-lg-none flex-justify-end border-bottom bg-gray-light p-3">
+        <button class="btn-link js-details-target" type="button" aria-label="Toggle navigation" aria-expanded="false">
+          <svg height="24" class="octicon octicon-x text-gray" viewBox="0 0 12 16" version="1.1" width="18" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+        </button>
+      </div>
+
+        <nav class="mt-0 px-3 px-lg-0 mb-5 mb-lg-0" aria-label="Global">
+          <ul class="d-lg-flex list-style-none">
+              <li class="d-block d-lg-flex flex-lg-nowrap flex-lg-items-center border-bottom border-lg-bottom-0 mr-0 mr-lg-3 edge-item-fix position-relative flex-wrap flex-justify-between d-flex flex-items-center ">
+                <details class="HeaderMenu-details details-overlay details-reset width-full">
+                  <summary class="HeaderMenu-summary HeaderMenu-link px-0 py-3 border-0 no-wrap d-block d-lg-inline-block">
+                    Why GitHub?
+                    <svg x="0px" y="0px" viewBox="0 0 14 8" xml:space="preserve" fill="none" class="icon-chevon-down-mktg position-absolute position-lg-relative">
+                      <path d="M1,1l6.2,6L13,1"></path>
+                    </svg>
+                  </summary>
+                  <div class="dropdown-menu flex-auto rounded-1 bg-white px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
+                    <a href="/features" class="py-2 lh-condensed-ultra d-block link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Features">Features <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a>
+                    <ul class="list-style-none f5 pb-3">
+                      <li class="edge-item-fix"><a href="/features/code-review/" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Code review">Code review</a></li>
+                      <li class="edge-item-fix"><a href="/features/project-management/" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Project management">Project management</a></li>
+                      <li class="edge-item-fix"><a href="/features/integrations" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Integrations">Integrations</a></li>
+                      <li class="edge-item-fix"><a href="/features/actions" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Actions">Actions</a></li>
+                          <li class="edge-item-fix"><a href="/features/packages" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to GitHub Packages">Packages</a></li>
+                      <li class="edge-item-fix"><a href="/features/security" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Security">Security</a></li>
+                      <li class="edge-item-fix"><a href="/features#team-management" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Team management">Team management</a></li>
+                      <li class="edge-item-fix"><a href="/features#hosting" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Code hosting">Hosting</a></li>
+                    </ul>
+
+                    <ul class="list-style-none mb-0 border-lg-top pt-lg-3">
+                      <li class="edge-item-fix"><a href="/customer-stories" class="py-2 lh-condensed-ultra d-block no-underline link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Customer stories">Customer stories <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a></li>
+                      <li class="edge-item-fix"><a href="/security" class="py-2 lh-condensed-ultra d-block no-underline link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Security">Security <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a></li>
+                    </ul>
+                  </div>
+                </details>
+              </li>
+              <li class="border-bottom border-lg-bottom-0 mr-0 mr-lg-3">
+                <a href="/enterprise" class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-ga-click="(Logged out) Header, go to Enterprise">Enterprise</a>
+              </li>
+
+              <li class="d-block d-lg-flex flex-lg-nowrap flex-lg-items-center border-bottom border-lg-bottom-0 mr-0 mr-lg-3 edge-item-fix position-relative flex-wrap flex-justify-between d-flex flex-items-center ">
+                <details class="HeaderMenu-details details-overlay details-reset width-full">
+                  <summary class="HeaderMenu-summary HeaderMenu-link px-0 py-3 border-0 no-wrap d-block d-lg-inline-block">
+                    Explore
+                    <svg x="0px" y="0px" viewBox="0 0 14 8" xml:space="preserve" fill="none" class="icon-chevon-down-mktg position-absolute position-lg-relative">
+                      <path d="M1,1l6.2,6L13,1"></path>
+                    </svg>
+                  </summary>
+
+                  <div class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
+                    <ul class="list-style-none mb-3">
+                      <li class="edge-item-fix"><a href="/explore" class="py-2 lh-condensed-ultra d-block link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Explore">Explore GitHub <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a></li>
+                    </ul>
+
+                    <h4 class="text-gray-light text-normal text-mono f5 mb-2 border-lg-top pt-lg-3">Learn &amp; contribute</h4>
+                    <ul class="list-style-none mb-3">
+                      <li class="edge-item-fix"><a href="/topics" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Topics">Topics</a></li>
+                        <li class="edge-item-fix"><a href="/collections" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Collections">Collections</a></li>
+                      <li class="edge-item-fix"><a href="/trending" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Trending">Trending</a></li>
+                      <li class="edge-item-fix"><a href="https://lab.github.com/" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Learning lab">Learning Lab</a></li>
+                      <li class="edge-item-fix"><a href="https://opensource.guide" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Open source guides">Open source guides</a></li>
+                    </ul>
+
+                    <h4 class="text-gray-light text-normal text-mono f5 mb-2 border-lg-top pt-lg-3">Connect with others</h4>
+                    <ul class="list-style-none mb-0">
+                      <li class="edge-item-fix"><a href="https://github.com/events" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Events">Events</a></li>
+                      <li class="edge-item-fix"><a href="https://github.community" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Community forum">Community forum</a></li>
+                      <li class="edge-item-fix"><a href="https://education.github.com" class="py-2 pb-0 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to GitHub Education">GitHub Education</a></li>
+                    </ul>
+                  </div>
+                </details>
+              </li>
+
+              <li class="border-bottom border-lg-bottom-0 mr-0 mr-lg-3">
+                <a href="/marketplace" class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-ga-click="(Logged out) Header, go to Marketplace">Marketplace</a>
+              </li>
+
+              <li class="d-block d-lg-flex flex-lg-nowrap flex-lg-items-center border-bottom border-lg-bottom-0 mr-0 mr-lg-3 edge-item-fix position-relative flex-wrap flex-justify-between d-flex flex-items-center ">
+                <details class="HeaderMenu-details details-overlay details-reset width-full">
+                  <summary class="HeaderMenu-summary HeaderMenu-link px-0 py-3 border-0 no-wrap d-block d-lg-inline-block">
+                    Pricing
+                    <svg x="0px" y="0px" viewBox="0 0 14 8" xml:space="preserve" fill="none" class="icon-chevon-down-mktg position-absolute position-lg-relative">
+                       <path d="M1,1l6.2,6L13,1"></path>
+                    </svg>
+                  </summary>
+
+                  <div class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
+                    <a href="/pricing" class="pb-2 lh-condensed-ultra d-block link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Pricing">Plans <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a>
+
+                    <ul class="list-style-none mb-3">
+                      <li class="edge-item-fix"><a href="/pricing#feature-comparison" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Compare plans">Compare plans</a></li>
+                      <li class="edge-item-fix"><a href="https://enterprise.github.com/contact" class="py-2 lh-condensed-ultra d-block link-gray no-underline f5" data-ga-click="(Logged out) Header, go to Contact Sales">Contact Sales</a></li>
+                    </ul>
+
+                    <ul class="list-style-none mb-0 border-lg-top pt-lg-3">
+                      <li class="edge-item-fix"><a href="/nonprofit" class="py-2 lh-condensed-ultra d-block no-underline link-gray-dark no-underline h5 Bump-link--hover" data-ga-click="(Logged out) Header, go to Nonprofits">Nonprofit <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a></li>
+                      <li class="edge-item-fix"><a href="https://education.github.com" class="py-2 pb-0 lh-condensed-ultra d-block no-underline link-gray-dark no-underline h5 Bump-link--hover"  data-ga-click="(Logged out) Header, go to Education">Education <span class="Bump-link-symbol float-right text-normal text-gray-light">&rarr;</span></a></li>
+                    </ul>
+                  </div>
+                </details>
+              </li>
+          </ul>
+        </nav>
+
+      <div class="d-lg-flex flex-items-center px-3 px-lg-0 text-center text-lg-left">
+          <div class="d-lg-flex mb-3 mb-lg-0">
+            <div class="header-search flex-self-stretch flex-lg-self-auto mr-0 mr-lg-3 mb-3 mb-lg-0 scoped-search site-scoped-search js-site-search position-relative js-jump-to"
+  role="combobox"
+  aria-owns="jump-to-results"
+  aria-label="Search or jump to"
+  aria-haspopup="listbox"
+  aria-expanded="false"
+>
+  <div class="position-relative">
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-site-search-form" role="search" aria-label="Site" data-scope-type="Repository" data-scope-id="1409811" data-scoped-search-url="/cdnjs/cdnjs/search" data-unscoped-search-url="/search" action="/cdnjs/cdnjs/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+      <label class="form-control input-sm header-search-wrapper p-0 header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center js-chromeless-input-container">
+        <input type="text"
+          class="form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+          data-hotkey="s,/"
+          name="q"
+          value=""
+          placeholder="Search"
+          data-unscoped-placeholder="Search GitHub"
+          data-scoped-placeholder="Search"
+          autocapitalize="off"
+          aria-autocomplete="list"
+          aria-controls="jump-to-results"
+          aria-label="Search"
+          data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations#csrf-token=E0hAZuqvWkaE12dV1GIWX0PtXqRXqNwHRFIsr9eSDWbShssrWdzc37VKQM+WvOQr2PwxxhlPNs0/u+PCcHHxRQ=="
+          spellcheck="false"
+          autocomplete="off"
+          >
+          <input type="hidden" class="js-site-search-type-field" name="type" >
+            <img src="https://github.githubassets.com/images/search-key-slash.svg" alt="" class="mr-2 header-search-key-slash">
+
+            <div class="Box position-absolute overflow-hidden d-none jump-to-suggestions js-jump-to-suggestions-container">
+              
+<ul class="d-none js-jump-to-suggestions-template-container">
+  
+
+<li class="d-flex flex-justify-start flex-items-center p-0 f5 navigation-item js-navigation-item js-jump-to-suggestion" role="option">
+  <a tabindex="-1" class="no-underline d-flex flex-auto flex-items-center jump-to-suggestions-path js-jump-to-suggestion-path js-navigation-open p-2" href="">
+    <div class="jump-to-octicon js-jump-to-octicon flex-shrink-0 mr-2 text-center d-none">
+      <svg height="16" width="16" class="octicon octicon-repo flex-shrink-0 js-jump-to-octicon-repo d-none" title="Repository" aria-label="Repository" viewBox="0 0 12 16" version="1.1" role="img"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-project flex-shrink-0 js-jump-to-octicon-project d-none" title="Project" aria-label="Project" viewBox="0 0 15 16" version="1.1" role="img"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 00-1 1v14a1 1 0 001 1h13a1 1 0 001-1V1a1 1 0 00-1-1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-search flex-shrink-0 js-jump-to-octicon-search d-none" title="Search" aria-label="Search" viewBox="0 0 16 16" version="1.1" role="img"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0013 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 000-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"/></svg>
+    </div>
+
+    <img class="avatar mr-2 flex-shrink-0 js-jump-to-suggestion-avatar d-none" alt="" aria-label="Team" src="" width="28" height="28">
+
+    <div class="jump-to-suggestion-name js-jump-to-suggestion-name flex-auto overflow-hidden text-left no-wrap css-truncate css-truncate-target">
+    </div>
+
+    <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none js-jump-to-badge-search">
+      <span class="js-jump-to-badge-search-text-default d-none" aria-label="in this repository">
+        In this repository
+      </span>
+      <span class="js-jump-to-badge-search-text-global d-none" aria-label="in all of GitHub">
+        All GitHub
+      </span>
+      <span aria-hidden="true" class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+
+    <div aria-hidden="true" class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none d-on-nav-focus js-jump-to-badge-jump">
+      Jump to
+      <span class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+  </a>
+</li>
+
+</ul>
+
+<ul class="d-none js-jump-to-no-results-template-container">
+  <li class="d-flex flex-justify-center flex-items-center f5 d-none js-jump-to-suggestion p-2">
+    <span class="text-gray">No suggested jump to results</span>
+  </li>
+</ul>
+
+<ul id="jump-to-results" role="listbox" class="p-0 m-0 js-navigation-container jump-to-suggestions-results-container js-jump-to-suggestions-results-container">
+  
+
+<li class="d-flex flex-justify-start flex-items-center p-0 f5 navigation-item js-navigation-item js-jump-to-scoped-search d-none" role="option">
+  <a tabindex="-1" class="no-underline d-flex flex-auto flex-items-center jump-to-suggestions-path js-jump-to-suggestion-path js-navigation-open p-2" href="">
+    <div class="jump-to-octicon js-jump-to-octicon flex-shrink-0 mr-2 text-center d-none">
+      <svg height="16" width="16" class="octicon octicon-repo flex-shrink-0 js-jump-to-octicon-repo d-none" title="Repository" aria-label="Repository" viewBox="0 0 12 16" version="1.1" role="img"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-project flex-shrink-0 js-jump-to-octicon-project d-none" title="Project" aria-label="Project" viewBox="0 0 15 16" version="1.1" role="img"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 00-1 1v14a1 1 0 001 1h13a1 1 0 001-1V1a1 1 0 00-1-1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-search flex-shrink-0 js-jump-to-octicon-search d-none" title="Search" aria-label="Search" viewBox="0 0 16 16" version="1.1" role="img"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0013 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 000-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"/></svg>
+    </div>
+
+    <img class="avatar mr-2 flex-shrink-0 js-jump-to-suggestion-avatar d-none" alt="" aria-label="Team" src="" width="28" height="28">
+
+    <div class="jump-to-suggestion-name js-jump-to-suggestion-name flex-auto overflow-hidden text-left no-wrap css-truncate css-truncate-target">
+    </div>
+
+    <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none js-jump-to-badge-search">
+      <span class="js-jump-to-badge-search-text-default d-none" aria-label="in this repository">
+        In this repository
+      </span>
+      <span class="js-jump-to-badge-search-text-global d-none" aria-label="in all of GitHub">
+        All GitHub
+      </span>
+      <span aria-hidden="true" class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+
+    <div aria-hidden="true" class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none d-on-nav-focus js-jump-to-badge-jump">
+      Jump to
+      <span class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+  </a>
+</li>
+
+  
+
+<li class="d-flex flex-justify-start flex-items-center p-0 f5 navigation-item js-navigation-item js-jump-to-global-search d-none" role="option">
+  <a tabindex="-1" class="no-underline d-flex flex-auto flex-items-center jump-to-suggestions-path js-jump-to-suggestion-path js-navigation-open p-2" href="">
+    <div class="jump-to-octicon js-jump-to-octicon flex-shrink-0 mr-2 text-center d-none">
+      <svg height="16" width="16" class="octicon octicon-repo flex-shrink-0 js-jump-to-octicon-repo d-none" title="Repository" aria-label="Repository" viewBox="0 0 12 16" version="1.1" role="img"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-project flex-shrink-0 js-jump-to-octicon-project d-none" title="Project" aria-label="Project" viewBox="0 0 15 16" version="1.1" role="img"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 00-1 1v14a1 1 0 001 1h13a1 1 0 001-1V1a1 1 0 00-1-1z"/></svg>
+      <svg height="16" width="16" class="octicon octicon-search flex-shrink-0 js-jump-to-octicon-search d-none" title="Search" aria-label="Search" viewBox="0 0 16 16" version="1.1" role="img"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0013 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 000-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"/></svg>
+    </div>
+
+    <img class="avatar mr-2 flex-shrink-0 js-jump-to-suggestion-avatar d-none" alt="" aria-label="Team" src="" width="28" height="28">
+
+    <div class="jump-to-suggestion-name js-jump-to-suggestion-name flex-auto overflow-hidden text-left no-wrap css-truncate css-truncate-target">
+    </div>
+
+    <div class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none js-jump-to-badge-search">
+      <span class="js-jump-to-badge-search-text-default d-none" aria-label="in this repository">
+        In this repository
+      </span>
+      <span class="js-jump-to-badge-search-text-global d-none" aria-label="in all of GitHub">
+        All GitHub
+      </span>
+      <span aria-hidden="true" class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+
+    <div aria-hidden="true" class="border rounded-1 flex-shrink-0 bg-gray px-1 text-gray-light ml-1 f6 d-none d-on-nav-focus js-jump-to-badge-jump">
+      Jump to
+      <span class="d-inline-block ml-1 v-align-middle">↵</span>
+    </div>
+  </a>
+</li>
+
+
+</ul>
+
+            </div>
+      </label>
+</form>  </div>
+</div>
+
+          </div>
+
+        <a href="/login?return_to=%2Fcdnjs%2Fcdnjs%2Fblob%2Fmaster%2Fajax%2Flibs%2Faos%2F2.0.2%2Faos.js.map"
+          class="HeaderMenu-link no-underline mr-3"
+          data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="c12e509cadf3acfbd5aa2f45ce15e9f2aee1687198813404db031f6532d6686c"
+          data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">
+          Sign&nbsp;in
+        </a>
+          <a href="/join?source=header-repo&amp;source_repo=cdnjs%2Fcdnjs"
+            class="HeaderMenu-link d-inline-block no-underline border border-gray-dark rounded-1 px-2 py-1"
+            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="c12e509cadf3acfbd5aa2f45ce15e9f2aee1687198813404db031f6532d6686c"
+            data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">
+            Sign&nbsp;up
+          </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+  </div>
+
+  <div id="start-of-content" class="show-on-focus"></div>
+
+
+    <div id="js-flash-container">
+
+</div>
+
+
+
+  <div class="application-main " data-commit-hovercards-enabled>
+        <div itemscope itemtype="http://schema.org/SoftwareSourceCode" class="">
+    <main  >
+      
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <div class=" pagehead repohead readability-menu experiment-repo-nav pt-0 pt-lg-4 ">
+    <div class="repohead-details-container clearfix container-lg p-responsive d-none d-lg-block">
+
+      <ul class="pagehead-actions">
+
+
+
+
+  <li>
+    
+  <a class="tooltipped tooltipped-s btn btn-sm btn-with-count" aria-label="You must be signed in to watch a repository" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8db7f4c64bd12dde8ce46e74e357d141e8209395e56bdfff0f33baaee1303466" href="/login?return_to=%2Fcdnjs%2Fcdnjs">
+    <svg class="octicon octicon-eye v-align-text-bottom" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"/></svg>
+    Watch
+</a>    <a class="social-count" href="/cdnjs/cdnjs/watchers"
+       aria-label="278 users are watching this repository">
+      278
+    </a>
+
+  </li>
+
+  <li>
+        <a class="btn btn-sm btn-with-count tooltipped tooltipped-s" aria-label="You must be signed in to star a repository" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:1409811,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e6cc40cfe8a7a688ad64c0e0beac795f9118d0b27165e1ce89afde9a515a0694" href="/login?return_to=%2Fcdnjs%2Fcdnjs">
+      <svg aria-label="star" height="16" class="octicon octicon-star v-align-text-bottom" viewBox="0 0 14 16" version="1.1" width="14" role="img"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"/></svg>
+
+      Star
+</a>
+    <a class="social-count js-social-count" href="/cdnjs/cdnjs/stargazers"
+      aria-label="8221 users starred this repository">
+      8.2k
+    </a>
+
+  </li>
+
+  <li>
+      <a class="btn btn-sm btn-with-count tooltipped tooltipped-s" aria-label="You must be signed in to fork a repository" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:1409811,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;client_id&quot;:&quot;10831676.1575276165&quot;,&quot;originating_request_id&quot;:&quot;C9C5:0568:B2972F:1010C23:5E05BBB9&quot;,&quot;originating_url&quot;:&quot;https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/aos/2.0.2/aos.js.map&quot;,&quot;referrer&quot;:&quot;https://github.com/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="1c44edd41ceb4b4fca3a99ed4cd516facb4f8f6d41c6b4954f95c78aeeb86dba" href="/login?return_to=%2Fcdnjs%2Fcdnjs">
+        <svg class="octicon octicon-repo-forked v-align-text-bottom" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 00-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 002 1a1.993 1.993 0 00-1 3.72V6.5l3 3v1.78A1.993 1.993 0 005 15a1.993 1.993 0 001-3.72V9.5l3-3V4.72A1.993 1.993 0 008 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"/></svg>
+        Fork
+</a>
+    <a href="/cdnjs/cdnjs/network/members" class="social-count"
+       aria-label="4203 users forked this repository">
+      4.2k
+    </a>
+  </li>
+</ul>
+
+      <h1 class="public ">
+    <svg class="octicon octicon-repo" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
+  <span class="author" itemprop="author"><a class="url fn" rel="author" data-hovercard-type="organization" data-hovercard-url="/orgs/cdnjs/hovercard" href="/cdnjs">cdnjs</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a data-pjax="#js-repo-pjax-container" href="/cdnjs/cdnjs">cdnjs</a></strong>
+  
+
+</h1>
+
+    </div>
+    
+<nav class="hx_reponav reponav js-repo-nav js-sidenav-container-pjax container-lg p-responsive d-none d-lg-block"
+     itemscope
+     itemtype="http://schema.org/BreadcrumbList"
+    aria-label="Repository"
+     data-pjax="#js-repo-pjax-container">
+
+  <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a class="js-selected-navigation-item selected reponav-item" itemprop="url" data-hotkey="g c" aria-current="page" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /cdnjs/cdnjs" href="/cdnjs/cdnjs">
+      <div class="d-inline"><svg class="octicon octicon-code" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></div>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a itemprop="url" data-hotkey="g i" class="js-selected-navigation-item reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /cdnjs/cdnjs/issues" href="/cdnjs/cdnjs/issues">
+        <div class="d-inline"><svg class="octicon octicon-issue-opened" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 011.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"/></svg></div>
+        <span itemprop="name">Issues</span>
+        <span class="Counter">830</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+
+  <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a data-hotkey="g p" data-skip-pjax="true" itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /cdnjs/cdnjs/pulls" href="/cdnjs/cdnjs/pulls">
+      <div class="d-inline"><svg class="octicon octicon-git-pull-request" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0010 15a1.993 1.993 0 001-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 00-1 3.72v6.56A1.993 1.993 0 002 15a1.993 1.993 0 001-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"/></svg></div>
+      <span itemprop="name">Pull requests</span>
+      <span class="Counter">170</span>
+      <meta itemprop="position" content="4">
+</a>  </span>
+
+
+
+
+    <a class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /cdnjs/cdnjs/wiki" href="/cdnjs/cdnjs/wiki">
+      <div class="d-inline"><svg class="octicon octicon-book" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"/></svg></div>
+      Wiki
+</a>
+    <a data-skip-pjax="true" class="js-selected-navigation-item reponav-item" data-selected-links="security alerts policy code_scanning /cdnjs/cdnjs/security/advisories" href="/cdnjs/cdnjs/security/advisories">
+      <div class="d-inline"><svg class="octicon octicon-shield" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 2l7-2 7 2v6.02C14 12.69 8.69 16 7 16c-1.69 0-7-3.31-7-7.98V2zm1 .75L7 1l6 1.75v5.268C13 12.104 8.449 15 7 15c-1.449 0-6-2.896-6-6.982V2.75zm1 .75L7 2v12c-1.207 0-5-2.482-5-5.985V3.5z"/></svg></div>
+      Security
+</a>
+    <a class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors dependency_graph pulse people /cdnjs/cdnjs/pulse" href="/cdnjs/cdnjs/pulse">
+      <div class="d-inline"><svg class="octicon octicon-graph" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"/></svg></div>
+      Insights
+</a>
+
+</nav>
+
+  <div class="reponav-wrapper reponav-small d-lg-none">
+  <nav class="reponav js-reponav text-center no-wrap"
+       itemscope
+       itemtype="http://schema.org/BreadcrumbList">
+
+    <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a class="js-selected-navigation-item selected reponav-item" itemprop="url" aria-current="page" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages /cdnjs/cdnjs" href="/cdnjs/cdnjs">
+        <span itemprop="name">Code</span>
+        <meta itemprop="position" content="1">
+</a>    </span>
+
+      <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+        <a itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_issues repo_labels repo_milestones /cdnjs/cdnjs/issues" href="/cdnjs/cdnjs/issues">
+          <span itemprop="name">Issues</span>
+          <span class="Counter">830</span>
+          <meta itemprop="position" content="2">
+</a>      </span>
+
+    <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_pulls checks /cdnjs/cdnjs/pulls" href="/cdnjs/cdnjs/pulls">
+        <span itemprop="name">Pull requests</span>
+        <span class="Counter">170</span>
+        <meta itemprop="position" content="3">
+</a>    </span>
+
+
+      <span itemscope itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+        <a itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="repo_wiki /cdnjs/cdnjs/wiki" href="/cdnjs/cdnjs/wiki">
+          <span itemprop="name">Wiki</span>
+          <meta itemprop="position" content="5">
+</a>      </span>
+
+      <a itemprop="url" class="js-selected-navigation-item reponav-item" data-selected-links="security alerts policy code_scanning /cdnjs/cdnjs/security/advisories" href="/cdnjs/cdnjs/security/advisories">
+        <span itemprop="name">Security</span>
+        <meta itemprop="position" content="6">
+</a>
+      <a class="js-selected-navigation-item reponav-item" data-selected-links="pulse /cdnjs/cdnjs/pulse" href="/cdnjs/cdnjs/pulse">
+        Pulse
+</a>
+
+  </nav>
+</div>
+
+
+  </div>
+<div class="container-lg clearfix new-discussion-timeline experiment-repo-nav  p-responsive">
+  <div class="repository-content ">
+
+    
+    
+
+
+  
+
+
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/cdnjs/cdnjs/blob/326bc96d0abd8027794c6fedb672aa36ed82c46b/ajax/libs/aos/2.0.2/aos.js.map">Permalink</a>
+
+    <!-- blob contrib key: blob_contributors:v21:bd31559689a917ca0e78203e96b6012c -->
+      
+
+    <div class="d-flex flex-items-start flex-shrink-0 pb-3 flex-column flex-md-row">
+      <span class="d-flex flex-justify-between width-full width-md-auto">
+        
+<details class="details-reset details-overlay select-menu branch-select-menu  hx_rsm" id="branch-select-menu">
+  <summary class="btn btn-sm select-menu-button css-truncate"
+           data-hotkey="w"
+           title="Switch branches or tags">
+    <i>Branch:</i>
+    <span class="css-truncate-target" data-menu-button>master</span>
+  </summary>
+
+  <details-menu class="select-menu-modal hx_rsm-modal position-absolute" style="z-index: 99;" src="/cdnjs/cdnjs/refs/master/ajax/libs/aos/2.0.2/aos.js.map?source_action=show&amp;source_controller=blob" preload>
+    <include-fragment class="select-menu-loading-overlay anim-pulse">
+      <svg height="32" class="octicon octicon-octoface" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M14.7 5.34c.13-.32.55-1.59-.13-3.31 0 0-1.05-.33-3.44 1.3-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69 0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35 0-.76.38-1.48 1.02-2.07 1.07-.98 2.9-.46 4.96-.46 2.07 0 3.88-.52 4.96.46.65.59 1.02 1.3 1.02 2.07 0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z"/></svg>
+    </include-fragment>
+  </details-menu>
+</details>
+
+        <div class="BtnGroup flex-shrink-0 d-md-none">
+          <a href="/cdnjs/cdnjs/find/master"
+                class="js-pjax-capture-input btn btn-sm BtnGroup-item"
+                data-pjax
+                data-hotkey="t">
+            Find file
+          </a>
+          <clipboard-copy value="ajax/libs/aos/2.0.2/aos.js.map" class="btn btn-sm BtnGroup-item">
+            Copy path
+          </clipboard-copy>
+        </div>
+      </span>
+      <h2 id="blob-path" class="breadcrumb flex-auto min-width-0 text-normal flex-md-self-center ml-md-2 mr-md-3 my-2 my-md-0">
+        <span class="js-repo-root text-bold"><span class="js-path-segment"><a data-pjax="true" href="/cdnjs/cdnjs"><span>cdnjs</span></a></span></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/cdnjs/cdnjs/tree/master/ajax"><span>ajax</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/cdnjs/cdnjs/tree/master/ajax/libs"><span>libs</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/cdnjs/cdnjs/tree/master/ajax/libs/aos"><span>aos</span></a></span><span class="separator">/</span><span class="js-path-segment"><a data-pjax="true" href="/cdnjs/cdnjs/tree/master/ajax/libs/aos/2.0.2"><span>2.0.2</span></a></span><span class="separator">/</span><strong class="final-path">aos.js.map</strong>
+      </h2>
+
+      <div class="BtnGroup flex-shrink-0 d-none d-md-inline-block">
+        <a href="/cdnjs/cdnjs/find/master"
+              class="js-pjax-capture-input btn btn-sm BtnGroup-item"
+              data-pjax
+              data-hotkey="t">
+          Find file
+        </a>
+        <clipboard-copy value="ajax/libs/aos/2.0.2/aos.js.map" class="btn btn-sm BtnGroup-item">
+          Copy path
+        </clipboard-copy>
+      </div>
+    </div>
+
+    
+
+
+
+    
+  <div class="Box Box--condensed d-flex flex-column flex-shrink-0">
+      Cannot retrieve latest commit at this time.
+
+    <div class="Box-body d-flex flex-items-center flex-auto f6 border-bottom-0 flex-wrap" >
+      <details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark float-left mr-2" id="blob_contributors_box">
+        <summary class="btn-link">
+          <span><strong>0</strong> recent contributors</span>
+        </summary>
+        <details-dialog
+          class="Box Box--overlay d-flex flex-column anim-fade-in fast"
+          aria-label="Users who have contributed to this file recently"
+          src="/cdnjs/cdnjs/contributors-list/master/ajax/libs/aos/2.0.2/aos.js.map" preload>
+          <div class="Box-header">
+            <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+              <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+            </button>
+            <h3 class="Box-title">
+              Users who have contributed to this file recently
+            </h3>
+          </div>
+          <include-fragment class="octocat-spinner my-3" aria-label="Loading..."></include-fragment>
+        </details-dialog>
+      </details>
+    </div>
+  </div>
+
+
+
+
+
+    <div class="Box mt-3 position-relative">
+      
+<div class="Box-header py-2 d-flex flex-column flex-shrink-0 flex-md-row flex-md-items-center">
+  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+
+      1 lines (1 sloc)
+      <span class="file-info-divider"></span>
+    79.8 KB
+  </div>
+
+  <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between">
+
+    <div class="BtnGroup">
+      <a id="raw-url" class="btn btn-sm BtnGroup-item" href="/cdnjs/cdnjs/raw/master/ajax/libs/aos/2.0.2/aos.js.map">Raw</a>
+        <a class="btn btn-sm js-update-url-with-hash BtnGroup-item" data-hotkey="b" href="/cdnjs/cdnjs/blame/master/ajax/libs/aos/2.0.2/aos.js.map">Blame</a>
+      <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="/cdnjs/cdnjs/commits/master/ajax/libs/aos/2.0.2/aos.js.map">History</a>
+    </div>
+
+
+    <div>
+            <a class="btn-octicon tooltipped tooltipped-nw hide-sm"
+               href="https://desktop.github.com"
+               aria-label="Open this file in GitHub Desktop"
+               data-ga-click="Repository, open with desktop, type:windows">
+                <svg class="octicon octicon-device-desktop" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z"/></svg>
+            </a>
+
+          <button type="button" class="btn-octicon disabled tooltipped tooltipped-nw"
+            aria-label="You must be signed in to make or propose changes">
+            <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 011.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/></svg>
+          </button>
+          <button type="button" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw"
+            aria-label="You must be signed in to make or propose changes">
+            <svg class="octicon octicon-trashcan" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11 2H9c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1H2c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1v9c0 .55.45 1 1 1h7c.55 0 1-.45 1-1V5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm-1 12H3V5h1v8h1V5h1v8h1V5h1v8h1V5h1v9zm1-10H2V3h9v1z"/></svg>
+          </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+      
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tr>
+        <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="LC1" class="blob-code blob-code-inner js-file-line">{&quot;version&quot;:3,&quot;sources&quot;:[&quot;webpack:///webpack/universalModuleDefinition&quot;,&quot;webpack:///aos.js&quot;,&quot;webpack:///webpack/bootstrap 747c8032ef5f15762e41&quot;,&quot;webpack:///./src/js/aos.js&quot;,&quot;webpack:///./~/lodash.throttle/index.js&quot;,&quot;webpack:///./~/lodash.debounce/index.js&quot;,&quot;webpack:///./src/js/libs/observer.js&quot;,&quot;webpack:///./src/js/helpers/detector.js&quot;,&quot;webpack:///./src/js/helpers/handleScroll.js&quot;,&quot;webpack:///./src/js/helpers/prepare.js&quot;,&quot;webpack:///./src/js/helpers/calculateOffset.js&quot;,&quot;webpack:///./src/js/libs/offset.js&quot;,&quot;webpack:///./src/js/helpers/elements.js&quot;],&quot;names&quot;:[&quot;root&quot;,&quot;factory&quot;,&quot;exports&quot;,&quot;module&quot;,&quot;define&quot;,&quot;amd&quot;,&quot;this&quot;,&quot;modules&quot;,&quot;__webpack_require__&quot;,&quot;moduleId&quot;,&quot;installedModules&quot;,&quot;id&quot;,&quot;loaded&quot;,&quot;call&quot;,&quot;m&quot;,&quot;c&quot;,&quot;p&quot;,&quot;_interopRequireDefault&quot;,&quot;obj&quot;,&quot;__esModule&quot;,&quot;default&quot;,&quot;_aos&quot;,&quot;_lodash&quot;,&quot;_lodash2&quot;,&quot;_lodash3&quot;,&quot;_lodash4&quot;,&quot;_observer&quot;,&quot;_observer2&quot;,&quot;_detector&quot;,&quot;_detector2&quot;,&quot;_handleScroll&quot;,&quot;_handleScroll2&quot;,&quot;_prepare&quot;,&quot;_prepare2&quot;,&quot;_elements&quot;,&quot;_elements2&quot;,&quot;$aosElements&quot;,&quot;initialized&quot;,&quot;options&quot;,&quot;offset&quot;,&quot;delay&quot;,&quot;easing&quot;,&quot;duration&quot;,&quot;disable&quot;,&quot;once&quot;,&quot;startEvent&quot;,&quot;refresh&quot;,&quot;initialize&quot;,&quot;arguments&quot;,&quot;length&quot;,&quot;undefined&quot;,&quot;refreshHard&quot;,&quot;init&quot;,&quot;settings&quot;,&quot;Object&quot;,&quot;assign&quot;,&quot;mobile&quot;,&quot;phone&quot;,&quot;tablet&quot;,&quot;forEach&quot;,&quot;el&quot;,&quot;i&quot;,&quot;node&quot;,&quot;removeAttribute&quot;,&quot;document&quot;,&quot;querySelector&quot;,&quot;setAttribute&quot;,&quot;indexOf&quot;,&quot;readyState&quot;,&quot;addEventListener&quot;,&quot;window&quot;,&quot;event&quot;,&quot;target&quot;,&quot;nodeType&quot;,&quot;hasAttribute&quot;,&quot;throttle&quot;,&quot;func&quot;,&quot;wait&quot;,&quot;leading&quot;,&quot;trailing&quot;,&quot;TypeError&quot;,&quot;FUNC_ERROR_TEXT&quot;,&quot;isObject&quot;,&quot;debounce&quot;,&quot;maxWait&quot;,&quot;value&quot;,&quot;type&quot;,&quot;_typeof&quot;,&quot;Symbol&quot;,&quot;iterator&quot;,&quot;constructor&quot;,&quot;invokeFunc&quot;,&quot;time&quot;,&quot;args&quot;,&quot;lastArgs&quot;,&quot;thisArg&quot;,&quot;lastThis&quot;,&quot;lastInvokeTime&quot;,&quot;result&quot;,&quot;apply&quot;,&quot;leadingEdge&quot;,&quot;timerId&quot;,&quot;setTimeout&quot;,&quot;timerExpired&quot;,&quot;remainingWait&quot;,&quot;timeSinceLastCall&quot;,&quot;lastCallTime&quot;,&quot;timeSinceLastInvoke&quot;,&quot;maxing&quot;,&quot;nativeMin&quot;,&quot;shouldInvoke&quot;,&quot;now&quot;,&quot;trailingEdge&quot;,&quot;clearTimeout&quot;,&quot;cancel&quot;,&quot;flush&quot;,&quot;debounced&quot;,&quot;isInvoking&quot;,&quot;toNumber&quot;,&quot;nativeMax&quot;,&quot;isFunction&quot;,&quot;tag&quot;,&quot;objectToString&quot;,&quot;funcTag&quot;,&quot;genTag&quot;,&quot;isObjectLike&quot;,&quot;isSymbol&quot;,&quot;symbolTag&quot;,&quot;NAN&quot;,&quot;other&quot;,&quot;valueOf&quot;,&quot;replace&quot;,&quot;reTrim&quot;,&quot;isBinary&quot;,&quot;reIsBinary&quot;,&quot;test&quot;,&quot;reIsOctal&quot;,&quot;freeParseInt&quot;,&quot;slice&quot;,&quot;reIsBadHex&quot;,&quot;parseInt&quot;,&quot;objectProto&quot;,&quot;prototype&quot;,&quot;toString&quot;,&quot;Math&quot;,&quot;max&quot;,&quot;min&quot;,&quot;Date&quot;,&quot;ready&quot;,&quot;selector&quot;,&quot;fn&quot;,&quot;listeners&quot;,&quot;push&quot;,&quot;observer&quot;,&quot;MutationObserver&quot;,&quot;check&quot;,&quot;observe&quot;,&quot;doc&quot;,&quot;documentElement&quot;,&quot;childList&quot;,&quot;subtree&quot;,&quot;removedNodes&quot;,&quot;listener&quot;,&quot;elements&quot;,&quot;len&quot;,&quot;querySelectorAll&quot;,&quot;element&quot;,&quot;j&quot;,&quot;jLen&quot;,&quot;defineProperty&quot;,&quot;WebKitMutationObserver&quot;,&quot;a&quot;,&quot;substr&quot;,&quot;navigator&quot;,&quot;userAgent&quot;,&quot;vendor&quot;,&quot;opera&quot;,&quot;setState&quot;,&quot;top&quot;,&quot;attrOnce&quot;,&quot;getAttribute&quot;,&quot;position&quot;,&quot;classList&quot;,&quot;add&quot;,&quot;remove&quot;,&quot;handleScroll&quot;,&quot;$elements&quot;,&quot;scrollTop&quot;,&quot;pageYOffset&quot;,&quot;windowHeight&quot;,&quot;innerHeight&quot;,&quot;_calculateOffset&quot;,&quot;_calculateOffset2&quot;,&quot;prepare&quot;,&quot;_offset&quot;,&quot;_offset2&quot;,&quot;calculateOffset&quot;,&quot;optionalOffset&quot;,&quot;elementOffsetTop&quot;,&quot;additionalOffset&quot;,&quot;attrs&quot;,&quot;anchor&quot;,&quot;anchorPlacement&quot;,&quot;isNaN&quot;,&quot;offsetHeight&quot;,&quot;_x&quot;,&quot;_y&quot;,&quot;offsetLeft&quot;,&quot;offsetTop&quot;,&quot;tagName&quot;,&quot;scrollLeft&quot;,&quot;offsetParent&quot;,&quot;left&quot;,&quot;createArrayWithElements&quot;,&quot;finalElements&quot;],&quot;mappings&quot;:&quot;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&quot;,&quot;file&quot;:&quot;aos.js&quot;,&quot;sourcesContent&quot;:[&quot;(function webpackUniversalModuleDefinition(root, factory) {\n\tif(typeof exports === &#39;object&#39; &amp;&amp; typeof module === &#39;object&#39;)\n\t\tmodule.exports = factory();\n\telse if(typeof define === &#39;function&#39; &amp;&amp; define.amd)\n\t\tdefine([], factory);\n\telse if(typeof exports === &#39;object&#39;)\n\t\texports[\&quot;AOS\&quot;] = factory();\n\telse\n\t\troot[\&quot;AOS\&quot;] = factory();\n})(this, function() {\nreturn \n\n\n/** WEBPACK FOOTER **\n ** webpack/universalModuleDefinition\n **/&quot;,&quot;(function webpackUniversalModuleDefinition(root, factory) {\n\tif(typeof exports === &#39;object&#39; &amp;&amp; typeof module === &#39;object&#39;)\n\t\tmodule.exports = factory();\n\telse if(typeof define === &#39;function&#39; &amp;&amp; define.amd)\n\t\tdefine([], factory);\n\telse if(typeof exports === &#39;object&#39;)\n\t\texports[\&quot;AOS\&quot;] = factory();\n\telse\n\t\troot[\&quot;AOS\&quot;] = factory();\n})(this, function() {\nreturn /******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n/******/\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n/******/\n/******/ \t\t// Check if module is in cache\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n/******/\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n/******/\n/******/ \t\t// Execute the module function\n/******/ \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n/******/\n/******/ \t\t// Flag the module as loaded\n/******/ \t\tmodule.loaded = true;\n/******/\n/******/ \t\t// Return the exports of the module\n/******/ \t\treturn module.exports;\n/******/ \t}\n/******/\n/******/\n/******/ \t// expose the modules object (__webpack_modules__)\n/******/ \t__webpack_require__.m = modules;\n/******/\n/******/ \t// expose the module cache\n/******/ \t__webpack_require__.c = installedModules;\n/******/\n/******/ \t// __webpack_public_path__\n/******/ \t__webpack_require__.p = \&quot;dist/\&quot;;\n/******/\n/******/ \t// Load entry module and return exports\n/******/ \treturn __webpack_require__(0);\n/******/ })\n/************************************************************************/\n/******/ ([\n/* 0 */\n/***/ function(module, exports, __webpack_require__) {\n\n\t&#39;use strict&#39;;\n\t\n\tvar _aos = __webpack_require__(1);\n\t\n\tvar _aos2 = _interopRequireDefault(_aos);\n\t\n\tvar _lodash = __webpack_require__(5);\n\t\n\tvar _lodash2 = _interopRequireDefault(_lodash);\n\t\n\tvar _lodash3 = __webpack_require__(6);\n\t\n\tvar _lodash4 = _interopRequireDefault(_lodash3);\n\t\n\tvar _observer = __webpack_require__(7);\n\t\n\tvar _observer2 = _interopRequireDefault(_observer);\n\t\n\tvar _detector = __webpack_require__(8);\n\t\n\tvar _detector2 = _interopRequireDefault(_detector);\n\t\n\tvar _handleScroll = __webpack_require__(9);\n\t\n\tvar _handleScroll2 = _interopRequireDefault(_handleScroll);\n\t\n\tvar _prepare = __webpack_require__(10);\n\t\n\tvar _prepare2 = _interopRequireDefault(_prepare);\n\t\n\tvar _elements = __webpack_require__(13);\n\t\n\tvar _elements2 = _interopRequireDefault(_elements);\n\t\n\tfunction _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }\n\t\n\t/**\n\t * Private variables\n\t */\n\t/**\n\t * *******************************************************\n\t * AOS (Animate on scroll) - wowjs alternative\n\t * made to animate elements on scroll in both directions\n\t * *******************************************************\n\t */\n\t\n\tvar $aosElements = [];\n\t\n\t// Modules &amp; helpers\n\t\n\tvar initialized = false;\n\t\n\t/**\n\t * Default options\n\t */\n\tvar options = {\n\t  offset: 120,\n\t  delay: 0,\n\t  easing: &#39;ease&#39;,\n\t  duration: 400,\n\t  disable: false,\n\t  once: false,\n\t  startEvent: &#39;DOMContentLoaded&#39;\n\t};\n\t\n\t/**\n\t * Refresh AOS\n\t */\n\tvar refresh = function refresh() {\n\t  var initialize = arguments.length &lt;= 0 || arguments[0] === undefined ? false : arguments[0];\n\t\n\t  // Allow refresh only when it was first initialized on startEvent\n\t  if (initialize) initialized = true;\n\t\n\t  if (initialized) {\n\t    // Extend elements objects in $aosElements with their positions\n\t    $aosElements = (0, _prepare2.default)($aosElements, options);\n\t    // Perform scroll event, to refresh view and show/hide elements\n\t    (0, _handleScroll2.default)($aosElements, options.once);\n\t\n\t    return $aosElements;\n\t  }\n\t};\n\t\n\t/**\n\t * Hard refresh\n\t * create array with new elements and trigger refresh\n\t */\n\tvar refreshHard = function refreshHard() {\n\t  $aosElements = (0, _elements2.default)();\n\t  refresh();\n\t};\n\t\n\t/**\n\t * Initializing AOS\n\t * - Create options merging defaults with user defined options\n\t * - Set attributes on &lt;body&gt; as global setting - css relies on it\n\t * - Attach preparing elements to options.startEvent,\n\t *   window resize and orientation change\n\t * - Attach function that handle scroll and everything connected to it\n\t *   to window scroll event and fire once document is ready to set initial state\n\t */\n\tvar init = function init(settings) {\n\t  options = Object.assign(options, settings);\n\t\n\t  // Create initial array with elements -&gt; to be fullfilled later with prepare()\n\t  $aosElements = (0, _elements2.default)();\n\t\n\t  /**\n\t   * Check options.disable\n\t   * and do not init plugin if conditions are true\n\t   */\n\t  if (options.disable) {\n\t    if (options.disable === true || options.disable === &#39;mobile&#39; &amp;&amp; _detector2.default.mobile() || options.disable === &#39;phone&#39; &amp;&amp; _detector2.default.phone() || options.disable === &#39;tablet&#39; &amp;&amp; _detector2.default.tablet() || typeof options.disable === &#39;function&#39; &amp;&amp; options.disable() === true) {\n\t      $aosElements.forEach(function (el, i) {\n\t        el.node.removeAttribute(&#39;data-aos&#39;);\n\t        el.node.removeAttribute(&#39;data-aos-easing&#39;);\n\t        el.node.removeAttribute(&#39;data-aos-duration&#39;);\n\t        el.node.removeAttribute(&#39;data-aos-delay&#39;);\n\t      });\n\t      return false;\n\t    }\n\t  }\n\t\n\t  /**\n\t   * Set global settings on body, based on options\n\t   * so CSS can use it\n\t   */\n\t  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-easing&#39;, options.easing);\n\t  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-duration&#39;, options.duration);\n\t  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-delay&#39;, options.delay);\n\t\n\t  /**\n\t   * Handle initializing\n\t   */\n\t  if (options.startEvent === &#39;DOMContentLoaded&#39; &amp;&amp; [&#39;complete&#39;, &#39;interactive&#39;].indexOf(document.readyState) &gt; -1) {\n\t    // Initialize AOS if default startEvent was already fired\n\t    refresh(true);\n\t  } else {\n\t    // Listen to options.startEvent and initialize AOS\n\t    document.addEventListener(options.startEvent, function () {\n\t      refresh(true);\n\t    });\n\t  }\n\t\n\t  /**\n\t   * Refresh plugin on window resize or orientation change\n\t   */\n\t  window.addEventListener(&#39;resize&#39;, (0, _lodash4.default)(refresh, 50, true));\n\t  window.addEventListener(&#39;orientationchange&#39;, (0, _lodash4.default)(refresh, 50, true));\n\t\n\t  /**\n\t   * Handle scroll event to animate elements on scroll\n\t   */\n\t  window.addEventListener(&#39;scroll&#39;, (0, _lodash2.default)(function () {\n\t    (0, _handleScroll2.default)($aosElements, options.once);\n\t  }, 99));\n\t\n\t  /**\n\t   * Watch if nodes are removed\n\t   * If so refresh plugin\n\t   */\n\t  document.addEventListener(&#39;DOMNodeRemoved&#39;, function (event) {\n\t    var el = event.target;\n\t    if (el &amp;&amp; el.nodeType === 1 &amp;&amp; el.hasAttribute &amp;&amp; el.hasAttribute(&#39;data-aos&#39;)) {\n\t      (0, _lodash4.default)(refreshHard, 50, true);\n\t    }\n\t  });\n\t\n\t  /**\n\t   * Observe [aos] elements\n\t   * If something is loaded by AJAX\n\t   * it&#39;ll refresh plugin automatically\n\t   */\n\t  (0, _observer2.default)(&#39;[data-aos]&#39;, refreshHard);\n\t\n\t  return $aosElements;\n\t};\n\t\n\t/**\n\t * Export Public API\n\t */\n\t\n\tmodule.exports = {\n\t  init: init,\n\t  refresh: refresh,\n\t  refreshHard: refreshHard\n\t};\n\n/***/ },\n/* 1 */\n/***/ function(module, exports) {\n\n\t// removed by extract-text-webpack-plugin\n\n/***/ },\n/* 2 */,\n/* 3 */,\n/* 4 */,\n/* 5 */\n/***/ function(module, exports, __webpack_require__) {\n\n\t&#39;use strict&#39;;\n\t\n\tvar _typeof = typeof Symbol === \&quot;function\&quot; &amp;&amp; typeof Symbol.iterator === \&quot;symbol\&quot; ? function (obj) { return typeof obj; } : function (obj) { return obj &amp;&amp; typeof Symbol === \&quot;function\&quot; &amp;&amp; obj.constructor === Symbol ? \&quot;symbol\&quot; : typeof obj; };\n\t\n\t/**\n\t * lodash 4.0.1 (Custom Build) &lt;https://lodash.com/&gt;\n\t * Build: `lodash modularize exports=\&quot;npm\&quot; -o ./`\n\t * Copyright 2012-2016 The Dojo Foundation &lt;http://dojofoundation.org/&gt;\n\t * Based on Underscore.js 1.8.3 &lt;http://underscorejs.org/LICENSE&gt;\n\t * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors\n\t * Available under MIT license &lt;https://lodash.com/license&gt;\n\t */\n\tvar debounce = __webpack_require__(6);\n\t\n\t/** Used as the `TypeError` message for \&quot;Functions\&quot; methods. */\n\tvar FUNC_ERROR_TEXT = &#39;Expected a function&#39;;\n\t\n\t/**\n\t * Creates a throttled function that only invokes `func` at most once per\n\t * every `wait` milliseconds. The throttled function comes with a `cancel`\n\t * method to cancel delayed `func` invocations and a `flush` method to\n\t * immediately invoke them. Provide an options object to indicate whether\n\t * `func` should be invoked on the leading and/or trailing edge of the `wait`\n\t * timeout. The `func` is invoked with the last arguments provided to the\n\t * throttled function. Subsequent calls to the throttled function return the\n\t * result of the last `func` invocation.\n\t *\n\t * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked\n\t * on the trailing edge of the timeout only if the throttled function is\n\t * invoked more than once during the `wait` timeout.\n\t *\n\t * See [David Corbacho&#39;s article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)\n\t * for details over the differences between `_.throttle` and `_.debounce`.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @category Function\n\t * @param {Function} func The function to throttle.\n\t * @param {number} [wait=0] The number of milliseconds to throttle invocations to.\n\t * @param {Object} [options] The options object.\n\t * @param {boolean} [options.leading=true] Specify invoking on the leading\n\t *  edge of the timeout.\n\t * @param {boolean} [options.trailing=true] Specify invoking on the trailing\n\t *  edge of the timeout.\n\t * @returns {Function} Returns the new throttled function.\n\t * @example\n\t *\n\t * // Avoid excessively updating the position while scrolling.\n\t * jQuery(window).on(&#39;scroll&#39;, _.throttle(updatePosition, 100));\n\t *\n\t * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.\n\t * var throttled = _.throttle(renewToken, 300000, { &#39;trailing&#39;: false });\n\t * jQuery(element).on(&#39;click&#39;, throttled);\n\t *\n\t * // Cancel the trailing throttled invocation.\n\t * jQuery(window).on(&#39;popstate&#39;, throttled.cancel);\n\t */\n\tfunction throttle(func, wait, options) {\n\t  var leading = true,\n\t      trailing = true;\n\t\n\t  if (typeof func != &#39;function&#39;) {\n\t    throw new TypeError(FUNC_ERROR_TEXT);\n\t  }\n\t  if (isObject(options)) {\n\t    leading = &#39;leading&#39; in options ? !!options.leading : leading;\n\t    trailing = &#39;trailing&#39; in options ? !!options.trailing : trailing;\n\t  }\n\t  return debounce(func, wait, {\n\t    &#39;leading&#39;: leading,\n\t    &#39;maxWait&#39;: wait,\n\t    &#39;trailing&#39;: trailing\n\t  });\n\t}\n\t\n\t/**\n\t * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.\n\t * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String(&#39;&#39;)`)\n\t *\n\t * @static\n\t * @memberOf _\n\t * @category Lang\n\t * @param {*} value The value to check.\n\t * @returns {boolean} Returns `true` if `value` is an object, else `false`.\n\t * @example\n\t *\n\t * _.isObject({});\n\t * // =&gt; true\n\t *\n\t * _.isObject([1, 2, 3]);\n\t * // =&gt; true\n\t *\n\t * _.isObject(_.noop);\n\t * // =&gt; true\n\t *\n\t * _.isObject(null);\n\t * // =&gt; false\n\t */\n\tfunction isObject(value) {\n\t  var type = typeof value === &#39;undefined&#39; ? &#39;undefined&#39; : _typeof(value);\n\t  return !!value &amp;&amp; (type == &#39;object&#39; || type == &#39;function&#39;);\n\t}\n\t\n\tmodule.exports = throttle;\n\n/***/ },\n/* 6 */\n/***/ function(module, exports) {\n\n\t&#39;use strict&#39;;\n\t\n\tvar _typeof = typeof Symbol === \&quot;function\&quot; &amp;&amp; typeof Symbol.iterator === \&quot;symbol\&quot; ? function (obj) { return typeof obj; } : function (obj) { return obj &amp;&amp; typeof Symbol === \&quot;function\&quot; &amp;&amp; obj.constructor === Symbol ? \&quot;symbol\&quot; : typeof obj; };\n\t\n\t/**\n\t * lodash 4.0.6 (Custom Build) &lt;https://lodash.com/&gt;\n\t * Build: `lodash modularize exports=\&quot;npm\&quot; -o ./`\n\t * Copyright jQuery Foundation and other contributors &lt;https://jquery.org/&gt;\n\t * Released under MIT license &lt;https://lodash.com/license&gt;\n\t * Based on Underscore.js 1.8.3 &lt;http://underscorejs.org/LICENSE&gt;\n\t * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors\n\t */\n\t\n\t/** Used as the `TypeError` message for \&quot;Functions\&quot; methods. */\n\tvar FUNC_ERROR_TEXT = &#39;Expected a function&#39;;\n\t\n\t/** Used as references for various `Number` constants. */\n\tvar NAN = 0 / 0;\n\t\n\t/** `Object#toString` result references. */\n\tvar funcTag = &#39;[object Function]&#39;,\n\t    genTag = &#39;[object GeneratorFunction]&#39;,\n\t    symbolTag = &#39;[object Symbol]&#39;;\n\t\n\t/** Used to match leading and trailing whitespace. */\n\tvar reTrim = /^\\s+|\\s+$/g;\n\t\n\t/** Used to detect bad signed hexadecimal string values. */\n\tvar reIsBadHex = /^[-+]0x[0-9a-f]+$/i;\n\t\n\t/** Used to detect binary string values. */\n\tvar reIsBinary = /^0b[01]+$/i;\n\t\n\t/** Used to detect octal string values. */\n\tvar reIsOctal = /^0o[0-7]+$/i;\n\t\n\t/** Built-in method references without a dependency on `root`. */\n\tvar freeParseInt = parseInt;\n\t\n\t/** Used for built-in method references. */\n\tvar objectProto = Object.prototype;\n\t\n\t/**\n\t * Used to resolve the\n\t * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)\n\t * of values.\n\t */\n\tvar objectToString = objectProto.toString;\n\t\n\t/* Built-in method references for those with the same name as other `lodash` methods. */\n\tvar nativeMax = Math.max,\n\t    nativeMin = Math.min;\n\t\n\t/**\n\t * Gets the timestamp of the number of milliseconds that have elapsed since\n\t * the Unix epoch (1 January 1970 00:00:00 UTC).\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 2.4.0\n\t * @type {Function}\n\t * @category Date\n\t * @returns {number} Returns the timestamp.\n\t * @example\n\t *\n\t * _.defer(function(stamp) {\n\t *   console.log(_.now() - stamp);\n\t * }, _.now());\n\t * // =&gt; Logs the number of milliseconds it took for the deferred function to be invoked.\n\t */\n\tvar now = Date.now;\n\t\n\t/**\n\t * Creates a debounced function that delays invoking `func` until after `wait`\n\t * milliseconds have elapsed since the last time the debounced function was\n\t * invoked. The debounced function comes with a `cancel` method to cancel\n\t * delayed `func` invocations and a `flush` method to immediately invoke them.\n\t * Provide an options object to indicate whether `func` should be invoked on\n\t * the leading and/or trailing edge of the `wait` timeout. The `func` is invoked\n\t * with the last arguments provided to the debounced function. Subsequent calls\n\t * to the debounced function return the result of the last `func` invocation.\n\t *\n\t * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked\n\t * on the trailing edge of the timeout only if the debounced function is\n\t * invoked more than once during the `wait` timeout.\n\t *\n\t * See [David Corbacho&#39;s article](https://css-tricks.com/debouncing-throttling-explained-examples/)\n\t * for details over the differences between `_.debounce` and `_.throttle`.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 0.1.0\n\t * @category Function\n\t * @param {Function} func The function to debounce.\n\t * @param {number} [wait=0] The number of milliseconds to delay.\n\t * @param {Object} [options={}] The options object.\n\t * @param {boolean} [options.leading=false]\n\t *  Specify invoking on the leading edge of the timeout.\n\t * @param {number} [options.maxWait]\n\t *  The maximum time `func` is allowed to be delayed before it&#39;s invoked.\n\t * @param {boolean} [options.trailing=true]\n\t *  Specify invoking on the trailing edge of the timeout.\n\t * @returns {Function} Returns the new debounced function.\n\t * @example\n\t *\n\t * // Avoid costly calculations while the window size is in flux.\n\t * jQuery(window).on(&#39;resize&#39;, _.debounce(calculateLayout, 150));\n\t *\n\t * // Invoke `sendMail` when clicked, debouncing subsequent calls.\n\t * jQuery(element).on(&#39;click&#39;, _.debounce(sendMail, 300, {\n\t *   &#39;leading&#39;: true,\n\t *   &#39;trailing&#39;: false\n\t * }));\n\t *\n\t * // Ensure `batchLog` is invoked once after 1 second of debounced calls.\n\t * var debounced = _.debounce(batchLog, 250, { &#39;maxWait&#39;: 1000 });\n\t * var source = new EventSource(&#39;/stream&#39;);\n\t * jQuery(source).on(&#39;message&#39;, debounced);\n\t *\n\t * // Cancel the trailing debounced invocation.\n\t * jQuery(window).on(&#39;popstate&#39;, debounced.cancel);\n\t */\n\tfunction debounce(func, wait, options) {\n\t  var lastArgs,\n\t      lastThis,\n\t      maxWait,\n\t      result,\n\t      timerId,\n\t      lastCallTime = 0,\n\t      lastInvokeTime = 0,\n\t      leading = false,\n\t      maxing = false,\n\t      trailing = true;\n\t\n\t  if (typeof func != &#39;function&#39;) {\n\t    throw new TypeError(FUNC_ERROR_TEXT);\n\t  }\n\t  wait = toNumber(wait) || 0;\n\t  if (isObject(options)) {\n\t    leading = !!options.leading;\n\t    maxing = &#39;maxWait&#39; in options;\n\t    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;\n\t    trailing = &#39;trailing&#39; in options ? !!options.trailing : trailing;\n\t  }\n\t\n\t  function invokeFunc(time) {\n\t    var args = lastArgs,\n\t        thisArg = lastThis;\n\t\n\t    lastArgs = lastThis = undefined;\n\t    lastInvokeTime = time;\n\t    result = func.apply(thisArg, args);\n\t    return result;\n\t  }\n\t\n\t  function leadingEdge(time) {\n\t    // Reset any `maxWait` timer.\n\t    lastInvokeTime = time;\n\t    // Start the timer for the trailing edge.\n\t    timerId = setTimeout(timerExpired, wait);\n\t    // Invoke the leading edge.\n\t    return leading ? invokeFunc(time) : result;\n\t  }\n\t\n\t  function remainingWait(time) {\n\t    var timeSinceLastCall = time - lastCallTime,\n\t        timeSinceLastInvoke = time - lastInvokeTime,\n\t        result = wait - timeSinceLastCall;\n\t\n\t    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;\n\t  }\n\t\n\t  function shouldInvoke(time) {\n\t    var timeSinceLastCall = time - lastCallTime,\n\t        timeSinceLastInvoke = time - lastInvokeTime;\n\t\n\t    // Either this is the first call, activity has stopped and we&#39;re at the\n\t    // trailing edge, the system time has gone backwards and we&#39;re treating\n\t    // it as the trailing edge, or we&#39;ve hit the `maxWait` limit.\n\t    return !lastCallTime || timeSinceLastCall &gt;= wait || timeSinceLastCall &lt; 0 || maxing &amp;&amp; timeSinceLastInvoke &gt;= maxWait;\n\t  }\n\t\n\t  function timerExpired() {\n\t    var time = now();\n\t    if (shouldInvoke(time)) {\n\t      return trailingEdge(time);\n\t    }\n\t    // Restart the timer.\n\t    timerId = setTimeout(timerExpired, remainingWait(time));\n\t  }\n\t\n\t  function trailingEdge(time) {\n\t    clearTimeout(timerId);\n\t    timerId = undefined;\n\t\n\t    // Only invoke if we have `lastArgs` which means `func` has been\n\t    // debounced at least once.\n\t    if (trailing &amp;&amp; lastArgs) {\n\t      return invokeFunc(time);\n\t    }\n\t    lastArgs = lastThis = undefined;\n\t    return result;\n\t  }\n\t\n\t  function cancel() {\n\t    if (timerId !== undefined) {\n\t      clearTimeout(timerId);\n\t    }\n\t    lastCallTime = lastInvokeTime = 0;\n\t    lastArgs = lastThis = timerId = undefined;\n\t  }\n\t\n\t  function flush() {\n\t    return timerId === undefined ? result : trailingEdge(now());\n\t  }\n\t\n\t  function debounced() {\n\t    var time = now(),\n\t        isInvoking = shouldInvoke(time);\n\t\n\t    lastArgs = arguments;\n\t    lastThis = this;\n\t    lastCallTime = time;\n\t\n\t    if (isInvoking) {\n\t      if (timerId === undefined) {\n\t        return leadingEdge(lastCallTime);\n\t      }\n\t      if (maxing) {\n\t        // Handle invocations in a tight loop.\n\t        clearTimeout(timerId);\n\t        timerId = setTimeout(timerExpired, wait);\n\t        return invokeFunc(lastCallTime);\n\t      }\n\t    }\n\t    if (timerId === undefined) {\n\t      timerId = setTimeout(timerExpired, wait);\n\t    }\n\t    return result;\n\t  }\n\t  debounced.cancel = cancel;\n\t  debounced.flush = flush;\n\t  return debounced;\n\t}\n\t\n\t/**\n\t * Checks if `value` is classified as a `Function` object.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 0.1.0\n\t * @category Lang\n\t * @param {*} value The value to check.\n\t * @returns {boolean} Returns `true` if `value` is correctly classified,\n\t *  else `false`.\n\t * @example\n\t *\n\t * _.isFunction(_);\n\t * // =&gt; true\n\t *\n\t * _.isFunction(/abc/);\n\t * // =&gt; false\n\t */\n\tfunction isFunction(value) {\n\t  // The use of `Object#toString` avoids issues with the `typeof` operator\n\t  // in Safari 8 which returns &#39;object&#39; for typed array and weak map constructors,\n\t  // and PhantomJS 1.9 which returns &#39;function&#39; for `NodeList` instances.\n\t  var tag = isObject(value) ? objectToString.call(value) : &#39;&#39;;\n\t  return tag == funcTag || tag == genTag;\n\t}\n\t\n\t/**\n\t * Checks if `value` is the\n\t * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)\n\t * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String(&#39;&#39;)`)\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 0.1.0\n\t * @category Lang\n\t * @param {*} value The value to check.\n\t * @returns {boolean} Returns `true` if `value` is an object, else `false`.\n\t * @example\n\t *\n\t * _.isObject({});\n\t * // =&gt; true\n\t *\n\t * _.isObject([1, 2, 3]);\n\t * // =&gt; true\n\t *\n\t * _.isObject(_.noop);\n\t * // =&gt; true\n\t *\n\t * _.isObject(null);\n\t * // =&gt; false\n\t */\n\tfunction isObject(value) {\n\t  var type = typeof value === &#39;undefined&#39; ? &#39;undefined&#39; : _typeof(value);\n\t  return !!value &amp;&amp; (type == &#39;object&#39; || type == &#39;function&#39;);\n\t}\n\t\n\t/**\n\t * Checks if `value` is object-like. A value is object-like if it&#39;s not `null`\n\t * and has a `typeof` result of \&quot;object\&quot;.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 4.0.0\n\t * @category Lang\n\t * @param {*} value The value to check.\n\t * @returns {boolean} Returns `true` if `value` is object-like, else `false`.\n\t * @example\n\t *\n\t * _.isObjectLike({});\n\t * // =&gt; true\n\t *\n\t * _.isObjectLike([1, 2, 3]);\n\t * // =&gt; true\n\t *\n\t * _.isObjectLike(_.noop);\n\t * // =&gt; false\n\t *\n\t * _.isObjectLike(null);\n\t * // =&gt; false\n\t */\n\tfunction isObjectLike(value) {\n\t  return !!value &amp;&amp; (typeof value === &#39;undefined&#39; ? &#39;undefined&#39; : _typeof(value)) == &#39;object&#39;;\n\t}\n\t\n\t/**\n\t * Checks if `value` is classified as a `Symbol` primitive or object.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 4.0.0\n\t * @category Lang\n\t * @param {*} value The value to check.\n\t * @returns {boolean} Returns `true` if `value` is correctly classified,\n\t *  else `false`.\n\t * @example\n\t *\n\t * _.isSymbol(Symbol.iterator);\n\t * // =&gt; true\n\t *\n\t * _.isSymbol(&#39;abc&#39;);\n\t * // =&gt; false\n\t */\n\tfunction isSymbol(value) {\n\t  return (typeof value === &#39;undefined&#39; ? &#39;undefined&#39; : _typeof(value)) == &#39;symbol&#39; || isObjectLike(value) &amp;&amp; objectToString.call(value) == symbolTag;\n\t}\n\t\n\t/**\n\t * Converts `value` to a number.\n\t *\n\t * @static\n\t * @memberOf _\n\t * @since 4.0.0\n\t * @category Lang\n\t * @param {*} value The value to process.\n\t * @returns {number} Returns the number.\n\t * @example\n\t *\n\t * _.toNumber(3);\n\t * // =&gt; 3\n\t *\n\t * _.toNumber(Number.MIN_VALUE);\n\t * // =&gt; 5e-324\n\t *\n\t * _.toNumber(Infinity);\n\t * // =&gt; Infinity\n\t *\n\t * _.toNumber(&#39;3&#39;);\n\t * // =&gt; 3\n\t */\n\tfunction toNumber(value) {\n\t  if (typeof value == &#39;number&#39;) {\n\t    return value;\n\t  }\n\t  if (isSymbol(value)) {\n\t    return NAN;\n\t  }\n\t  if (isObject(value)) {\n\t    var other = isFunction(value.valueOf) ? value.valueOf() : value;\n\t    value = isObject(other) ? other + &#39;&#39; : other;\n\t  }\n\t  if (typeof value != &#39;string&#39;) {\n\t    return value === 0 ? value : +value;\n\t  }\n\t  value = value.replace(reTrim, &#39;&#39;);\n\t  var isBinary = reIsBinary.test(value);\n\t  return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;\n\t}\n\t\n\tmodule.exports = debounce;\n\n/***/ },\n/* 7 */\n/***/ function(module, exports) {\n\n\t\&quot;use strict\&quot;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\tvar doc = window.document;\n\tvar MutationObserver = window.MutationObserver || window.WebKitMutationObserver;\n\t\n\tvar listeners = [];\n\tvar observer = void 0;\n\t\n\tfunction ready(selector, fn) {\n\t  // Store the selector and callback to be monitored\n\t  listeners.push({\n\t    selector: selector,\n\t    fn: fn\n\t  });\n\t\n\t  if (!observer &amp;&amp; MutationObserver) {\n\t    // Watch for changes in the document\n\t    observer = new MutationObserver(check);\n\t    observer.observe(doc.documentElement, {\n\t      childList: true,\n\t      subtree: true,\n\t      removedNodes: true\n\t    });\n\t  }\n\t  // Check if the element is currently in the DOM\n\t  check();\n\t}\n\t\n\tfunction check() {\n\t  // Check the DOM for elements matching a stored selector\n\t  for (var i = 0, len = listeners.length, listener, elements; i &lt; len; i++) {\n\t    listener = listeners[i];\n\t    // Query for elements matching the specified selector\n\t    elements = doc.querySelectorAll(listener.selector);\n\t    for (var j = 0, jLen = elements.length, element; j &lt; jLen; j++) {\n\t      element = elements[j];\n\t      // Make sure the callback isn&#39;t invoked with the\n\t      // same element more than once\n\t      if (!element.ready) {\n\t        element.ready = true;\n\t        // Invoke the callback with the element\n\t        listener.fn.call(element, element);\n\t      }\n\t    }\n\t  }\n\t}\n\t\n\texports.default = ready;\n\n/***/ },\n/* 8 */\n/***/ function(module, exports) {\n\n\t\&quot;use strict\&quot;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t/**\n\t * Device detector\n\t */\n\texports.default = {\n\t  phone: function phone() {\n\t    var check = false;\n\t    (function (a) {\n\t      if (/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(a.substr(0, 4))) check = true;\n\t    })(navigator.userAgent || navigator.vendor || window.opera);\n\t    return check;\n\t  },\n\t  mobile: function mobile() {\n\t    var check = false;\n\t    (function (a) {\n\t      if (/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(a.substr(0, 4))) check = true;\n\t    })(navigator.userAgent || navigator.vendor || window.opera);\n\t    return check;\n\t  },\n\t  tablet: function tablet() {\n\t    return undefined.mobile() &amp;&amp; !undefined.phone();\n\t  }\n\t};\n\n/***/ },\n/* 9 */\n/***/ function(module, exports) {\n\n\t&#39;use strict&#39;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t/**\n\t * Set or remove aos-animate class\n\t * @param {node} el         element\n\t * @param {int}  top        scrolled distance\n\t * @param {void} once\n\t */\n\tvar setState = function setState(el, top, once) {\n\t  var attrOnce = el.node.getAttribute(&#39;data-aos-once&#39;);\n\t\n\t  if (top &gt; el.position) {\n\t    el.node.classList.add(&#39;aos-animate&#39;);\n\t  } else if (typeof attrOnce !== &#39;undefined&#39;) {\n\t    if (attrOnce === &#39;false&#39; || !once &amp;&amp; attrOnce !== &#39;true&#39;) {\n\t      el.node.classList.remove(&#39;aos-animate&#39;);\n\t    }\n\t  }\n\t};\n\t\n\t/**\n\t * Scroll logic - add or remove &#39;aos-animate&#39; class on scroll\n\t *\n\t * @param  {array} $elements         array of elements nodes\n\t * @param  {bool} once               plugin option\n\t * @return {void}\n\t */\n\tvar handleScroll = function handleScroll($elements, once) {\n\t  var scrollTop = window.pageYOffset;\n\t  var windowHeight = window.innerHeight;\n\t  /**\n\t   * Check all registered elements positions\n\t   * and animate them on scroll\n\t   */\n\t  $elements.forEach(function (el, i) {\n\t    setState(el, windowHeight + scrollTop, once);\n\t  });\n\t};\n\t\n\texports.default = handleScroll;\n\n/***/ },\n/* 10 */\n/***/ function(module, exports, __webpack_require__) {\n\n\t&#39;use strict&#39;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t\n\tvar _calculateOffset = __webpack_require__(11);\n\t\n\tvar _calculateOffset2 = _interopRequireDefault(_calculateOffset);\n\t\n\tfunction _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }\n\t\n\tvar prepare = function prepare($elements, options) {\n\t  $elements.forEach(function (el, i) {\n\t    el.node.classList.add(&#39;aos-init&#39;);\n\t    el.position = (0, _calculateOffset2.default)(el.node, options.offset);\n\t  });\n\t\n\t  return $elements;\n\t}; /* Clearing variables */\n\t\n\texports.default = prepare;\n\n/***/ },\n/* 11 */\n/***/ function(module, exports, __webpack_require__) {\n\n\t&#39;use strict&#39;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t\n\tvar _offset = __webpack_require__(12);\n\t\n\tvar _offset2 = _interopRequireDefault(_offset);\n\t\n\tfunction _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }\n\t\n\tvar calculateOffset = function calculateOffset(el, optionalOffset) {\n\t  var elementOffsetTop = 0;\n\t  var additionalOffset = 0;\n\t  var windowHeight = window.innerHeight;\n\t  var attrs = {\n\t    offset: el.getAttribute(&#39;data-aos-offset&#39;),\n\t    anchor: el.getAttribute(&#39;data-aos-anchor&#39;),\n\t    anchorPlacement: el.getAttribute(&#39;data-aos-anchor-placement&#39;)\n\t  };\n\t\n\t  if (attrs.offset &amp;&amp; !isNaN(attrs.offset)) {\n\t    additionalOffset = parseInt(attrs.offset);\n\t  }\n\t\n\t  if (attrs.anchor &amp;&amp; document.querySelectorAll(attrs.anchor)) {\n\t    el = document.querySelectorAll(attrs.anchor)[0];\n\t  }\n\t\n\t  elementOffsetTop = (0, _offset2.default)(el).top;\n\t\n\t  switch (attrs.anchorPlacement) {\n\t    case &#39;top-bottom&#39;:\n\t      // Default offset\n\t      break;\n\t    case &#39;center-bottom&#39;:\n\t      elementOffsetTop += el.offsetHeight / 2;\n\t      break;\n\t    case &#39;bottom-bottom&#39;:\n\t      elementOffsetTop += el.offsetHeight;\n\t      break;\n\t    case &#39;top-center&#39;:\n\t      elementOffsetTop += windowHeight / 2;\n\t      break;\n\t    case &#39;bottom-center&#39;:\n\t      elementOffsetTop += windowHeight / 2 + el.offsetHeight;\n\t      break;\n\t    case &#39;center-center&#39;:\n\t      elementOffsetTop += windowHeight / 2 + el.offsetHeight / 2;\n\t      break;\n\t    case &#39;top-top&#39;:\n\t      elementOffsetTop += windowHeight;\n\t      break;\n\t    case &#39;bottom-top&#39;:\n\t      elementOffsetTop += el.offsetHeight + windowHeight;\n\t      break;\n\t    case &#39;center-top&#39;:\n\t      elementOffsetTop += el.offsetHeight / 2 + windowHeight;\n\t      break;\n\t  }\n\t\n\t  if (!attrs.anchorPlacement &amp;&amp; !attrs.offset &amp;&amp; !isNaN(optionalOffset)) {\n\t    additionalOffset = optionalOffset;\n\t  }\n\t\n\t  return elementOffsetTop + additionalOffset;\n\t}; /**\n\t    * Calculate offset\n\t    * basing on element&#39;s settings like:\n\t    * - anchor\n\t    * - offset\n\t    *\n\t    * @param  {Node} el [Dom element]\n\t    * @return {Integer} [Final offset that will be used to trigger animation in good position]\n\t    */\n\t\n\texports.default = calculateOffset;\n\n/***/ },\n/* 12 */\n/***/ function(module, exports) {\n\n\t&#39;use strict&#39;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t/**\n\t * Get offset of DOM element Helper\n\t * including these with translation\n\t *\n\t * @param  {Node} el [DOM element]\n\t * @return {Object} [top and left offset]\n\t */\n\tvar offset = function offset(el) {\n\t  var _x = 0;\n\t  var _y = 0;\n\t\n\t  while (el &amp;&amp; !isNaN(el.offsetLeft) &amp;&amp; !isNaN(el.offsetTop)) {\n\t    _x += el.offsetLeft - (el.tagName != &#39;BODY&#39; ? el.scrollLeft : 0);\n\t    _y += el.offsetTop - (el.tagName != &#39;BODY&#39; ? el.scrollTop : 0);\n\t    el = el.offsetParent;\n\t  }\n\t\n\t  return {\n\t    top: _y,\n\t    left: _x\n\t  };\n\t};\n\t\n\texports.default = offset;\n\n/***/ },\n/* 13 */\n/***/ function(module, exports) {\n\n\t&#39;use strict&#39;;\n\t\n\tObject.defineProperty(exports, \&quot;__esModule\&quot;, {\n\t  value: true\n\t});\n\t/**\n\t * Generate initial array with elements as objects\n\t * This array will be extended later with elements attributes values\n\t * like &#39;position&#39;\n\t */\n\tvar createArrayWithElements = function createArrayWithElements(elements) {\n\t  elements = elements || document.querySelectorAll(&#39;[data-aos]&#39;);\n\t  var finalElements = [];\n\t\n\t  [].forEach.call(elements, function (el, i) {\n\t    finalElements.push({\n\t      node: el\n\t    });\n\t  });\n\t\n\t  return finalElements;\n\t};\n\t\n\texports.default = createArrayWithElements;\n\n/***/ }\n/******/ ])\n});\n;\n\n\n/** WEBPACK FOOTER **\n ** aos.js\n **/&quot;,&quot; \t// The module cache\n \tvar installedModules = {};\n\n \t// The require function\n \tfunction __webpack_require__(moduleId) {\n\n \t\t// Check if module is in cache\n \t\tif(installedModules[moduleId])\n \t\t\treturn installedModules[moduleId].exports;\n\n \t\t// Create a new module (and put it into the cache)\n \t\tvar module = installedModules[moduleId] = {\n \t\t\texports: {},\n \t\t\tid: moduleId,\n \t\t\tloaded: false\n \t\t};\n\n \t\t// Execute the module function\n \t\tmodules[moduleId].call(module.exports, module, module.exports, __webpack_require__);\n\n \t\t// Flag the module as loaded\n \t\tmodule.loaded = true;\n\n \t\t// Return the exports of the module\n \t\treturn module.exports;\n \t}\n\n\n \t// expose the modules object (__webpack_modules__)\n \t__webpack_require__.m = modules;\n\n \t// expose the module cache\n \t__webpack_require__.c = installedModules;\n\n \t// __webpack_public_path__\n \t__webpack_require__.p = \&quot;dist/\&quot;;\n\n \t// Load entry module and return exports\n \treturn __webpack_require__(0);\n\n\n\n/** WEBPACK FOOTER **\n ** webpack/bootstrap 747c8032ef5f15762e41\n **/&quot;,&quot;/**\n * *******************************************************\n * AOS (Animate on scroll) - wowjs alternative\n * made to animate elements on scroll in both directions\n * *******************************************************\n */\n\nimport styles from &#39;./../sass/aos.scss&#39;;\n\n// Modules &amp; helpers\nimport throttle from &#39;lodash.throttle&#39;;\nimport debounce from &#39;lodash.debounce&#39;;\n\nimport observe from &#39;./libs/observer&#39;;\n\nimport detect from &#39;./helpers/detector&#39;;\nimport handleScroll from &#39;./helpers/handleScroll&#39;;\nimport prepare from &#39;./helpers/prepare&#39;;\nimport elements from &#39;./helpers/elements&#39;;\n\n/**\n * Private variables\n */\nlet $aosElements = [];\nlet initialized = false;\n\n/**\n * Default options\n */\nlet options = {\n  offset: 120,\n  delay: 0,\n  easing: &#39;ease&#39;,\n  duration: 400,\n  disable: false,\n  once: false,\n  startEvent: &#39;DOMContentLoaded&#39;\n};\n\n/**\n * Refresh AOS\n */\nconst refresh = function refresh(initialize = false) {\n  // Allow refresh only when it was first initialized on startEvent\n  if (initialize) initialized = true;\n\n  if (initialized) {\n    // Extend elements objects in $aosElements with their positions\n    $aosElements = prepare($aosElements, options);\n    // Perform scroll event, to refresh view and show/hide elements\n    handleScroll($aosElements, options.once);\n\n    return $aosElements;\n  }\n};\n\n/**\n * Hard refresh\n * create array with new elements and trigger refresh\n */\nconst refreshHard = function refreshHard() {\n  $aosElements = elements();\n  refresh();\n};\n\n/**\n * Initializing AOS\n * - Create options merging defaults with user defined options\n * - Set attributes on &lt;body&gt; as global setting - css relies on it\n * - Attach preparing elements to options.startEvent,\n *   window resize and orientation change\n * - Attach function that handle scroll and everything connected to it\n *   to window scroll event and fire once document is ready to set initial state\n */\nconst init = function init(settings) {\n  options = Object.assign(options, settings);\n\n  // Create initial array with elements -&gt; to be fullfilled later with prepare()\n  $aosElements = elements();\n\n  /**\n   * Check options.disable\n   * and do not init plugin if conditions are true\n   */\n  if (options.disable) {\n    if (\n      options.disable === true ||\n      (options.disable === &#39;mobile&#39; &amp;&amp; detect.mobile()) ||\n      (options.disable === &#39;phone&#39; &amp;&amp; detect.phone()) ||\n      (options.disable === &#39;tablet&#39; &amp;&amp; detect.tablet()) ||\n      (typeof options.disable === &#39;function&#39; &amp;&amp; options.disable() === true)\n    ) {\n      $aosElements.forEach(function(el, i) {\n        el.node.removeAttribute(&#39;data-aos&#39;);\n        el.node.removeAttribute(&#39;data-aos-easing&#39;);\n        el.node.removeAttribute(&#39;data-aos-duration&#39;);\n        el.node.removeAttribute(&#39;data-aos-delay&#39;);\n      });\n      return false;\n    }\n  }\n\n\n  /**\n   * Set global settings on body, based on options\n   * so CSS can use it\n   */\n  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-easing&#39;, options.easing);\n  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-duration&#39;, options.duration);\n  document.querySelector(&#39;body&#39;).setAttribute(&#39;data-aos-delay&#39;, options.delay);\n\n  /**\n   * Handle initializing\n   */\n  if (options.startEvent === &#39;DOMContentLoaded&#39; &amp;&amp;\n    [&#39;complete&#39;, &#39;interactive&#39;].indexOf(document.readyState) &gt; -1) {\n    // Initialize AOS if default startEvent was already fired\n    refresh(true);\n  } else {\n    // Listen to options.startEvent and initialize AOS\n    document.addEventListener(options.startEvent, function() {\n      refresh(true);\n    });\n  }\n\n  /**\n   * Refresh plugin on window resize or orientation change\n   */\n  window.addEventListener(&#39;resize&#39;, debounce(refresh, 50, true));\n  window.addEventListener(&#39;orientationchange&#39;, debounce(refresh, 50, true));\n\n  /**\n   * Handle scroll event to animate elements on scroll\n   */\n  window.addEventListener(&#39;scroll&#39;, throttle(() =&gt; {\n    handleScroll($aosElements, options.once);\n  }, 99));\n\n  /**\n   * Watch if nodes are removed\n   * If so refresh plugin\n   */\n  document.addEventListener(&#39;DOMNodeRemoved&#39;, (event) =&gt; {\n    const el = event.target;\n    if (el &amp;&amp; el.nodeType === 1 &amp;&amp; el.hasAttribute &amp;&amp; el.hasAttribute(&#39;data-aos&#39;)) {\n      debounce(refreshHard, 50, true)\n    }\n  });\n\n  /**\n   * Observe [aos] elements\n   * If something is loaded by AJAX\n   * it&#39;ll refresh plugin automatically\n   */\n  observe(&#39;[data-aos]&#39;, refreshHard);\n\n  return $aosElements;\n};\n\n/**\n * Export Public API\n */\n\nmodule.exports = {\n  init,\n  refresh,\n  refreshHard\n};\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/aos.js\n **/&quot;,&quot;/**\n * lodash 4.0.1 (Custom Build) &lt;https://lodash.com/&gt;\n * Build: `lodash modularize exports=\&quot;npm\&quot; -o ./`\n * Copyright 2012-2016 The Dojo Foundation &lt;http://dojofoundation.org/&gt;\n * Based on Underscore.js 1.8.3 &lt;http://underscorejs.org/LICENSE&gt;\n * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors\n * Available under MIT license &lt;https://lodash.com/license&gt;\n */\nvar debounce = require(&#39;lodash.debounce&#39;);\n\n/** Used as the `TypeError` message for \&quot;Functions\&quot; methods. */\nvar FUNC_ERROR_TEXT = &#39;Expected a function&#39;;\n\n/**\n * Creates a throttled function that only invokes `func` at most once per\n * every `wait` milliseconds. The throttled function comes with a `cancel`\n * method to cancel delayed `func` invocations and a `flush` method to\n * immediately invoke them. Provide an options object to indicate whether\n * `func` should be invoked on the leading and/or trailing edge of the `wait`\n * timeout. The `func` is invoked with the last arguments provided to the\n * throttled function. Subsequent calls to the throttled function return the\n * result of the last `func` invocation.\n *\n * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked\n * on the trailing edge of the timeout only if the throttled function is\n * invoked more than once during the `wait` timeout.\n *\n * See [David Corbacho&#39;s article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)\n * for details over the differences between `_.throttle` and `_.debounce`.\n *\n * @static\n * @memberOf _\n * @category Function\n * @param {Function} func The function to throttle.\n * @param {number} [wait=0] The number of milliseconds to throttle invocations to.\n * @param {Object} [options] The options object.\n * @param {boolean} [options.leading=true] Specify invoking on the leading\n *  edge of the timeout.\n * @param {boolean} [options.trailing=true] Specify invoking on the trailing\n *  edge of the timeout.\n * @returns {Function} Returns the new throttled function.\n * @example\n *\n * // Avoid excessively updating the position while scrolling.\n * jQuery(window).on(&#39;scroll&#39;, _.throttle(updatePosition, 100));\n *\n * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.\n * var throttled = _.throttle(renewToken, 300000, { &#39;trailing&#39;: false });\n * jQuery(element).on(&#39;click&#39;, throttled);\n *\n * // Cancel the trailing throttled invocation.\n * jQuery(window).on(&#39;popstate&#39;, throttled.cancel);\n */\nfunction throttle(func, wait, options) {\n  var leading = true,\n      trailing = true;\n\n  if (typeof func != &#39;function&#39;) {\n    throw new TypeError(FUNC_ERROR_TEXT);\n  }\n  if (isObject(options)) {\n    leading = &#39;leading&#39; in options ? !!options.leading : leading;\n    trailing = &#39;trailing&#39; in options ? !!options.trailing : trailing;\n  }\n  return debounce(func, wait, {\n    &#39;leading&#39;: leading,\n    &#39;maxWait&#39;: wait,\n    &#39;trailing&#39;: trailing\n  });\n}\n\n/**\n * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.\n * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String(&#39;&#39;)`)\n *\n * @static\n * @memberOf _\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is an object, else `false`.\n * @example\n *\n * _.isObject({});\n * // =&gt; true\n *\n * _.isObject([1, 2, 3]);\n * // =&gt; true\n *\n * _.isObject(_.noop);\n * // =&gt; true\n *\n * _.isObject(null);\n * // =&gt; false\n */\nfunction isObject(value) {\n  var type = typeof value;\n  return !!value &amp;&amp; (type == &#39;object&#39; || type == &#39;function&#39;);\n}\n\nmodule.exports = throttle;\n\n\n\n/** WEBPACK FOOTER **\n ** ./~/lodash.throttle/index.js\n **/&quot;,&quot;/**\n * lodash 4.0.6 (Custom Build) &lt;https://lodash.com/&gt;\n * Build: `lodash modularize exports=\&quot;npm\&quot; -o ./`\n * Copyright jQuery Foundation and other contributors &lt;https://jquery.org/&gt;\n * Released under MIT license &lt;https://lodash.com/license&gt;\n * Based on Underscore.js 1.8.3 &lt;http://underscorejs.org/LICENSE&gt;\n * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors\n */\n\n/** Used as the `TypeError` message for \&quot;Functions\&quot; methods. */\nvar FUNC_ERROR_TEXT = &#39;Expected a function&#39;;\n\n/** Used as references for various `Number` constants. */\nvar NAN = 0 / 0;\n\n/** `Object#toString` result references. */\nvar funcTag = &#39;[object Function]&#39;,\n    genTag = &#39;[object GeneratorFunction]&#39;,\n    symbolTag = &#39;[object Symbol]&#39;;\n\n/** Used to match leading and trailing whitespace. */\nvar reTrim = /^\\s+|\\s+$/g;\n\n/** Used to detect bad signed hexadecimal string values. */\nvar reIsBadHex = /^[-+]0x[0-9a-f]+$/i;\n\n/** Used to detect binary string values. */\nvar reIsBinary = /^0b[01]+$/i;\n\n/** Used to detect octal string values. */\nvar reIsOctal = /^0o[0-7]+$/i;\n\n/** Built-in method references without a dependency on `root`. */\nvar freeParseInt = parseInt;\n\n/** Used for built-in method references. */\nvar objectProto = Object.prototype;\n\n/**\n * Used to resolve the\n * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)\n * of values.\n */\nvar objectToString = objectProto.toString;\n\n/* Built-in method references for those with the same name as other `lodash` methods. */\nvar nativeMax = Math.max,\n    nativeMin = Math.min;\n\n/**\n * Gets the timestamp of the number of milliseconds that have elapsed since\n * the Unix epoch (1 January 1970 00:00:00 UTC).\n *\n * @static\n * @memberOf _\n * @since 2.4.0\n * @type {Function}\n * @category Date\n * @returns {number} Returns the timestamp.\n * @example\n *\n * _.defer(function(stamp) {\n *   console.log(_.now() - stamp);\n * }, _.now());\n * // =&gt; Logs the number of milliseconds it took for the deferred function to be invoked.\n */\nvar now = Date.now;\n\n/**\n * Creates a debounced function that delays invoking `func` until after `wait`\n * milliseconds have elapsed since the last time the debounced function was\n * invoked. The debounced function comes with a `cancel` method to cancel\n * delayed `func` invocations and a `flush` method to immediately invoke them.\n * Provide an options object to indicate whether `func` should be invoked on\n * the leading and/or trailing edge of the `wait` timeout. The `func` is invoked\n * with the last arguments provided to the debounced function. Subsequent calls\n * to the debounced function return the result of the last `func` invocation.\n *\n * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked\n * on the trailing edge of the timeout only if the debounced function is\n * invoked more than once during the `wait` timeout.\n *\n * See [David Corbacho&#39;s article](https://css-tricks.com/debouncing-throttling-explained-examples/)\n * for details over the differences between `_.debounce` and `_.throttle`.\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Function\n * @param {Function} func The function to debounce.\n * @param {number} [wait=0] The number of milliseconds to delay.\n * @param {Object} [options={}] The options object.\n * @param {boolean} [options.leading=false]\n *  Specify invoking on the leading edge of the timeout.\n * @param {number} [options.maxWait]\n *  The maximum time `func` is allowed to be delayed before it&#39;s invoked.\n * @param {boolean} [options.trailing=true]\n *  Specify invoking on the trailing edge of the timeout.\n * @returns {Function} Returns the new debounced function.\n * @example\n *\n * // Avoid costly calculations while the window size is in flux.\n * jQuery(window).on(&#39;resize&#39;, _.debounce(calculateLayout, 150));\n *\n * // Invoke `sendMail` when clicked, debouncing subsequent calls.\n * jQuery(element).on(&#39;click&#39;, _.debounce(sendMail, 300, {\n *   &#39;leading&#39;: true,\n *   &#39;trailing&#39;: false\n * }));\n *\n * // Ensure `batchLog` is invoked once after 1 second of debounced calls.\n * var debounced = _.debounce(batchLog, 250, { &#39;maxWait&#39;: 1000 });\n * var source = new EventSource(&#39;/stream&#39;);\n * jQuery(source).on(&#39;message&#39;, debounced);\n *\n * // Cancel the trailing debounced invocation.\n * jQuery(window).on(&#39;popstate&#39;, debounced.cancel);\n */\nfunction debounce(func, wait, options) {\n  var lastArgs,\n      lastThis,\n      maxWait,\n      result,\n      timerId,\n      lastCallTime = 0,\n      lastInvokeTime = 0,\n      leading = false,\n      maxing = false,\n      trailing = true;\n\n  if (typeof func != &#39;function&#39;) {\n    throw new TypeError(FUNC_ERROR_TEXT);\n  }\n  wait = toNumber(wait) || 0;\n  if (isObject(options)) {\n    leading = !!options.leading;\n    maxing = &#39;maxWait&#39; in options;\n    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;\n    trailing = &#39;trailing&#39; in options ? !!options.trailing : trailing;\n  }\n\n  function invokeFunc(time) {\n    var args = lastArgs,\n        thisArg = lastThis;\n\n    lastArgs = lastThis = undefined;\n    lastInvokeTime = time;\n    result = func.apply(thisArg, args);\n    return result;\n  }\n\n  function leadingEdge(time) {\n    // Reset any `maxWait` timer.\n    lastInvokeTime = time;\n    // Start the timer for the trailing edge.\n    timerId = setTimeout(timerExpired, wait);\n    // Invoke the leading edge.\n    return leading ? invokeFunc(time) : result;\n  }\n\n  function remainingWait(time) {\n    var timeSinceLastCall = time - lastCallTime,\n        timeSinceLastInvoke = time - lastInvokeTime,\n        result = wait - timeSinceLastCall;\n\n    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;\n  }\n\n  function shouldInvoke(time) {\n    var timeSinceLastCall = time - lastCallTime,\n        timeSinceLastInvoke = time - lastInvokeTime;\n\n    // Either this is the first call, activity has stopped and we&#39;re at the\n    // trailing edge, the system time has gone backwards and we&#39;re treating\n    // it as the trailing edge, or we&#39;ve hit the `maxWait` limit.\n    return (!lastCallTime || (timeSinceLastCall &gt;= wait) ||\n      (timeSinceLastCall &lt; 0) || (maxing &amp;&amp; timeSinceLastInvoke &gt;= maxWait));\n  }\n\n  function timerExpired() {\n    var time = now();\n    if (shouldInvoke(time)) {\n      return trailingEdge(time);\n    }\n    // Restart the timer.\n    timerId = setTimeout(timerExpired, remainingWait(time));\n  }\n\n  function trailingEdge(time) {\n    clearTimeout(timerId);\n    timerId = undefined;\n\n    // Only invoke if we have `lastArgs` which means `func` has been\n    // debounced at least once.\n    if (trailing &amp;&amp; lastArgs) {\n      return invokeFunc(time);\n    }\n    lastArgs = lastThis = undefined;\n    return result;\n  }\n\n  function cancel() {\n    if (timerId !== undefined) {\n      clearTimeout(timerId);\n    }\n    lastCallTime = lastInvokeTime = 0;\n    lastArgs = lastThis = timerId = undefined;\n  }\n\n  function flush() {\n    return timerId === undefined ? result : trailingEdge(now());\n  }\n\n  function debounced() {\n    var time = now(),\n        isInvoking = shouldInvoke(time);\n\n    lastArgs = arguments;\n    lastThis = this;\n    lastCallTime = time;\n\n    if (isInvoking) {\n      if (timerId === undefined) {\n        return leadingEdge(lastCallTime);\n      }\n      if (maxing) {\n        // Handle invocations in a tight loop.\n        clearTimeout(timerId);\n        timerId = setTimeout(timerExpired, wait);\n        return invokeFunc(lastCallTime);\n      }\n    }\n    if (timerId === undefined) {\n      timerId = setTimeout(timerExpired, wait);\n    }\n    return result;\n  }\n  debounced.cancel = cancel;\n  debounced.flush = flush;\n  return debounced;\n}\n\n/**\n * Checks if `value` is classified as a `Function` object.\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is correctly classified,\n *  else `false`.\n * @example\n *\n * _.isFunction(_);\n * // =&gt; true\n *\n * _.isFunction(/abc/);\n * // =&gt; false\n */\nfunction isFunction(value) {\n  // The use of `Object#toString` avoids issues with the `typeof` operator\n  // in Safari 8 which returns &#39;object&#39; for typed array and weak map constructors,\n  // and PhantomJS 1.9 which returns &#39;function&#39; for `NodeList` instances.\n  var tag = isObject(value) ? objectToString.call(value) : &#39;&#39;;\n  return tag == funcTag || tag == genTag;\n}\n\n/**\n * Checks if `value` is the\n * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)\n * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String(&#39;&#39;)`)\n *\n * @static\n * @memberOf _\n * @since 0.1.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is an object, else `false`.\n * @example\n *\n * _.isObject({});\n * // =&gt; true\n *\n * _.isObject([1, 2, 3]);\n * // =&gt; true\n *\n * _.isObject(_.noop);\n * // =&gt; true\n *\n * _.isObject(null);\n * // =&gt; false\n */\nfunction isObject(value) {\n  var type = typeof value;\n  return !!value &amp;&amp; (type == &#39;object&#39; || type == &#39;function&#39;);\n}\n\n/**\n * Checks if `value` is object-like. A value is object-like if it&#39;s not `null`\n * and has a `typeof` result of \&quot;object\&quot;.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is object-like, else `false`.\n * @example\n *\n * _.isObjectLike({});\n * // =&gt; true\n *\n * _.isObjectLike([1, 2, 3]);\n * // =&gt; true\n *\n * _.isObjectLike(_.noop);\n * // =&gt; false\n *\n * _.isObjectLike(null);\n * // =&gt; false\n */\nfunction isObjectLike(value) {\n  return !!value &amp;&amp; typeof value == &#39;object&#39;;\n}\n\n/**\n * Checks if `value` is classified as a `Symbol` primitive or object.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to check.\n * @returns {boolean} Returns `true` if `value` is correctly classified,\n *  else `false`.\n * @example\n *\n * _.isSymbol(Symbol.iterator);\n * // =&gt; true\n *\n * _.isSymbol(&#39;abc&#39;);\n * // =&gt; false\n */\nfunction isSymbol(value) {\n  return typeof value == &#39;symbol&#39; ||\n    (isObjectLike(value) &amp;&amp; objectToString.call(value) == symbolTag);\n}\n\n/**\n * Converts `value` to a number.\n *\n * @static\n * @memberOf _\n * @since 4.0.0\n * @category Lang\n * @param {*} value The value to process.\n * @returns {number} Returns the number.\n * @example\n *\n * _.toNumber(3);\n * // =&gt; 3\n *\n * _.toNumber(Number.MIN_VALUE);\n * // =&gt; 5e-324\n *\n * _.toNumber(Infinity);\n * // =&gt; Infinity\n *\n * _.toNumber(&#39;3&#39;);\n * // =&gt; 3\n */\nfunction toNumber(value) {\n  if (typeof value == &#39;number&#39;) {\n    return value;\n  }\n  if (isSymbol(value)) {\n    return NAN;\n  }\n  if (isObject(value)) {\n    var other = isFunction(value.valueOf) ? value.valueOf() : value;\n    value = isObject(other) ? (other + &#39;&#39;) : other;\n  }\n  if (typeof value != &#39;string&#39;) {\n    return value === 0 ? value : +value;\n  }\n  value = value.replace(reTrim, &#39;&#39;);\n  var isBinary = reIsBinary.test(value);\n  return (isBinary || reIsOctal.test(value))\n    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)\n    : (reIsBadHex.test(value) ? NAN : +value);\n}\n\nmodule.exports = debounce;\n\n\n\n/** WEBPACK FOOTER **\n ** ./~/lodash.debounce/index.js\n **/&quot;,&quot;const doc = window.document;\nconst MutationObserver = window.MutationObserver || window.WebKitMutationObserver;\n\nlet listeners = [];\nlet observer;\n\nfunction ready (selector, fn) {\n  // Store the selector and callback to be monitored\n  listeners.push({\n    selector,\n    fn\n  });\n\n  if (!observer &amp;&amp; MutationObserver) {\n    // Watch for changes in the document\n    observer = new MutationObserver(check);\n    observer.observe(doc.documentElement, {\n      childList: true,\n      subtree: true,\n      removedNodes: true\n    });\n  }\n  // Check if the element is currently in the DOM\n  check();\n}\n\nfunction check() {\n  // Check the DOM for elements matching a stored selector\n  for (let i = 0, len = listeners.length, listener, elements; i &lt; len; i++) {\n    listener = listeners[i];\n    // Query for elements matching the specified selector\n    elements = doc.querySelectorAll(listener.selector);\n    for (let j = 0, jLen = elements.length, element; j &lt; jLen; j++) {\n      element = elements[j];\n      // Make sure the callback isn&#39;t invoked with the\n      // same element more than once\n      if (!element.ready) {\n        element.ready = true;\n        // Invoke the callback with the element\n        listener.fn.call(element, element);\n      }\n    }\n  }\n}\n\nexport default ready;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/libs/observer.js\n **/&quot;,&quot;/**\n * Device detector\n */\nexport default {\n  phone: () =&gt; {\n    var check = false;\n    (function(a) {\n      if (/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(a.substr(0, 4))) check = true\n    })(navigator.userAgent || navigator.vendor || window.opera);\n    return check;\n  },\n  mobile: () =&gt; {\n    var check = false;\n    (function(a) {\n      if (/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i.test(a.substr(0, 4))) check = true\n    })(navigator.userAgent || navigator.vendor || window.opera);\n    return check;\n  },\n  tablet: () =&gt; {\n    return this.mobile() &amp;&amp; !this.phone();\n  }\n};\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/helpers/detector.js\n **/&quot;,&quot;/**\n * Set or remove aos-animate class\n * @param {node} el         element\n * @param {int}  top        scrolled distance\n * @param {void} once\n */\nconst setState = function (el, top, once) {\n  const attrOnce = el.node.getAttribute(&#39;data-aos-once&#39;);\n\n  if (top &gt; el.position) {\n    el.node.classList.add(&#39;aos-animate&#39;);\n  } else if (typeof attrOnce !== &#39;undefined&#39;) {\n    if (attrOnce === &#39;false&#39; || (!once &amp;&amp; attrOnce !== &#39;true&#39;)) {\n      el.node.classList.remove(&#39;aos-animate&#39;);\n    }\n  }\n};\n\n\n/**\n * Scroll logic - add or remove &#39;aos-animate&#39; class on scroll\n *\n * @param  {array} $elements         array of elements nodes\n * @param  {bool} once               plugin option\n * @return {void}\n */\nconst handleScroll = function ($elements, once) {\n  const scrollTop = window.pageYOffset;\n  const windowHeight = window.innerHeight;\n  /**\n   * Check all registered elements positions\n   * and animate them on scroll\n   */\n  $elements.forEach((el, i) =&gt; {\n    setState(el, windowHeight + scrollTop, once);\n  });\n};\n\nexport default handleScroll;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/helpers/handleScroll.js\n **/&quot;,&quot;/* Clearing variables */\n\nimport calculateOffset from &#39;./calculateOffset&#39;;\n\nconst prepare = function ($elements, options) {\n  $elements.forEach((el, i) =&gt; {\n    el.node.classList.add(&#39;aos-init&#39;);\n    el.position = calculateOffset(el.node, options.offset);\n  });\n\n  return $elements;\n};\n\nexport default prepare;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/helpers/prepare.js\n **/&quot;,&quot;/**\n * Calculate offset\n * basing on element&#39;s settings like:\n * - anchor\n * - offset\n *\n * @param  {Node} el [Dom element]\n * @return {Integer} [Final offset that will be used to trigger animation in good position]\n */\n\nimport getOffset from &#39;./../libs/offset&#39;;\n\nconst calculateOffset = function (el, optionalOffset) {\n  let elementOffsetTop = 0;\n  let additionalOffset = 0;\n  const windowHeight = window.innerHeight;\n  const attrs = {\n    offset: el.getAttribute(&#39;data-aos-offset&#39;),\n    anchor: el.getAttribute(&#39;data-aos-anchor&#39;),\n    anchorPlacement: el.getAttribute(&#39;data-aos-anchor-placement&#39;)\n  };\n\n  if (attrs.offset &amp;&amp; !isNaN(attrs.offset)) {\n    additionalOffset = parseInt(attrs.offset);\n  }\n\n  if (attrs.anchor &amp;&amp; document.querySelectorAll(attrs.anchor)) {\n    el = document.querySelectorAll(attrs.anchor)[0];\n  }\n\n  elementOffsetTop = getOffset(el).top;\n\n  switch (attrs.anchorPlacement) {\n    case &#39;top-bottom&#39;:\n      // Default offset\n      break;\n    case &#39;center-bottom&#39;:\n      elementOffsetTop += el.offsetHeight / 2;\n      break;\n    case &#39;bottom-bottom&#39;:\n      elementOffsetTop += el.offsetHeight;\n      break;\n    case &#39;top-center&#39;:\n      elementOffsetTop += windowHeight / 2;\n      break;\n    case &#39;bottom-center&#39;:\n      elementOffsetTop += windowHeight / 2 + el.offsetHeight;\n      break;\n    case &#39;center-center&#39;:\n      elementOffsetTop += windowHeight / 2 + el.offsetHeight / 2;\n      break;\n    case &#39;top-top&#39;:\n      elementOffsetTop += windowHeight;\n      break;\n    case &#39;bottom-top&#39;:\n      elementOffsetTop += el.offsetHeight + windowHeight;\n      break;\n    case &#39;center-top&#39;:\n      elementOffsetTop += el.offsetHeight / 2 + windowHeight;\n      break;\n  }\n\n  if (!attrs.anchorPlacement &amp;&amp; !attrs.offset &amp;&amp; !isNaN(optionalOffset)) {\n    additionalOffset = optionalOffset;\n  }\n\n  return elementOffsetTop + additionalOffset;\n};\n\nexport default calculateOffset;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/helpers/calculateOffset.js\n **/&quot;,&quot;/**\n * Get offset of DOM element Helper\n * including these with translation\n *\n * @param  {Node} el [DOM element]\n * @return {Object} [top and left offset]\n */\nconst offset = function (el) {\n  let _x = 0;\n  let _y = 0;\n\n  while (el &amp;&amp; !isNaN(el.offsetLeft) &amp;&amp; !isNaN(el.offsetTop)) {\n    _x += el.offsetLeft - (el.tagName != &#39;BODY&#39; ? el.scrollLeft : 0);\n    _y += el.offsetTop - (el.tagName != &#39;BODY&#39; ? el.scrollTop : 0);\n    el = el.offsetParent;\n  }\n\n  return {\n    top: _y,\n    left: _x\n  };\n};\n\nexport default offset;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/libs/offset.js\n **/&quot;,&quot;/**\n * Generate initial array with elements as objects\n * This array will be extended later with elements attributes values\n * like &#39;position&#39;\n */\nconst createArrayWithElements = function (elements) {\n  elements = elements || document.querySelectorAll(&#39;[data-aos]&#39;);\n  let finalElements = [];\n\n  [].forEach.call(elements, function(el, i) {\n    finalElements.push({\n      node: el\n    });\n  });\n\n  return finalElements;\n};\n\nexport default createArrayWithElements;\n\n\n\n/** WEBPACK FOOTER **\n ** ./src/js/helpers/elements.js\n **/&quot;],&quot;sourceRoot&quot;:&quot;&quot;}</td>
+      </tr>
+</table>
+
+  <details class="details-reset details-overlay BlobToolbar position-absolute js-file-line-actions dropdown d-none" aria-hidden="true">
+    <summary class="btn-octicon ml-0 px-2 p-0 bg-white border border-gray-dark rounded-1" aria-label="Inline file action toolbar">
+      <svg class="octicon octicon-kebab-horizontal" viewBox="0 0 13 16" version="1.1" width="13" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM13 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+    </summary>
+    <details-menu>
+      <ul class="BlobToolbar-dropdown dropdown-menu dropdown-menu-se mt-2" style="width:185px">
+        <li>
+          <clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-lines" style="cursor:pointer;">
+            Copy lines
+          </clipboard-copy>
+        </li>
+        <li>
+          <clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-permalink" style="cursor:pointer;">
+            Copy permalink
+          </clipboard-copy>
+        </li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/cdnjs/cdnjs/blame/326bc96d0abd8027794c6fedb672aa36ed82c46b/ajax/libs/aos/2.0.2/aos.js.map">View git blame</a></li>
+          <li><a class="dropdown-item" id="js-new-issue" role="menuitem" href="/cdnjs/cdnjs/issues/new">Reference in new issue</a></li>
+      </ul>
+    </details-menu>
+  </details>
+
+  </div>
+
+    </div>
+
+  
+
+  <details class="details-reset details-overlay details-overlay-dark">
+    <summary data-hotkey="l" aria-label="Jump to line"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast linejump" aria-label="Jump to line">
+      <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-jump-to-line-form Box-body d-flex" action="" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+        <input class="form-control flex-auto mr-3 linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+        <button type="submit" class="btn" data-close-dialog>Go</button>
+</form>    </details-dialog>
+  </details>
+
+
+
+  </div>
+</div>
+
+    </main>
+  </div>
+  
+
+  </div>
+
+        
+<div class="footer container-lg width-full p-responsive" role="contentinfo">
+  <div class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <ul class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      <li class="mr-3 mr-lg-0">&copy; 2019 GitHub, Inc.</li>
+        <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to terms, text:terms" href="https://github.com/site/terms">Terms</a></li>
+        <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to privacy, text:privacy" href="https://github.com/site/privacy">Privacy</a></li>
+        <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to security, text:security" href="https://github.com/security">Security</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://githubstatus.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a data-ga-click="Footer, go to help, text:help" href="https://help.github.com">Help</a></li>
+    </ul>
+
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mx-lg-4" href="https://github.com">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a>
+   <ul class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+        <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to contact, text:contact" href="https://github.com/contact">Contact GitHub</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-ga-click="Footer, go to Pricing, text:Pricing">Pricing</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
+
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+
+
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"/></svg>
+    <button type="button" class="flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+    </button>
+    You can’t perform that action at this time.
+  </div>
+
+
+    
+    <script crossorigin="anonymous" integrity="sha512-/VSJJF96vCzSgC6y09Z4FqzjjuXRWOKIq2twF0Nb5/v8xy4qzngnH6Au6TFwbmNN/lborYJsojEpgIbYjoGvHQ==" type="application/javascript" src="https://github.githubassets.com/assets/frameworks-fd548924.js"></script>
+    
+    <script crossorigin="anonymous" async="async" integrity="sha512-0mcBYsTTDNy016WuG7Zu/Pb5dsdoVzVb5FlxH4btAPKKyTBKn+5g6N6lXxmMo1WokYH8uOYuLpTgLjU29jSqcA==" type="application/javascript" src="https://github.githubassets.com/assets/github-bootstrap-d2670162.js"></script>
+    
+    
+    
+  <div class="js-stale-session-flash flash flash-warn flash-banner" hidden
+    >
+    <svg class="octicon octicon-alert" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 000 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 00.01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"/></svg>
+    <span class="js-stale-session-flash-signed-in" hidden>You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+  </div>
+  <template id="site-details-dialog">
+  <details class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark hx_rsm" open>
+    <summary role="button" aria-label="Close dialog"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal">
+      <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog>
+        <svg class="octicon octicon-x" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/></svg>
+      </button>
+      <div class="octocat-spinner my-6 js-details-dialog-spinner"></div>
+    </details-dialog>
+  </details>
+</template>
+
+  <div class="Popover js-hovercard-content position-absolute" style="display: none; outline: none;" tabindex="0">
+  <div class="Popover-message Popover-message--bottom-left Popover-message--large Box box-shadow-large" style="width:360px;">
+  </div>
+</div>
+
+  <div aria-live="polite" class="js-global-screen-reader-notice sr-only"></div>
+
+  </body>
+</html>
+

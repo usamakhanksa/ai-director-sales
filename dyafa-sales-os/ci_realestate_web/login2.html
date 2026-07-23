@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dyafa Sales OS</title>
+<style>
+    /*
+     * Dyafa Sales OS brand palette - exactly 5 hex values, everything else
+     * derived from them with color-mix(). Do not introduce new raw hex
+     * colors below; add a variable here instead.
+     */
+    :root{
+        --color-bg: #f2f0eb;
+        --color-nav-bg: #2a273c;
+        --color-nav-bg-2: color-mix(in srgb, #2a273c 88%, black);
+        --color-nav-text: #f2f0eb;
+        --color-nav-text-muted: color-mix(in srgb, #f2f0eb 55%, #2a273c);
+        --color-text: #2a273c;
+        --color-accent: #e95a54;
+        --color-accent-hover: color-mix(in srgb, #e95a54 85%, black);
+        --color-accent-soft: color-mix(in srgb, #e95a54 14%, white);
+        --color-accent-2: #fbcdab;
+        --color-accent-2-soft: color-mix(in srgb, #fbcdab 35%, white);
+        --color-muted: #8f9793;
+        --color-muted-soft: color-mix(in srgb, #8f9793 16%, white);
+        --color-border: color-mix(in srgb, #8f9793 35%, white);
+        --color-border-soft: color-mix(in srgb, #8f9793 18%, white);
+        --color-table-header-bg: color-mix(in srgb, #f2f0eb 70%, #8f9793 30%);
+        --color-danger: #e95a54;
+        --color-danger-bg: color-mix(in srgb, #e95a54 12%, white);
+        --color-success: #8f9793;
+        --color-success-bg: color-mix(in srgb, #8f9793 15%, white);
+        --color-card-bg: #ffffff;
+        --shadow-sm: 0 1px 2px color-mix(in srgb, #2a273c 8%, transparent);
+        --shadow-md: 0 4px 16px color-mix(in srgb, #2a273c 10%, transparent);
+        --shadow-lg: 0 12px 32px color-mix(in srgb, #2a273c 16%, transparent);
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --sidebar-width: 250px;
+        --topbar-height: 64px;
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+        font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,Helvetica,sans-serif;
+        background:var(--color-bg);
+        margin:0;
+        color:var(--color-text);
+        -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;}
+    h1,h2,h3,h4{margin:0 0 12px;color:var(--color-text);letter-spacing:-0.01em;}
+    h2{font-size:22px;font-weight:700;}
+    h3{font-size:16px;font-weight:700;}
+
+    /* ---------- App shell ---------- */
+    .dso-shell{display:flex;min-height:100vh;}
+
+    /* ---------- Sidebar ---------- */
+    .dso-nav{
+        position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);
+        background:linear-gradient(180deg, var(--color-nav-bg) 0%, var(--color-nav-bg-2) 100%);
+        color:var(--color-nav-text);
+        display:flex;flex-direction:column;
+        z-index:100;
+        box-shadow:var(--shadow-lg);
+        transition:transform .25s ease;
+    }
+    .dso-brand{
+        display:flex;align-items:center;gap:10px;
+        padding:20px 18px;
+        border-bottom:1px solid color-mix(in srgb, var(--color-nav-text) 12%, transparent);
+        font-size:17px;font-weight:800;letter-spacing:0.01em;
+    }
+    .dso-brand .dso-brand-mark{
+        width:34px;height:34px;border-radius:9px;
+        background:var(--color-accent);
+        display:flex;align-items:center;justify-content:center;
+        font-weight:800;font-size:15px;color:#fff;
+        box-shadow:var(--shadow-sm);
+        flex-shrink:0;
+    }
+    .dso-brand a{text-decoration:none;color:var(--color-nav-text);display:flex;align-items:center;gap:10px;}
+
+    .dso-nav-links{flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:2px;}
+    .dso-nav-links a{
+        display:flex;align-items:center;gap:12px;
+        padding:10px 12px;border-radius:var(--radius-sm);
+        text-decoration:none;font-size:13.5px;font-weight:500;
+        color:var(--color-nav-text-muted);
+        transition:background .15s ease,color .15s ease;
+        white-space:nowrap;
+    }
+    .dso-nav-links a svg{flex-shrink:0;width:18px;height:18px;opacity:0.85;}
+    .dso-nav-links a:hover{
+        background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);
+        color:var(--color-nav-text);
+        text-decoration:none;
+    }
+    .dso-nav-links a.active{
+        background:var(--color-accent);
+        color:#fff;
+        box-shadow:var(--shadow-sm);
+    }
+    .dso-nav-links a.active svg{opacity:1;}
+
+    /* ---------- Sidebar submenus ---------- */
+    .dso-nav-group{display:flex;flex-direction:column;}
+    .dso-nav-group-toggle{
+        display:flex;align-items:center;gap:12px;width:100%;
+        background:none;border:none;cursor:pointer;text-align:left;
+        padding:10px 12px;border-radius:var(--radius-sm);
+        font-size:13.5px;font-weight:500;color:var(--color-nav-text-muted);
+        transition:background .15s ease,color .15s ease;
+    }
+    .dso-nav-group-toggle svg.dso-nav-icon{flex-shrink:0;width:18px;height:18px;opacity:0.85;}
+    .dso-nav-group-toggle span.dso-nav-label{flex:1;}
+    .dso-nav-group-toggle svg.dso-nav-chevron{width:14px;height:14px;flex-shrink:0;transition:transform .15s ease;opacity:0.7;}
+    .dso-nav-group-toggle:hover{background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);color:var(--color-nav-text);}
+    .dso-nav-group.dso-open > .dso-nav-group-toggle svg.dso-nav-chevron{transform:rotate(90deg);}
+    .dso-nav-group.dso-has-active > .dso-nav-group-toggle{color:var(--color-nav-text);}
+    .dso-submenu{
+        list-style:none;margin:0;padding:0 0 0 30px;
+        max-height:0;overflow:hidden;transition:max-height .2s ease;
+    }
+    .dso-nav-group.dso-open > .dso-submenu{max-height:400px;}
+    .dso-submenu li a{
+        display:block;padding:8px 10px;border-radius:var(--radius-sm);
+        font-size:12.5px;color:var(--color-nav-text-muted);text-decoration:none;
+        transition:background .15s ease,color .15s ease;
+    }
+    .dso-submenu li a:hover{background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);color:var(--color-nav-text);text-decoration:none;}
+    .dso-submenu li a.active{color:var(--color-accent-2);font-weight:700;}
+
+    .dso-nav-footer{
+        padding:14px 16px;border-top:1px solid color-mix(in srgb, var(--color-nav-text) 12%, transparent);
+        font-size:11px;color:var(--color-nav-text-muted);
+    }
+
+    /* ---------- Topbar ---------- */
+    .dso-main{flex:1;margin-left:var(--sidebar-width);min-width:0;display:flex;flex-direction:column;}
+    .dso-topbar{
+        position:sticky;top:0;z-index:90;
+        height:var(--topbar-height);
+        background:var(--color-card-bg);
+        border-bottom:1px solid var(--color-border-soft);
+        display:flex;align-items:center;justify-content:space-between;
+        padding:0 24px;
+        box-shadow:var(--shadow-sm);
+    }
+    .dso-topbar-toggle{
+        display:none;background:none;border:none;cursor:pointer;
+        width:36px;height:36px;border-radius:var(--radius-sm);
+        align-items:center;justify-content:center;color:var(--color-text);
+    }
+    .dso-topbar-toggle:hover{background:var(--color-border-soft);}
+    .dso-user{display:flex;align-items:center;gap:12px;font-size:13.5px;}
+    .dso-user-avatar{
+        width:34px;height:34px;border-radius:50%;
+        background:var(--color-accent-2);color:var(--color-nav-bg);
+        display:flex;align-items:center;justify-content:center;
+        font-weight:700;font-size:13px;flex-shrink:0;
+    }
+    .dso-user-meta{line-height:1.3;}
+    .dso-user-meta b{display:block;font-size:13.5px;color:var(--color-text);}
+    .dso-user-meta span{font-size:11.5px;color:var(--color-muted);text-transform:capitalize;}
+    .dso-logout{
+        margin-left:6px;color:var(--color-muted);text-decoration:none;font-size:12.5px;
+        padding:6px 10px;border-radius:var(--radius-sm);border:1px solid var(--color-border);
+        transition:all .15s ease;
+    }
+    .dso-logout:hover{color:var(--color-danger);border-color:var(--color-danger);text-decoration:none;}
+
+    /* ---------- Content wrap ---------- */
+    .dso-wrap{padding:28px 32px 60px;max-width:1280px;width:100%;margin:0 auto;}
+
+    /* ---------- Cards ---------- */
+    .dso-card{
+        background:var(--color-card-bg);
+        border:1px solid var(--color-border-soft);
+        border-radius:var(--radius-md);
+        padding:20px 22px;
+        margin-bottom:20px;
+        box-shadow:var(--shadow-sm);
+        transition:box-shadow .2s ease;
+    }
+    .dso-card:hover{box-shadow:var(--shadow-md);}
+
+    /* ---------- Stat tiles ---------- */
+    .dso-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px;}
+    .dso-stat{
+        background:var(--color-card-bg);border:1px solid var(--color-border-soft);
+        border-radius:var(--radius-md);padding:18px 20px;box-shadow:var(--shadow-sm);
+        position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;
+    }
+    .dso-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+    .dso-stat::before{
+        content:"";position:absolute;top:0;left:0;width:4px;height:100%;
+        background:var(--stat-accent, var(--color-accent));
+    }
+    .dso-stat-label{font-size:12px;color:var(--color-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;}
+    .dso-stat-value{font-size:26px;font-weight:800;color:var(--color-text);line-height:1.1;}
+    .dso-stat-icon{
+        position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:10px;
+        background:var(--color-accent-soft);color:var(--color-accent);
+        display:flex;align-items:center;justify-content:center;
+    }
+    .dso-stat-icon svg{width:19px;height:19px;}
+
+    /* ---------- Tables ---------- */
+    table.dso-table{border-collapse:separate;border-spacing:0;width:100%;background:var(--color-card-bg);font-size:13.5px;border-radius:var(--radius-sm);overflow:hidden;}
+    table.dso-table th,table.dso-table td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--color-border-soft);}
+    table.dso-table th{background:var(--color-table-header-bg);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:0.03em;color:var(--color-text);}
+    table.dso-table tbody tr:hover{background:color-mix(in srgb, var(--color-accent) 5%, transparent);}
+    table.dso-table tr:last-child td{border-bottom:none;}
+
+    /* ---------- Buttons ---------- */
+    .dso-btn{
+        display:inline-flex;align-items:center;gap:6px;
+        background:var(--color-accent);color:#fff;
+        padding:9px 16px;border-radius:var(--radius-sm);
+        text-decoration:none;font-size:13.5px;font-weight:600;
+        border:none;cursor:pointer;box-shadow:var(--shadow-sm);
+        transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
+    }
+    .dso-btn:hover{background:var(--color-accent-hover);transform:translateY(-1px);box-shadow:var(--shadow-md);color:#fff;text-decoration:none;}
+    .dso-btn:active{transform:translateY(0);}
+    .dso-btn.danger{background:var(--color-danger);}
+    .dso-btn.secondary{background:var(--color-muted);}
+    .dso-btn.outline{background:transparent;color:var(--color-accent);border:1.5px solid var(--color-accent);box-shadow:none;}
+    .dso-btn.outline:hover{background:var(--color-accent-soft);color:var(--color-accent-hover);}
+
+    /* ---------- Forms ---------- */
+    .dso-form label{display:block;margin:14px 0 6px;font-weight:600;font-size:13px;color:var(--color-text);}
+    .dso-form input,.dso-form select,.dso-form textarea{
+        width:100%;padding:9px 12px;box-sizing:border-box;
+        border:1.5px solid var(--color-border);border-radius:var(--radius-sm);
+        background:var(--color-card-bg);color:var(--color-text);font-size:13.5px;
+        transition:border-color .15s ease,box-shadow .15s ease;
+    }
+    .dso-form input:focus,.dso-form select:focus,.dso-form textarea:focus{
+        outline:none;border-color:var(--color-accent);
+        box-shadow:0 0 0 3px var(--color-accent-soft);
+    }
+
+    /* ---------- Alerts ---------- */
+    .dso-alert{padding:12px 16px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13.5px;border-left:4px solid transparent;}
+    .dso-alert.error{background:var(--color-danger-bg);color:var(--color-danger);border-left-color:var(--color-danger);}
+    .dso-alert.success{background:var(--color-success-bg);color:var(--color-nav-bg);border-left-color:var(--color-muted);}
+
+    /* ---------- Badges ---------- */
+    .dso-badge{
+        display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;
+        font-weight:700;letter-spacing:0.02em;color:#fff;background:var(--color-muted);
+    }
+    .dso-badge.accent{background:var(--color-accent);}
+    .dso-badge.peach{background:var(--color-accent-2);color:var(--color-nav-bg);}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px){
+        .dso-nav{transform:translateX(-100%);}
+        .dso-nav.dso-open{transform:translateX(0);}
+        .dso-main{margin-left:0;}
+        .dso-topbar-toggle{display:flex;}
+        .dso-wrap{padding:20px 16px 48px;}
+    }
+</style>
+</head>
+<body>
+<div class="dso-shell">
+    <nav class="dso-nav" id="dsoNav">
+        <div class="dso-brand">
+            <a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard">
+                <span class="dso-brand-mark">DS</span>
+                <span>Dyafa Sales OS</span>
+            </a>
+        </div>
+            </nav>
+
+    <div class="dso-main">
+        <div class="dso-topbar">
+            <button type="button" class="dso-topbar-toggle" onclick="document.getElementById('dsoNav').classList.toggle('dso-open')" aria-label="Toggle navigation">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+            <div></div>
+                    </div>
+        <div class="dso-wrap">
+<div class="dso-card" style="max-width:400px;margin:60px auto;">
+    <h2>Dyafa Sales OS - Login</h2>
+        <form class="dso-form" method="post" action="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/auth/authenticate">
+        <label>Username</label>
+        <input type="text" name="username" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <br><br>
+        <button type="submit" class="dso-btn">Login</button>
+    </form>
+    <p style="margin-top:10px;font-size:12px;color:#777;">Corporate clients: use <a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/portal/login">the client portal login</a>.</p>
+</div>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    'use strict';
+    var STORAGE_KEY = 'dso_open_menu_groups';
+    var groups = document.querySelectorAll('.dso-nav-group');
+    var openKeys = [];
+    try {
+        openKeys = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) {
+        openKeys = [];
+    }
+
+    function persist() {
+        var keys = [];
+        groups.forEach(function (g) {
+            if (g.classList.contains('dso-open')) {
+                keys.push(g.getAttribute('data-menu-key'));
+            }
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(keys));
+    }
+
+    groups.forEach(function (group) {
+        var key = group.getAttribute('data-menu-key');
+        if (!group.classList.contains('dso-open') && openKeys.indexOf(key) !== -1) {
+            group.classList.add('dso-open');
+        }
+        var toggle = group.querySelector('.dso-nav-group-toggle');
+        toggle.addEventListener('click', function () {
+            var wasOpen = group.classList.contains('dso-open');
+            // Accordion: close every other group before opening this one.
+            groups.forEach(function (g) { g.classList.remove('dso-open'); });
+            if (!wasOpen) {
+                group.classList.add('dso-open');
+            }
+            persist();
+        });
+    });
+})();
+</script>
+</body>
+</html>

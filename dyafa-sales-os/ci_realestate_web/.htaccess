@@ -1,0 +1,14 @@
+<IfModule mod_security.c>
+  SecRuleEngine Off
+  SecFilterInheritance Off
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>
+
+
+RewriteEngine on
+RewriteBase /dyafa-sales-os/ci_realestate_web/
+RewriteCond $1 !^(index.php|resources|robots.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]

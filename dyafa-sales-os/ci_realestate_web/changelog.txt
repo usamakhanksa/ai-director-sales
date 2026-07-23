@@ -1,0 +1,545 @@
+
+
+
+
+Version 3.7 – 		22 Jul, 2024
+						
+						\application\core\MY_Controller.php
+
+						\application\config\config.php
+						\application\config\menu_config.php
+						\application\config\routes.php
+						\application\config\site_widgets.php
+						\application\config\autoload.php
+						\application\config\content_fields_config.php
+						\application\config\user_access_config.php
+						\application\config\homepage_sections_config.php
+						\application\config\general_settings_config.php
+
+						\application\cms_includes\cms_front_actions.php
+						\application\cms_includes\cms_admin_actions.php
+						\application\cms_includes\cms_misc_functions.php
+						\application\cms_includes\cms_common_actions.php	
+						\application\cms_includes\includes\cms_module_functions.php
+						\application\cms_includes\includes\cms_user_functions.php
+						
+						\application\controllers\Main.php 
+						\application\controllers\Blog.php 
+						\application\controllers\Property.php 
+
+						\application\controllers\admin\Blog.php
+						\application\controllers\admin\User.php
+						\application\controllers\admin\Main.php
+						\application\controllers\admin\Settings.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\Packages.php
+						\application\controllers\admin\Plugins.php
+						\application\controllers\admin\Media.php
+						\application\controllers\admin\Appearance.php
+						\application\controllers\admin\Agency_settings.php
+
+
+						\application\helpers\property_helper.php 	
+						\application\helpers\cms_helper.php 	
+						\application\helpers\Custom_helper.php 	
+
+						\application\libraries\Global_lib
+						\application\libraries\Menu_lib
+						\application\libraries\Settings_lib
+						\application\libraries\Package_lib
+						\application\libraries\Email_lib
+						\application\libraries\Bloglib
+						\application\libraries\Ajax_images_lib
+						\application\libraries\Ajax_mailer_lib
+						\application\libraries\Property_lib
+
+
+						\application\views\contact.php
+						\application\views\search_page.php
+						\application\views\header.php
+						\application\views\footer.php
+						\application\views\compare_properties.php
+						\application\views\agents.php
+						\application\views\agent_single.php
+						\application\views\properties-advance-search.php
+						\application\views\properties-search-result.php
+
+						\application\views\block\search_section.php
+						\application\views\block\top_links_section.php
+						\application\views\block\banner_slider_section.php
+
+
+						\application\views\admin\sidebar-left.php
+						\application\views\admin\dashboard.php
+						\application\views\admin\header-top.php
+						\application\views\admin\home_page.php
+						\application\views\admin\header.php
+						\application\views\admin\login.php
+						\application\views\admin\footer.php
+						\application\views\admin\templates\templ-color-field.php
+						\application\views\admin\templates\templ-select-field.php
+						\application\views\admin\templates\templ-select.php
+
+
+						\application\views\admin\property\manage.php
+						\application\views\admin\property\edit.php
+						\application\views\admin\property\add_new.php
+						\application\views\admin\property\property_other_details.php
+						\application\views\admin\property\property_edit_scripts.php
+						\application\views\admin\property\property_features.php
+						\application\views\admin\property\prop_type.php
+						\application\views\admin\property\property_location_fields.php
+						\application\views\admin\property\layouts.php
+
+						\application\views\admin\settings\general_settings.php
+						\application\views\admin\settings\admin_keyword_settings.php
+						\application\views\admin\settings\email_templates.php
+						\application\views\admin\settings\my_agency.php
+
+						\application\views\admin\packages\choose_package.php
+						\application\views\admin\packages\change_transaction.php
+						\application\views\admin\packages\transactions.php
+
+						\application\views\admin\user\add_new.php
+						\application\views\admin\user\edit.php
+						\application\views\admin\user\manage.php
+						\application\views\admin\user\user_modal_popup.php
+						
+						\application\views\admin\blog\ all files
+
+
+
+						
+						\application\views\admin\assets\plugins\plupload\multi-image-uploader.js  New File
+						\application\views\admin\assets\plugins\plupload\property-image-uploader.js
+						\application\views\admin\assets\plugins\ckeditor\config.js
+						\application\views\admin\assets\plugins\ckeditor\plugins\video   New Folder
+						\application\views\admin\assets\custom-styles.css
+						\application\views\admin\assets\custom-scripts.js
+
+
+
+
+Version 3.6 – 			11 Aug, 2023 
+						
+
+						\application\cms_includes\cms_admin_actions.php
+						\application\cms_includes\admin\cms_admin_package_credit_actions.php 		New file
+					 	\application\cms_includes\admin\cms_admin_homepage_sections_filters.php
+					 	\application\cms_includes\admin\cms_admin_user_actions.php
+
+					 	\application\cms_includes\cms_misc_functions.php
+					 	\application\cms_includes\cms_cache_functions.php
+						\application\cms_includes\includes\cms_property_functions.php
+						\application\cms_includes\includes\cms_user_functions.php
+
+
+						\application\core\MY_Controller.php
+
+						\application\controllers\Main.php 
+
+						\application\controllers\admin\Main.php
+						\application\controllers\admin\Blog.php
+						\application\controllers\admin\Apperance.php
+						\application\controllers\admin\Logins.php
+						\application\controllers\admin\User.php
+						\application\controllers\admin\Settings.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\Packages.php
+
+						\application\config\routes.php
+						\application\config\config.php
+						\application\config\content_fields_config.php
+						\application\config\user_access_config.php
+						\application\config\menu_config.php
+						\application\config\homepage_sections_config.php
+
+
+						\application\libraries\Global_lib
+						\application\libraries\Slug_lib
+						\application\libraries\Ajax_images_lib
+						\application\libraries\Package_lib
+						\application\libraries\Settings_lib
+						\application\libraries\Ajax_mailer_lib
+						\application\libraries\Property_lib
+	
+
+
+						\application\views\themes\twenty_twenty\header.php
+						\application\views\themes\twenty_twenty\footer.php
+						\application\views\themes\twenty_twenty\properties-search-result.php
+						\application\views\themes\twenty_twenty\contact.php
+						\application\views\themes\twenty_twenty\search_page.php
+						\application\views\themes\twenty_twenty\home_page.php
+						\application\views\themes\twenty_twenty\agents.php
+						\application\views\themes\twenty_twenty\register.php
+						
+						\application\views\themes\twenty_twenty\block\recent_viewed_property_section.php
+						\application\views\themes\twenty_twenty\block\properties-featured.php
+						\application\views\themes\twenty_twenty\block\featured_property_section.php
+						\application\views\themes\twenty_twenty\block\properties-recent.php
+						\application\views\themes\twenty_twenty\block\recent_property_section.php
+						\application\views\themes\twenty_twenty\block\dynamic_properties_section.php
+						\application\views\themes\twenty_twenty\block\banner_slider_section.php
+						\application\views\themes\twenty_twenty\block\slider_section.php
+
+						\application\views\themes\twenty_twenty\includes\header_menu.php
+						\application\views\themes\twenty_twenty\property\all.php
+						\application\views\themes\twenty_twenty\property\single.php
+						\application\views\themes\twenty_twenty\property\template-part\single-property-grid.php
+						\application\views\themes\twenty_twenty\property\template-part\single-property-list.php
+						\application\views\themes\twenty_twenty\property\template-part\single-property-map.php
+
+
+
+
+                        \application\views\admin\home_page.php
+                        \application\views\admin\footer.php
+                        \application\views\admin\header.php
+                        \application\views\admin\sidebar-left.php
+                        \application\views\admin\dashboard.php
+                        \application\views\admin\dashboard_popup.php   							New file
+                        
+                        \application\views\admin\packages\my_credits.php
+                        \application\views\admin\packages\package_update_script.php   New file
+                        \application\views\admin\packages\edit.php
+                        \application\views\admin\packages\add_new.php
+                        \application\views\admin\packages\package_additional_features.php
+                        \application\views\admin\packages\methods.php
+                        \application\views\admin\packages\choose_package.php
+                        \application\views\admin\packages\payment_methods.php
+                        \application\views\admin\packages\dashboard.php
+
+                        \application\views\admin\settings\profile.php
+                        \application\views\admin\settings\general_settings_blocks\payment_settings.php
+						\application\views\admin\settings\general_settings_blocks\login_page_setting.php
+						\application\views\admin\settings\general_settings_blocks\visual_section_settings.php
+
+                        \application\views\admin\property\manage.php
+                        \application\views\admin\property\property_gallery.php
+                        \application\views\admin\property\prop_type.php
+                        \application\views\admin\property\add_new.php
+                        \application\views\admin\property\view.php
+                        \application\views\admin\property\edit.php
+                        
+                        \application\views\admin\homepage-sections\homepage_edit_scripts.php
+                        \application\views\admin\homepage-sections\homepage_section_clone_section.php
+                        \application\views\admin\homepage-sections\homepage_section_header.php
+                        
+                        \application\views\admin\templates\templ-select-field
+
+
+	 
+
+						\application\views\themes\twenty_twenty\includes\header_menu.php
+
+Version 3.5 – 21 Sep, 2022 
+
+
+						\application\config\routes.php
+						\application\config\config.php
+						\application\config\mennu_config.php
+						\application\config\general_settings_config.php
+
+
+						\application\controllers\Main.php 
+
+						\application\controllers\admin\Packages.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\Settings.php
+
+						\application\libraries\Package_lib
+						\application\libraries\Settings_lib
+						\application\libraries\Ajax_mailer_lib
+						\application\libraries\Property_lib
+
+						\application\views\admin\property\add_new.php
+						\application\views\admin\property\edit.php
+						\application\views\admin\property\view.php
+						\application\views\admin\property\manage.php
+
+						
+						\application\views\admin\property\property_videos.php 			New file
+						\application\views\admin\property\property_gallery.php			New file
+						\application\views\admin\property\property_distances.php		New file
+
+						\application\views\admin\settings\general_settings_blocks\property_settings
+
+
+
+						\application\views\themes\twenty_twenty\property\template-part\single-property-list.php
+						\application\views\themes\twenty_twenty\property\template-part\single-property-grid.php
+
+						application\views\themes\twenty_twenty\assets\js\custom.js
+
+
+						\application\cms_includes\includes\cms_property_functions.php
+
+						\application\modules\locations   	all files  updated	
+
+Version 3.4 – 23 May, 2022   
+
+						
+						\application\config\content_fields_config.php
+						\application\config\user_access_config.php
+						
+						\application\cms_includes\admin\cms_admin_appearance_menu_filters.php
+						\application\cms_includes\includes\cms_module_functions.php
+
+						\application\cms_includes\cms_front_actions.php
+						///////////\application\cms_includes\cms_front_homepage_actions.php
+
+						\application\views\admin\appearance\includes\cms_app_menu_static_pages.php
+
+
+						\application\controllers\admin\Appearance.php
+						\application\controllers\admin\Banner.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\Settings.php
+						\application\controllers\admin\User.php
+						\application\controllers\admin\Page.php
+
+						\application\views\admin\appearance\menus.php
+						\application\views\admin\banner\manage.php
+						\application\views\admin\banner\add_new.php
+						\application\views\admin\banner\edit.php
+
+						\application\views\themes\twenty_twenty\footer.php
+						\application\views\themes\twenty_twenty\header.php
+						\application\views\themes\twenty_twenty\includes\header_menu.php
+						\application\views\themes\twenty_twenty\contact.php
+						\application\views\themes\twenty_twenty\block\featured_property_section.php
+						\application\views\themes\twenty_twenty\block\properties-featured.php
+						\application\views\themes\twenty_twenty\block\properties-recent.php
+						\application\views\themes\twenty_twenty\block\recent_property_section.php
+						\application\views\themes\twenty_twenty\block\dynamic_properties_section.php
+
+						\application\libraries\Global_lib.php
+						\application\libraries\Banner_lib.php	
+						\application\libraries\Widget_lib.php	
+
+
+
+Version 3.3.4 – 28 feb, 2022
+
+			
+						\application\controllers\Main.php
+						\application\controllers\Property.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\User.php
+						\application\controllers\admin\Ajax.php
+						\application\core\MY_Controller.php
+
+						\application\cms_includes\admin\cms_admin_appearance_menu_filters.php
+						\application\cms_includes\cms_front_actions.php
+						\application\cms_includes\cms_common_actions.php
+						\application\cms_includes\cms_misc_functions.php
+
+						\application\cms_includes\includes\cms_property_functions.php
+						\application\cms_includes\includes\cms_user_functions.php
+						\application\cms_includes\includes\cms_module_functions.php
+
+						\application\cms_includes\front 	all files  updated
+						\application\cms_includes\admin 	all files  updated
+
+
+						\application\config\content_fields_config.php	
+						\application\config\config.php	
+						\application\config\routes.php	
+
+						\application\libraries\Ajax_validation_lib.php	
+						\application\libraries\Menu_lib.php	
+						
+
+						\application\modules\locations   	all files  updated							
+
+
+						\application\views\themes\twenty_twenty\properties-advance-search.php	
+						\application\views\themes\twenty_twenty\header.php
+						\application\views\themes\twenty_twenty\footer.php
+						\application\views\themes\twenty_twenty\homepage.php
+						\application\views\themes\twenty_twenty\search_page.php
+						\application\views\themes\twenty_twenty\block\search_section.php
+						\application\views\themes\twenty_twenty\includes\header_menu.php
+
+
+						\application\views\admin\header.php
+						\application\views\admin\sidebar-left.php
+
+						\application\views\admin\assets\custom-scripts.js						
+
+
+
+Version 3.3.3 – 28 feb, 2022
+
+DB table changed						
+						ALTER TABLE `transaction` CHANGE `packages_id` `package_id` INT(11) NOT NULL;
+
+- File updates -	
+						\application\core\MY_Controller.php
+						
+						\application\helpers\cms_helper.php
+						\application\controllers\admin\Packages.php
+
+						\application\libraries\Admin_ajax_orders_lib.php
+						\application\cms_includes\includes   all files and folders	
+
+						\application\views\admin\packages\choose_package.php
+						\application\views\admin\packages\my_transactions.php
+						\application\views\admin\packages\methods.php
+
+						\application\views\themes\twenty_twenty\packages\methods.php
+
+Version 3.3.2 – 9 December, 2021
+
+- File updates -		\application\cms_includes\includes\cms_user_functions.php
+
+
+
+created folder 			\application\cms_includes\includes
+		added file		\application\cms_includes\includes\cms_module_functions.php
+						\application\cms_includes\includes\cms_pricing_functions.php
+						\application\cms_includes\includes\cms_user_functions.php
+
+
+
+
+
+
+Version 3.3.1 – 26 November, 2021
+
+- File updates -		\application\controllers\admin\Main.php
+
+						\application\views\themes\twenty_twenty\includes\header_menu.php
+						\application\config\content_fields_config
+
+						\application\libraries\widget_lib
+						\applicaton\views\admin\dashboard-widgets\admin_total_enquiries.php
+
+						\application\core\MY_Controller.php
+
+						\application\modules\locations\ all files
+
+						\application\cms_includes\cms_send_email_actions.php	
+
+Version 3.3 – 22 November, 2021
+
+- File updates -		\application\controllers\admin\Main.php
+						\application\controllers\admin\Ajax.php
+						\application\controllers\admin\Media.php
+						\application\controllers\admin\Ajax_images.php
+						\application\controllers\admin\Property.php
+						\application\controllers\admin\Packages.php
+						\application\controllers\admin\Logins.php
+						\application\controllers\admin\Settings.php
+						\application\controllers\admin\Appearance.php
+
+						\application\controllers\Main.php
+						\application\controllers\Ajax.php
+
+						\application\libraries\Global_lib.php
+						\application\libraries\Ajax_images_lib.php	
+						\application\libraries\Ajax_mailer_lib.php
+						\application\libraries\Email_lib.php
+						\application\libraries\Package_lib.php
+						\application\libraries\Menu_lib.php
+						\application\libraries\Property_lib.php
+
+
+						\application\core\MY_Controller.php
+
+						\application\views\admin\homepage.php
+						\application\views\admin\sidebar-left.php
+						\application\views\admin\dashboard.php
+						\application\views\admin\header.php
+						\application\views\admin\footer.php
+						\application\views\admin\property\edit.php
+						\application\views\admin\property\add_new.php
+
+						\application\views\admin\packages\package_additional_features.php	
+						\application\views\admin\packages\manage.php
+						\application\views\admin\packages\transactions.php
+						\application\views\admin\packages\my_transactions.php
+						\application\views\admin\packages\my_credits.php
+						\application\views\admin\packages\choose_package.php
+						\application\views\admin\packages\edit.php
+						\application\views\admin\packages\add_new.php
+						\application\views\admin\appearance\menus.php
+						\application\views\admin\appearance\includes folder files
+						\application\views\admin\assets\	
+
+
+						\application\views\themes\twenty_twenty\home_page.php
+						\application\views\themes\twenty_twenty\contact.php
+						\application\views\themes\twenty_twenty\search_page.php
+						\application\views\themes\twenty_twenty\widget-sections\property_agent_contact_form.php
+						\application\views\themes\twenty_twenty\widget-sections\property_agent_details_widget.php
+						\application\views\themes\twenty_twenty\packages\methods.php
+						\application\views\themes\twenty_twenty\
+						
+
+
+
+						\application\config\config.php
+						\application\config\content_fields_config.php
+						\application\config\menu_config.php
+						\application\config\homepage_sections_config.php
+						\application\config\dashboard_widgets_config.php
+						\application\config\appearance_config.php
+
+
+						\application\helpers\cms_helper.php
+
+						\application\cms_includes\cms_send_email_actions.php	
+						\application\cms_includes\cms_admin_actions.php	
+						\application\cms_includes\cms_front_actions.php	
+						\application\cms_includes\admin\cms_admin_send_email_actions.php
+						\application\cms_includes\admin\cms_admin_appearance_menu_filters.php
+						\application\cms_includes\admin\cms_admin_homepage_sections_filters.php
+						\application\cms_includes\admin\cms_admin_package_credit_actions.php
+
+
+						\application\modules\locations\ all files						
+
+- Added New File - 		\application\libraries\Ajax_mailer_lib.php
+
+
+
+Version 3.2 – 26 October, 2021
+
+- File updates - 		 \application\libraries\Property_lib.php
+						 \application\libraries\Simpleimage.php
+						 \application\libraries\Ajax_images_lib.php
+						 \application\libraries\Global_lib.php
+						 
+						 \application\core\MY_Controller.php
+						 \application\controllers\admin\Main.php
+						 \application\controllers\admin\Media.php
+						 \application\controllers\admin\Ajax_images.php
+						 \application\controllers\admin\Logins.php    
+						 \application\controllers\Main.php
+						 
+						 \application\views\admin\property\edit.php
+						 \application\views\admin\property\add_new.php
+						 \application\views\admin\dashboard.php
+						 \application\views\admin\home_page.php
+						 \application\views\admin\sidebar-left.php
+						 
+						 \application\core\MY_Controller.php
+						 
+						 \application\config\config.php
+						 \application\config\content_fields_config.php
+						 
+						 \application\cms_includes\cms_admin_actions.php
+						 
+						 \application\helpers\cms_helper.php
+
+- Added Folder & files	 \application\views\admin\dashboard-widgets			 
+- Added New File - 		 \application\third_party\watermark\watermark_image.class.php     
+						 \application\libraries\Widget_lib.php
+						 \application\config\dashboard_widgets_config.php
+
+
+Version 3.1 – 21 October, 2021
+
+- Converted CMS into Modular version for easily creating custom modules.

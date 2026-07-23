@@ -1,0 +1,429 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dyafa Sales OS</title>
+<style>
+    /*
+     * Dyafa Sales OS brand palette - exactly 5 hex values, everything else
+     * derived from them with color-mix(). Do not introduce new raw hex
+     * colors below; add a variable here instead.
+     */
+    :root{
+        --color-bg: #f2f0eb;
+        --color-nav-bg: #2a273c;
+        --color-nav-bg-2: color-mix(in srgb, #2a273c 88%, black);
+        --color-nav-text: #f2f0eb;
+        --color-nav-text-muted: color-mix(in srgb, #f2f0eb 55%, #2a273c);
+        --color-text: #2a273c;
+        --color-accent: #e95a54;
+        --color-accent-hover: color-mix(in srgb, #e95a54 85%, black);
+        --color-accent-soft: color-mix(in srgb, #e95a54 14%, white);
+        --color-accent-2: #fbcdab;
+        --color-accent-2-soft: color-mix(in srgb, #fbcdab 35%, white);
+        --color-muted: #8f9793;
+        --color-muted-soft: color-mix(in srgb, #8f9793 16%, white);
+        --color-border: color-mix(in srgb, #8f9793 35%, white);
+        --color-border-soft: color-mix(in srgb, #8f9793 18%, white);
+        --color-table-header-bg: color-mix(in srgb, #f2f0eb 70%, #8f9793 30%);
+        --color-danger: #e95a54;
+        --color-danger-bg: color-mix(in srgb, #e95a54 12%, white);
+        --color-success: #8f9793;
+        --color-success-bg: color-mix(in srgb, #8f9793 15%, white);
+        --color-card-bg: #ffffff;
+        --shadow-sm: 0 1px 2px color-mix(in srgb, #2a273c 8%, transparent);
+        --shadow-md: 0 4px 16px color-mix(in srgb, #2a273c 10%, transparent);
+        --shadow-lg: 0 12px 32px color-mix(in srgb, #2a273c 16%, transparent);
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --sidebar-width: 250px;
+        --topbar-height: 64px;
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+        font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,Helvetica,sans-serif;
+        background:var(--color-bg);
+        margin:0;
+        color:var(--color-text);
+        -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;}
+    h1,h2,h3,h4{margin:0 0 12px;color:var(--color-text);letter-spacing:-0.01em;}
+    h2{font-size:22px;font-weight:700;}
+    h3{font-size:16px;font-weight:700;}
+
+    /* ---------- App shell ---------- */
+    .dso-shell{display:flex;min-height:100vh;}
+
+    /* ---------- Sidebar ---------- */
+    .dso-nav{
+        position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);
+        background:linear-gradient(180deg, var(--color-nav-bg) 0%, var(--color-nav-bg-2) 100%);
+        color:var(--color-nav-text);
+        display:flex;flex-direction:column;
+        z-index:100;
+        box-shadow:var(--shadow-lg);
+        transition:transform .25s ease;
+    }
+    .dso-brand{
+        display:flex;align-items:center;gap:10px;
+        padding:20px 18px;
+        border-bottom:1px solid color-mix(in srgb, var(--color-nav-text) 12%, transparent);
+        font-size:17px;font-weight:800;letter-spacing:0.01em;
+    }
+    .dso-brand .dso-brand-mark{
+        width:34px;height:34px;border-radius:9px;
+        background:var(--color-accent);
+        display:flex;align-items:center;justify-content:center;
+        font-weight:800;font-size:15px;color:#fff;
+        box-shadow:var(--shadow-sm);
+        flex-shrink:0;
+    }
+    .dso-brand a{text-decoration:none;color:var(--color-nav-text);display:flex;align-items:center;gap:10px;}
+
+    .dso-nav-links{flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:2px;}
+    .dso-nav-links a{
+        display:flex;align-items:center;gap:12px;
+        padding:10px 12px;border-radius:var(--radius-sm);
+        text-decoration:none;font-size:13.5px;font-weight:500;
+        color:var(--color-nav-text-muted);
+        transition:background .15s ease,color .15s ease;
+        white-space:nowrap;
+    }
+    .dso-nav-links a svg{flex-shrink:0;width:18px;height:18px;opacity:0.85;}
+    .dso-nav-links a:hover{
+        background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);
+        color:var(--color-nav-text);
+        text-decoration:none;
+    }
+    .dso-nav-links a.active{
+        background:var(--color-accent);
+        color:#fff;
+        box-shadow:var(--shadow-sm);
+    }
+    .dso-nav-links a.active svg{opacity:1;}
+
+    /* ---------- Sidebar submenus ---------- */
+    .dso-nav-group{display:flex;flex-direction:column;}
+    .dso-nav-group-toggle{
+        display:flex;align-items:center;gap:12px;width:100%;
+        background:none;border:none;cursor:pointer;text-align:left;
+        padding:10px 12px;border-radius:var(--radius-sm);
+        font-size:13.5px;font-weight:500;color:var(--color-nav-text-muted);
+        transition:background .15s ease,color .15s ease;
+    }
+    .dso-nav-group-toggle svg.dso-nav-icon{flex-shrink:0;width:18px;height:18px;opacity:0.85;}
+    .dso-nav-group-toggle span.dso-nav-label{flex:1;}
+    .dso-nav-group-toggle svg.dso-nav-chevron{width:14px;height:14px;flex-shrink:0;transition:transform .15s ease;opacity:0.7;}
+    .dso-nav-group-toggle:hover{background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);color:var(--color-nav-text);}
+    .dso-nav-group.dso-open > .dso-nav-group-toggle svg.dso-nav-chevron{transform:rotate(90deg);}
+    .dso-nav-group.dso-has-active > .dso-nav-group-toggle{color:var(--color-nav-text);}
+    .dso-submenu{
+        list-style:none;margin:0;padding:0 0 0 30px;
+        max-height:0;overflow:hidden;transition:max-height .2s ease;
+    }
+    .dso-nav-group.dso-open > .dso-submenu{max-height:400px;}
+    .dso-submenu li a{
+        display:block;padding:8px 10px;border-radius:var(--radius-sm);
+        font-size:12.5px;color:var(--color-nav-text-muted);text-decoration:none;
+        transition:background .15s ease,color .15s ease;
+    }
+    .dso-submenu li a:hover{background:color-mix(in srgb, var(--color-nav-text) 8%, transparent);color:var(--color-nav-text);text-decoration:none;}
+    .dso-submenu li a.active{color:var(--color-accent-2);font-weight:700;}
+
+    .dso-nav-footer{
+        padding:14px 16px;border-top:1px solid color-mix(in srgb, var(--color-nav-text) 12%, transparent);
+        font-size:11px;color:var(--color-nav-text-muted);
+    }
+
+    /* ---------- Topbar ---------- */
+    .dso-main{flex:1;margin-left:var(--sidebar-width);min-width:0;display:flex;flex-direction:column;}
+    .dso-topbar{
+        position:sticky;top:0;z-index:90;
+        height:var(--topbar-height);
+        background:var(--color-card-bg);
+        border-bottom:1px solid var(--color-border-soft);
+        display:flex;align-items:center;justify-content:space-between;
+        padding:0 24px;
+        box-shadow:var(--shadow-sm);
+    }
+    .dso-topbar-toggle{
+        display:none;background:none;border:none;cursor:pointer;
+        width:36px;height:36px;border-radius:var(--radius-sm);
+        align-items:center;justify-content:center;color:var(--color-text);
+    }
+    .dso-topbar-toggle:hover{background:var(--color-border-soft);}
+    .dso-user{display:flex;align-items:center;gap:12px;font-size:13.5px;}
+    .dso-user-avatar{
+        width:34px;height:34px;border-radius:50%;
+        background:var(--color-accent-2);color:var(--color-nav-bg);
+        display:flex;align-items:center;justify-content:center;
+        font-weight:700;font-size:13px;flex-shrink:0;
+    }
+    .dso-user-meta{line-height:1.3;}
+    .dso-user-meta b{display:block;font-size:13.5px;color:var(--color-text);}
+    .dso-user-meta span{font-size:11.5px;color:var(--color-muted);text-transform:capitalize;}
+    .dso-logout{
+        margin-left:6px;color:var(--color-muted);text-decoration:none;font-size:12.5px;
+        padding:6px 10px;border-radius:var(--radius-sm);border:1px solid var(--color-border);
+        transition:all .15s ease;
+    }
+    .dso-logout:hover{color:var(--color-danger);border-color:var(--color-danger);text-decoration:none;}
+
+    /* ---------- Content wrap ---------- */
+    .dso-wrap{padding:28px 32px 60px;max-width:1280px;width:100%;margin:0 auto;}
+
+    /* ---------- Cards ---------- */
+    .dso-card{
+        background:var(--color-card-bg);
+        border:1px solid var(--color-border-soft);
+        border-radius:var(--radius-md);
+        padding:20px 22px;
+        margin-bottom:20px;
+        box-shadow:var(--shadow-sm);
+        transition:box-shadow .2s ease;
+    }
+    .dso-card:hover{box-shadow:var(--shadow-md);}
+
+    /* ---------- Stat tiles ---------- */
+    .dso-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px;}
+    .dso-stat{
+        background:var(--color-card-bg);border:1px solid var(--color-border-soft);
+        border-radius:var(--radius-md);padding:18px 20px;box-shadow:var(--shadow-sm);
+        position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;
+    }
+    .dso-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+    .dso-stat::before{
+        content:"";position:absolute;top:0;left:0;width:4px;height:100%;
+        background:var(--stat-accent, var(--color-accent));
+    }
+    .dso-stat-label{font-size:12px;color:var(--color-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;}
+    .dso-stat-value{font-size:26px;font-weight:800;color:var(--color-text);line-height:1.1;}
+    .dso-stat-icon{
+        position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:10px;
+        background:var(--color-accent-soft);color:var(--color-accent);
+        display:flex;align-items:center;justify-content:center;
+    }
+    .dso-stat-icon svg{width:19px;height:19px;}
+
+    /* ---------- Tables ---------- */
+    table.dso-table{border-collapse:separate;border-spacing:0;width:100%;background:var(--color-card-bg);font-size:13.5px;border-radius:var(--radius-sm);overflow:hidden;}
+    table.dso-table th,table.dso-table td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--color-border-soft);}
+    table.dso-table th{background:var(--color-table-header-bg);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:0.03em;color:var(--color-text);}
+    table.dso-table tbody tr:hover{background:color-mix(in srgb, var(--color-accent) 5%, transparent);}
+    table.dso-table tr:last-child td{border-bottom:none;}
+
+    /* ---------- Buttons ---------- */
+    .dso-btn{
+        display:inline-flex;align-items:center;gap:6px;
+        background:var(--color-accent);color:#fff;
+        padding:9px 16px;border-radius:var(--radius-sm);
+        text-decoration:none;font-size:13.5px;font-weight:600;
+        border:none;cursor:pointer;box-shadow:var(--shadow-sm);
+        transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
+    }
+    .dso-btn:hover{background:var(--color-accent-hover);transform:translateY(-1px);box-shadow:var(--shadow-md);color:#fff;text-decoration:none;}
+    .dso-btn:active{transform:translateY(0);}
+    .dso-btn.danger{background:var(--color-danger);}
+    .dso-btn.secondary{background:var(--color-muted);}
+    .dso-btn.outline{background:transparent;color:var(--color-accent);border:1.5px solid var(--color-accent);box-shadow:none;}
+    .dso-btn.outline:hover{background:var(--color-accent-soft);color:var(--color-accent-hover);}
+
+    /* ---------- Forms ---------- */
+    .dso-form label{display:block;margin:14px 0 6px;font-weight:600;font-size:13px;color:var(--color-text);}
+    .dso-form input,.dso-form select,.dso-form textarea{
+        width:100%;padding:9px 12px;box-sizing:border-box;
+        border:1.5px solid var(--color-border);border-radius:var(--radius-sm);
+        background:var(--color-card-bg);color:var(--color-text);font-size:13.5px;
+        transition:border-color .15s ease,box-shadow .15s ease;
+    }
+    .dso-form input:focus,.dso-form select:focus,.dso-form textarea:focus{
+        outline:none;border-color:var(--color-accent);
+        box-shadow:0 0 0 3px var(--color-accent-soft);
+    }
+
+    /* ---------- Alerts ---------- */
+    .dso-alert{padding:12px 16px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13.5px;border-left:4px solid transparent;}
+    .dso-alert.error{background:var(--color-danger-bg);color:var(--color-danger);border-left-color:var(--color-danger);}
+    .dso-alert.success{background:var(--color-success-bg);color:var(--color-nav-bg);border-left-color:var(--color-muted);}
+
+    /* ---------- Badges ---------- */
+    .dso-badge{
+        display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;
+        font-weight:700;letter-spacing:0.02em;color:#fff;background:var(--color-muted);
+    }
+    .dso-badge.accent{background:var(--color-accent);}
+    .dso-badge.peach{background:var(--color-accent-2);color:var(--color-nav-bg);}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px){
+        .dso-nav{transform:translateX(-100%);}
+        .dso-nav.dso-open{transform:translateX(0);}
+        .dso-main{margin-left:0;}
+        .dso-topbar-toggle{display:flex;}
+        .dso-wrap{padding:20px 16px 48px;}
+    }
+</style>
+</head>
+<body>
+<div class="dso-shell">
+    <nav class="dso-nav" id="dsoNav">
+        <div class="dso-brand">
+            <a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard">
+                <span class="dso-brand-mark">DS</span>
+                <span>Dyafa Sales OS</span>
+            </a>
+        </div>
+                <div class="dso-nav-links">
+            <div class="dso-nav-group dso-open dso-has-active" data-menu-key="dashboard"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="dso-nav-label">Dashboard</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard" class="active">My Dashboard</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard/daily">Daily Sales</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard/hod" class="active">HOD Dashboard</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard/my_performance">My Performance</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/dashboard/team_performance">Team Performance</a></li></ul></div><div class="dso-nav-group" data-menu-key="leads"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.6 3.1-6.5 7-6.5s7 2.9 7 6.5"/></svg><span class="dso-nav-label">Leads</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads">All Leads</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads/index/mine">My Leads</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads/index/unassigned">Unassigned Leads</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads/add">Add New Lead</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads/sources">Lead Sources</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leads/index/ai">AI Generated Leads</a></li></ul></div><div class="dso-nav-group" data-menu-key="ai_lead_generation"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="2.5"/><circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M12 7V4M9 4h6"/></svg><span class="dso-nav-label">AI Lead Generation</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant">Recommendations</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leadscoringconfig">Lead Scoring Config</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/leadgeneration">Generate Leads</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiconfig">AI Settings</a></li></ul></div><div class="dso-nav-group" data-menu-key="contracts"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 13h5M9.5 16.5h5"/></svg><span class="dso-nav-label">Contracts</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts">All Contracts</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts/index/active">Active</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts/index/pending">Pending Approval</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts/index/expiring">Expiring Soon</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts/add">Create Contract</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/contracts/funnel">Contract Funnel</a></li></ul></div><div class="dso-nav-group" data-menu-key="accounts"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg><span class="dso-nav-label">Corporate Accounts</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/accounts">Account List</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/accounts/add">Add Account</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/accounts/performance">Performance</a></li></ul></div><div class="dso-nav-group" data-menu-key="reservations"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="dso-nav-label">Reservations</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations">All Reservations</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations/index/pending">Pending</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations/index/checkins_today">Today&#039;s Check-ins</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations/index/checkouts_today">Today&#039;s Check-outs</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations/add">New Reservation</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reservations/calendar">Reservation Calendar</a></li></ul></div><div class="dso-nav-group" data-menu-key="adhoc"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg><span class="dso-nav-label">Adhoc Sales</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/adhoc/board">Opportunities Board</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/adhoc">All Adhoc Sales</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/adhoc/add">New Adhoc Sale</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/adhoc/index/proposals">Proposals</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/adhoc/index/events">Events</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/adhoc_sales">Adhoc Revenue</a></li></ul></div><div class="dso-nav-group" data-menu-key="activities"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2-8 4 16 2-8h6"/></svg><span class="dso-nav-label">Activities</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/activities/index/mine">My Activities</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/activities/index/team">Team Activities</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/activities/add">Log Activity</a></li></ul></div><div class="dso-nav-group" data-menu-key="properties"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg><span class="dso-nav-label">Property Management</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/properties">Properties List</a></li></ul></div><div class="dso-nav-group" data-menu-key="collections"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M9.5 9.7c0-1.2 1.1-2.2 2.5-2.2s2.5 1 2.5 2c0 2.4-5 1.6-5 4 0 1 1.1 2 2.5 2s2.5-1 2.5-2.2"/></svg><span class="dso-nav-label">Collections</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/collections">Outstanding Payments</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/collections/aging">Aging Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/collections/credit_limits">Credit Limits</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/collections/invoices">Invoices</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/collections/statements">Statements</a></li></ul></div><div class="dso-nav-group" data-menu-key="targets"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg><span class="dso-nav-label">Targets</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/targets">My Targets</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/targets">Team Targets</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/targets/add">Set Targets</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/targets/performance">Achievement Report</a></li></ul></div><div class="dso-nav-group" data-menu-key="aiassistant"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="2.5"/><circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M12 7V4M9 4h6"/></svg><span class="dso-nav-label">AI Sales Assistant</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant">Recommendations</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant/predictions">Predictions</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant/next_best_actions">Next Best Actions</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant/analytics">Analytics</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiassistant/generate">Generate Now</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/aiconfig">AI Provider Config</a></li></ul></div><div class="dso-nav-group" data-menu-key="reports"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="dso-nav-label">Reports</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/daily_sales">Daily Sales Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/revenue">Revenue Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/aging">Collections Aging</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/leads">Leads Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/reservations">Reservations Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/room_nights">Room Nights Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/contracts">Contract Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/contract_renewals">Contract Renewal Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/opportunities">Opportunities Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/adhoc_sales">Adhoc Sales Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/activities">Activities Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/corporate_accounts">Corporate Accounts Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/property_performance">Property Performance Report</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/reports/ai_recommendations">AI Recommendation Report</a></li></ul></div><div class="dso-nav-group" data-menu-key="administration"><button type="button" class="dso-nav-group-toggle"><svg class="dso-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.2 3.2 0 0 1 0 6.4M18.5 14a5.5 5.5 0 0 1 3.5 5.5"/></svg><span class="dso-nav-label">Administration</span><svg class="dso-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><ul class="dso-submenu"><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/admin/users">Users &amp; Roles</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/admin/teams">Teams</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/admin/integrations">Integrations</a></li><li><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/admin/notificationcenter">Notification Center</a></li></ul></div><a href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a>                        <a href="http://localhost/dyafa-sales-os/ci_realestate_web/admin" target="_blank" title="Legacy CMS admin panel (separate login)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg>
+                <span>Legacy CMS Admin</span>
+            </a>
+                    </div>
+        <div class="dso-nav-footer">&copy; 2026 Dyafa Sales OS</div>
+            </nav>
+
+    <div class="dso-main">
+        <div class="dso-topbar">
+            <button type="button" class="dso-topbar-toggle" onclick="document.getElementById('dsoNav').classList.toggle('dso-open')" aria-label="Toggle navigation">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+            <div></div>
+                        <div class="dso-user">
+                <div class="dso-user-avatar">A</div>
+                <div class="dso-user-meta">
+                    <b>Anas</b>
+                    <span>HOD Sales</span>
+                </div>
+                <a class="dso-logout" href="http://localhost/dyafa-sales-os/ci_realestate_web/dyafa/logout">Logout</a>
+            </div>
+                    </div>
+        <div class="dso-wrap">
+<h2>HOD Sales Dashboard</h2>
+
+<div class="dso-stats">
+    <div class="dso-stat" style="--stat-accent:var(--color-accent);">
+        <div class="dso-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M9.5 9.7c0-1.2 1.1-2.2 2.5-2.2s2.5 1 2.5 2c0 2.4-5 1.6-5 4 0 1 1.1 2 2.5 2s2.5-1 2.5-2.2"/></svg></div>
+        <div class="dso-stat-label">Outstanding Collections</div>
+        <div class="dso-stat-value">1,760.00</div>
+    </div>
+    <div class="dso-stat" style="--stat-accent:var(--color-accent-2);">
+        <div class="dso-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg></div>
+        <div class="dso-stat-label">Team Members Ranked</div>
+        <div class="dso-stat-value">1</div>
+    </div>
+    <div class="dso-stat" style="--stat-accent:var(--color-muted);">
+        <div class="dso-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 13h5M9.5 16.5h5"/></svg></div>
+        <div class="dso-stat-label">Contracts Expiring (30d)</div>
+        <div class="dso-stat-value">0</div>
+    </div>
+    <div class="dso-stat" style="--stat-accent:var(--color-nav-bg);">
+        <div class="dso-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg></div>
+        <div class="dso-stat-label">Top Accounts Listed</div>
+        <div class="dso-stat-value">3</div>
+    </div>
+</div>
+
+<div class="dso-card">
+    <h3>Team Performance Ranking (MTD)</h3>
+    <table class="dso-table">
+        <tr><th>#</th><th>Sales Executive</th><th>Revenue MTD</th><th>Achievement %</th><th>Band</th></tr>
+                <tr>
+            <td>1</td>
+            <td>Ahmad Saleh</td>
+            <td>1,960.00</td>
+            <td>17.2%</td>
+            <td><span class="dso-badge accent">NeedsAttention</span></td>
+        </tr>
+            </table>
+</div>
+
+<div class="dso-card">
+    <h3>Lead Conversion Rate by Owner</h3>
+    <table class="dso-table">
+        <tr><th>Owner</th><th>Total Leads</th><th>Won</th><th>Conversion %</th></tr>
+                <tr>
+            <td>Anas</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0%</td>
+        </tr>
+                <tr>
+            <td>Ahmad Saleh</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0%</td>
+        </tr>
+                <tr>
+            <td>Ali</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0%</td>
+        </tr>
+            </table>
+</div>
+
+<div class="dso-card">
+    <h3>Top 5 Accounts by Reservation Revenue</h3>
+    <table class="dso-table">
+        <tr><th>Account</th><th>Total Revenue</th></tr>
+                <tr><td>Acme Corp</td><td>1,400.00</td></tr>
+                <tr><td>Falcon Trading</td><td>560.00</td></tr>
+                <tr><td>Desert Rose Events</td><td>0.00</td></tr>
+            </table>
+</div>
+
+<div class="dso-card">
+    <h3>Contracts Expiring within 30 Days</h3>
+    <table class="dso-table">
+        <tr><th>Contract #</th><th>Company</th><th>Expiry Date</th><th>Status</th></tr>
+            </table>
+</div>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    'use strict';
+    var STORAGE_KEY = 'dso_open_menu_groups';
+    var groups = document.querySelectorAll('.dso-nav-group');
+    var openKeys = [];
+    try {
+        openKeys = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) {
+        openKeys = [];
+    }
+
+    function persist() {
+        var keys = [];
+        groups.forEach(function (g) {
+            if (g.classList.contains('dso-open')) {
+                keys.push(g.getAttribute('data-menu-key'));
+            }
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(keys));
+    }
+
+    groups.forEach(function (group) {
+        var key = group.getAttribute('data-menu-key');
+        if (!group.classList.contains('dso-open') && openKeys.indexOf(key) !== -1) {
+            group.classList.add('dso-open');
+        }
+        var toggle = group.querySelector('.dso-nav-group-toggle');
+        toggle.addEventListener('click', function () {
+            var wasOpen = group.classList.contains('dso-open');
+            // Accordion: close every other group before opening this one.
+            groups.forEach(function (g) { g.classList.remove('dso-open'); });
+            if (!wasOpen) {
+                group.classList.add('dso-open');
+            }
+            persist();
+        });
+    });
+})();
+</script>
+</body>
+</html>

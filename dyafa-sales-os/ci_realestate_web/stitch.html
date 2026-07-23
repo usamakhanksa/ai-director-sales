@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dyafa Sales OS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#565e74",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "outline-variant": "#c2c6d6",
+                      "on-surface": "#0b1c30",
+                      "inverse-primary": "#adc6ff",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-primary-fixed-variant": "#004395",
+                      "surface-tint": "#005ac2",
+                      "tertiary": "#006947",
+                      "surface-container-low": "#eff4ff",
+                      "outline": "#727785",
+                      "surface-container-high": "#dce9ff",
+                      "on-secondary-fixed": "#131b2e",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#00855b",
+                      "surface-container": "#e5eeff",
+                      "primary-container": "#2170e4",
+                      "surface-variant": "#d3e4fe",
+                      "inverse-surface": "#213145",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-container": "#dae2fd",
+                      "on-tertiary-container": "#f5fff6",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "on-primary": "#ffffff",
+                      "primary": "#0058be",
+                      "tertiary-fixed": "#6ffbbe",
+                      "surface-container-highest": "#d3e4fe",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#dae2fd",
+                      "on-primary-fixed": "#001a42",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "surface": "#f8f9ff",
+                      "on-secondary-container": "#5c647a",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#0b1c30",
+                      "on-primary-container": "#fefcff",
+                      "surface-dim": "#cbdbf5",
+                      "background": "#f8f9ff",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#d8e2ff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#424754",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#002113"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "row-height-dense": "32px",
+                      "container-margin": "24px",
+                      "row-height-standard": "48px",
+                      "gutter": "16px",
+                      "sidebar-collapsed": "64px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: #3f465c;
+            border-radius: 4px;
+        }
+        .sidebar-scroll:hover::-webkit-scrollbar-thumb {
+            background: #565e74;
+        }
+        
+        .submenu-transition {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .submenu-open {
+            max-height: 500px; /* Arbitrary large number for transition */
+            opacity: 1;
+        }
+
+        .chevron-transition {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .chevron-open {
+            transform: rotate(180deg);
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface flex flex-col py-4 z-50 text-white font-body-md text-body-md shadow-[4px_0_12px_rgba(0,0,0,0.1)]">
+<!-- Brand Header -->
+<div class="px-container-margin pb-6 flex items-center gap-3 border-b border-on-secondary-fixed-variant/50">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" data-icon="domain" data-weight="fill" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div class="overflow-hidden">
+<h1 class="font-headline-md text-headline-md font-semibold text-white truncate" title="Dyafa Sales OS">Dyafa Sales OS</h1>
+<p class="font-data-mono text-data-mono text-secondary-fixed-dim truncate">Hospitality CRM</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto sidebar-scroll py-4 px-2 space-y-1">
+<!-- Dashboard -->
+<div class="nav-group">
+<button class="w-full text-white bg-on-secondary-fixed-variant border-l-4 border-primary transition-all duration-200 hover:bg-on-secondary-fixed-variant hover:text-white flex items-center gap-3 px-4 py-2.5 rounded-r-lg group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="flex-1 text-left font-semibold">Dashboard</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition chevron-open" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition submenu-open pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-primary dark:text-inverse-primary font-semibold" href="#" onclick="setActiveLink(this)">Daily Sales</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">HOD Dashboard</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">My Performance</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Team Performance</a>
+</div>
+</div>
+<!-- Leads -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_search">person_search</span>
+<span class="flex-1 text-left">Leads</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">All Leads</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">My Leads</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Unassigned Leads</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Add New Lead</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Lead Sources</a>
+</div>
+</div>
+<!-- AI Lead Generation -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim" data-icon="auto_awesome">auto_awesome</span>
+<span class="flex-1 text-left">AI Lead Gen</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Recommendations</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Lead Scoring Config</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Generate Leads</a>
+</div>
+</div>
+<!-- Contracts -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="flex-1 text-left">Contracts</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">All Contracts</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Active</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Pending Approval</a>
+</div>
+</div>
+<!-- Corporate Accounts -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="business">business</span>
+<span class="flex-1 text-left">Corp Accounts</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Accounts List</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Key Accounts</a>
+</div>
+</div>
+<!-- Reservations -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="book_online">book_online</span>
+<span class="flex-1 text-left">Reservations</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">View All</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Create Reservation</a>
+</div>
+</div>
+<!-- Adhoc Sales -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="point_of_sale">point_of_sale</span>
+<span class="flex-1 text-left">Adhoc Sales</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">New Sale</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">History</a>
+</div>
+</div>
+<!-- Activities -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="event">event</span>
+<span class="flex-1 text-left">Activities</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Calendar</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Tasks</a>
+</div>
+</div>
+<!-- Targets -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="track_changes">track_changes</span>
+<span class="flex-1 text-left">Targets</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">My Targets</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Team Targets</a>
+</div>
+</div>
+<!-- Collections -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="flex-1 text-left">Collections</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Invoices</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Payments</a>
+</div>
+</div>
+<!-- Reports -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+<span class="flex-1 text-left">Reports</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Sales Reports</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Activity Reports</a>
+</div>
+</div>
+<!-- Property Management -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="apartment">apartment</span>
+<span class="flex-1 text-left">Property Mgmt</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Properties</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Inventory</a>
+</div>
+</div>
+<!-- AI Sales Assistant -->
+<div class="nav-group">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim" data-icon="smart_toy">smart_toy</span>
+<span class="flex-1 text-left">AI Sales Assist</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Chat</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Insights</a>
+</div>
+</div>
+<!-- Administration -->
+<div class="nav-group mt-8 border-t border-on-secondary-fixed-variant/30 pt-2">
+<button class="w-full text-on-secondary-fixed-dim hover:text-white hover:bg-on-secondary-fixed-variant/50 transition-colors duration-150 ease-in-out flex items-center gap-3 px-4 py-2.5 rounded-lg border-l-4 border-transparent group" onclick="toggleSubmenu(this)">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="flex-1 text-left">Administration</span>
+<span class="material-symbols-outlined text-[16px] chevron-transition" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<div class="submenu-transition pl-12 pr-4 pt-1 space-y-1">
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Users &amp; Roles</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Teams</a>
+<a class="submenu-link block py-2 text-on-secondary-fixed-dim hover:text-white transition-colors duration-150 ease-in-out" href="#" onclick="setActiveLink(this)">Integrations</a>
+</div>
+</div>
+</nav>
+<!-- Sidebar Footer / User Profile -->
+<div class="mt-auto pt-4 px-4 border-t border-on-secondary-fixed-variant/50">
+<button class="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-on-secondary-fixed-variant/50 transition-colors text-left">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a business executive in a modern, well-lit office environment. The lighting is soft and corporate, creating a trustworthy and reliable mood. The style is modern corporate photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf1UShwHtB9F9LG_zA_Y7KdQweCaUL9UMgK4pqBSXeumvK1sU4INjt7QizqaU-V4QH1QGSJ5_CH_SFPlQf5tPcfCyqxmO6HG6s9bXOsC9LVUr2IG6yN2l9A8_1aQWmMlx-C28sFzHRl-wfh6AensrRqVf2uqmpxIpmpmJsg76JcPHmsBjt5pcJXik1KgwpKKivYOpYhhWHFwZxru6_amkINFMgo7PBy4FpyYdjLOQcuesZjXOgyepK7UENBOm2kOLr6LtHsHBrobJN"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-white font-semibold text-body-sm truncate">Sarah Jenkins</p>
+<p class="text-secondary-fixed-dim text-data-mono truncate">Sales Manager</p>
+</div>
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<div class="flex-1 ml-sidebar-width flex flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="h-row-height-standard bg-surface dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center px-container-margin sticky top-0 z-40">
+<!-- Left: Search -->
+<div class="flex items-center flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:border-primary focus:ring-2 focus:ring-primary-container/20 transition-all outline-none" placeholder="Search leads, accounts, or reservations..." type="text"/>
+</div>
+</div>
+<!-- Center: Quick Nav (Optional based on JSON) -->
+<nav class="hidden md:flex items-center gap-8 font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Direct Bookings</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:scale-95 transition-transform" href="#">Agency Portal</a>
+</nav>
+<!-- Right: Actions -->
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container-low flex items-center justify-center text-on-surface-variant transition-colors relative">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hidden md:flex items-center gap-2 px-4 py-1.5 bg-primary text-white rounded-md hover:bg-surface-tint transition-colors font-semibold text-body-sm ml-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+<span>Add New</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace Canvas -->
+<main class="flex-1 p-container-margin overflow-y-auto bg-background">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Page Header -->
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Daily Sales Overview</h2>
+<p class="text-on-surface-variant mt-1 text-body-md">Real-time performance metrics and pipeline health.</p>
+</div>
+<div class="flex gap-2">
+<div class="px-3 py-1 bg-surface-container border border-outline-variant rounded-md text-data-mono font-data-mono flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+                            Today
+                        </div>
+</div>
+</div>
+<!-- Bento Grid Content Placeholder -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- KPI Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+</div>
+<span class="px-2 py-1 bg-tertiary-container/10 text-tertiary font-label-caps text-label-caps rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span>
+                                +12.5%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold uppercase tracking-wider mb-1">Total Revenue</p>
+<h3 class="font-display-lg text-[24px] font-bold text-on-surface">$124,500</h3>
+</div>
+<!-- KPI Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="event_note">event_note</span>
+</div>
+<span class="px-2 py-1 bg-tertiary-container/10 text-tertiary font-label-caps text-label-caps rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span>
+                                +5.2%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold uppercase tracking-wider mb-1">New Bookings</p>
+<h3 class="font-display-lg text-[24px] font-bold text-on-surface">84</h3>
+</div>
+<!-- KPI Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-error-container" data-icon="target">target</span>
+</div>
+<span class="px-2 py-1 bg-error-container/50 text-on-error-container font-label-caps text-label-caps rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_down">trending_down</span>
+                                -2.1%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold uppercase tracking-wider mb-1">Target Achievement</p>
+<h3 class="font-display-lg text-[24px] font-bold text-on-surface">92%</h3>
+</div>
+</div>
+<!-- Large Data Area Placeholder -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden mt-6">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Leads Pipeline</h3>
+<button class="text-primary font-semibold text-body-sm hover:underline">View All</button>
+</div>
+<div class="p-6 h-64 flex items-center justify-center flex-col text-on-surface-variant">
+<span class="material-symbols-outlined text-[48px] text-outline-variant mb-2" data-icon="monitoring">monitoring</span>
+<p>Data visualization canvas area.</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        function toggleSubmenu(button) {
+            const submenu = button.nextElementSibling;
+            if (!submenu || !submenu.classList.contains('submenu-transition')) return;
+            
+            const chevron = button.querySelector('.chevron-transition');
+            
+            if (submenu.classList.contains('submenu-open')) {
+                // Close clicked submenu
+                submenu.classList.remove('submenu-open');
+                if(chevron) chevron.classList.remove('chevron-open');
+                button.classList.remove('bg-on-secondary-fixed-variant', 'text-white', 'border-primary');
+                button.classList.add('text-on-secondary-fixed-dim', 'border-transparent');
+                button.querySelector('span.flex-1').classList.remove('font-semibold');
+            } else {
+                // Close all other open menus
+                document.querySelectorAll('.submenu-open').forEach(el => {
+                    el.classList.remove('submenu-open');
+                });
+                document.querySelectorAll('.chevron-open').forEach(el => {
+                    el.classList.remove('chevron-open');
+                });
+                // Reset styling for all buttons
+                document.querySelectorAll('.nav-group > button').forEach(btn => {
+                    btn.classList.remove('bg-on-secondary-fixed-variant', 'text-white', 'border-primary');
+                    btn.classList.add('text-on-secondary-fixed-dim', 'border-transparent');
+                    btn.querySelector('span.flex-1').classList.remove('font-semibold');
+                });
+                
+                // Open clicked submenu
+                submenu.classList.add('submenu-open');
+                if(chevron) chevron.classList.add('chevron-open');
+                button.classList.add('bg-on-secondary-fixed-variant', 'text-white', 'border-primary', 'rounded-r-lg');
+                button.classList.remove('text-on-secondary-fixed-dim', 'border-transparent', 'rounded-lg');
+                button.querySelector('span.flex-1').classList.add('font-semibold');
+            }
+        }
+
+        function setActiveLink(link) {
+            // Remove active classes from all submenu links
+            document.querySelectorAll('.submenu-link').forEach(el => {
+                el.classList.remove('text-primary', 'dark:text-inverse-primary', 'font-semibold');
+                el.classList.add('text-on-secondary-fixed-dim');
+            });
+            
+            // Add active classes to clicked link
+            link.classList.remove('text-on-secondary-fixed-dim');
+            link.classList.add('text-primary', 'dark:text-inverse-primary', 'font-semibold');
+        }
+    </script>
+</body></html>

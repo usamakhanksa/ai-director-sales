@@ -1,0 +1,98 @@
+if (isset($locations) && !empty($locations) && $is_state_enable) {
+	$location_array = json_decode($locations, true);
+
+	$lc_val = $CI->global_lib->get_option('language_country_' . $lang_code);
+	var_dump($lc_val);
+
+	$exp_lc_val = explode(',', $lc_val);
+	foreach ($exp_lc_val as $cc) {
+
+		$country_code = $cc;
+		if (!empty($country_code) && isset($location_array['countries'][$country_code])) {
+			$country_name = $location_array['countries'][$country_code]['loc_title'];
+
+			if (isset($location_array['countries'][$country_code]['states'])) {
+				if (count($exp_lc_val) > 1 || 1)
+					$state_list .= '<optgroup label="' . mlx_get_lang(ucwords($country_name)) . '">';
+				foreach ($location_array['countries'][$country_code]['states'] as $skey => $sval) {
+
+					if ($skey != 'no_state') {
+						$state_list .= '<option data-country_code="' . $country_code . '" 
+															data-state_code="' . $skey . '" 
+															data-full_value="' . $sval['loc_title'] . '"
+															value="' . mlx_get_norm_string($sval['loc_title']) . '"';
+						if (isset($state) && urldecode($state) == mlx_get_norm_string($sval['loc_title'])) {
+							$state_code = $skey;
+							$state_list .= ' selected="selected" ';
+
+							if (isset($location_array['countries'][$country_code]['states'][$state_code]['cities'])) {
+								$cities = $location_array['countries'][$country_code]['states'][$state_code]['cities'];
+								if (!empty($cities)) {
+									foreach ($cities as $ckey => $cval) {
+										$city_list .= '<option data-country_code="' . $country_code . '" 
+																		   data-state_code="' . $state_code . '" 
+																		   data-city_code="' . $ckey . '" 
+																		   value="' . mlx_get_norm_string($cval['loc_title']) . '"
+																		   data-full_value="' . $cval['loc_title'] . '"
+																		   ';
+
+										if (isset($city) && urldecode($city) == mlx_get_norm_string($cval['loc_title'])) {
+											$city_list .= ' selected="selected" ';
+
+											if (isset($cval['zipcodes']) && !empty($cval['zipcodes'])) {
+												foreach ($cval['zipcodes'] as $zipcode) {
+													$zipcode_list .= '<option value="' . $zipcode . '"';
+													if (isset($zip_code) && urldecode($zip_code) == $zipcode)
+														$zipcode_list .= ' selected="selected" ';
+													$zipcode_list .= '>' . mlx_get_lang($zipcode) . '</option>';
+												}
+											}
+											if (isset($cval['sub_areas']) && !empty($cval['sub_areas'])) {
+												foreach ($cval['sub_areas'] as $subarea) {
+													$subarea_list .= '<option value="' . $subarea . '"';
+													if (isset($sub_area) && urldecode($sub_area) == $subarea)
+														$subarea_list .= ' selected="selected" ';
+													$subarea_list .= '>' . mlx_get_lang($subarea) . '</option>';
+												}
+											}
+										}
+										$city_list .= '>' . mlx_get_lang($cval['loc_title']) . '</option>';
+									}
+								}
+							}
+						}
+						$state_list .= '>' . mlx_get_lang($sval['loc_title']) . '</option>';
+					}
+				}
+				if (count($exp_lc_val) > 1)
+					$state_list .= '</optgroup>';
+			}
+		}
+	}
+} else if (!empty($locations)) {
+
+	$location_array = json_decode($locations, true);
+
+	$lang_code = $CI->default_language;
+	$lc_val = $CI->global_lib->get_option('language_country_' . $lang_code);
+	$exp_lc_val = explode(',', $lc_val);
+	foreach ($exp_lc_val as $cc) {
+		$country_code = $cc;
+		if (!empty($country_code) && isset($location_array['countries'][$country_code])) {
+			$country_name = $location_array['countries'][$country_code]['loc_title'];
+
+			if (isset($location_array['countries'][$country_code]['states']['no_state']['cities'])) {
+				if (count($exp_lc_val) > 1)
+					$city_list .= '<optgroup label="' . mlx_get_lang(ucwords($country_name)) . '">';
+				foreach ($location_array['countries'][$country_code]['states']['no_state']['cities'] as $skey => $sval) {
+					$city_list .= '<option data-country_code="' . $country_code . '" data-state_code="no_state" data-city_code="' . $skey . '" value="' . $sval['loc_title'] . '"';
+					if (isset($city) && urldecode($city) == $sval['loc_title'])
+						$city_list .= ' selected="selected" ';
+					$city_list .= '>' . mlx_get_lang($sval['loc_title']) . '</option>';
+				}
+				if (count($exp_lc_val) > 1)
+					$city_list .= '</optgroup>';
+			}
+		}
+	}
+}
