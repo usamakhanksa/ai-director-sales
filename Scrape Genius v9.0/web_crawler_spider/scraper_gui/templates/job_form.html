@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block title %}{{ tool.title }} - Scraper Studio{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <h4>{{ tool.title }}</h4>
+    <p class="text-muted">{{ tool.description }}</p>
+    {% if tool.note %}<p class="text-muted fst-italic small">{{ tool.note }}</p>{% endif %}
+
+    {% if tool.credentials_endpoint %}
+    <div class="card shadow-sm mb-3">
+      <div class="card-header bg-secondary text-white">Save CRM credentials</div>
+      <div class="card-body">
+        <form id="credsForm">
+          <div class="mb-2">
+            <label class="form-label">Provider</label>
+            <select class="form-select" name="provider">
+              <option value="justdial">JustDial</option>
+              <option value="indiamart">IndiaMART</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Login ID (email/mobile)</label>
+            <input type="text" class="form-control" name="login_id" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="secret" required>
+          </div>
+          <button type="submit" class="btn btn-outline-secondary w-100">Save credentials (encrypted at rest)</button>
+        </form>
+        <pre id="credsResult" class="d-none bg-white p-2 border rounded mt-2 small"></pre>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="card shadow-sm">
+      <div class="card-header {{ tool.header_class or 'bg-primary' }} text-white">{{ tool.title }}</div>
+      <div class="card-body">
+        <form id="jobForm">
+          {% for field in tool.fields %}
+          <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+            {% if field.type == "select" %}
+            <select class="form-select" name="{{ field.name }}">
+              {% for opt in field.options %}
+              <option value="{{ opt.value }}" {% if opt.selected %}selected{% endif %}>{{ opt.label }}</option>
+              {% endfor %}
+            </select>
+            {% else %}
+            <input type="{{ field.type }}" class="form-control" name="{{ field.name }}"
+                   value="{{ field.value or '' }}" placeholder="{{ field.placeholder or '' }}"
+                   {% if field.min %}min="{{ field.min }}"{% endif %}
+                   {% if field.required %}required{% endif %} dir="auto">
+            {% endif %}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary w-100">{{ tool.submit_label or "Start Scrape" }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  {% if tool.credentials_endpoint %}
+  const credsForm = document.getElementById("credsForm");
+  const credsResult = document.getElementById("credsResult");
+  credsForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    credsResult.classList.remove("d-none");
+    credsResult.textContent = "Saving...";
+    const payload = Object.fromEntries(new FormData(credsForm).entries());
+    const res = await fetch({{ tool.credentials_endpoint | tojson }}, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    credsResult.textContent = JSON.stringify(await res.json(), null, 2);
+  });
+  {% endif %}
+
+  const form = document.getElementById("jobForm");
+  const endpoint = {{ tool.endpoint | tojson }};
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const payload = Object.fromEntries(new FormData(form).entries());
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.job_id) {
+      window.location.href = `/job?job_id=${data.job_id}`;
+    } else {
+      alert(data.error || "Failed to start job");
+    }
+  });
+</script>
+{% endblock %}

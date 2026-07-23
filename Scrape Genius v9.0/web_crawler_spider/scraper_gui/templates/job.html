@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block title %}Job {{ job_id }} - Scraper Studio{% endblock %}
+{% block extra_head %}
+  <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <h4>Job <code>{{ job_id }}</code></h4>
+    <p id="statusLine" class="text-muted">Loading status...</p>
+
+    <div class="progress mb-3" style="height: 24px;">
+      <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated"
+           role="progressbar" style="width: 0%">0%</div>
+    </div>
+
+    <div id="errorBox" class="alert alert-danger d-none"></div>
+
+    <button id="cancelBtn" class="btn btn-outline-danger btn-sm mb-3">Cancel Job</button>
+    <a id="downloadBtn" class="btn btn-outline-success btn-sm mb-3 d-none" href="#">Download CSV</a>
+
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped w-100" id="resultsTable">
+        <thead><tr id="resultsHeader"></tr></thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    const jobId = "{{ job_id }}";
+    const statusLine = document.getElementById("statusLine");
+    const progressBar = document.getElementById("progressBar");
+    const errorBox = document.getElementById("errorBox");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const resultsHeader = document.getElementById("resultsHeader");
+
+    let dataTable = null;
+    let renderedColumns = null;
+    let pollTimer = null;
+
+    // Live scraping produces an unbounded / very large number of rows, so
+    // the full JSON result set is paginated client-side (DataTables) instead
+    // of dumping every row into the DOM on every poll tick.
+    function initTable(columns) {
+      renderedColumns = columns;
+      resultsHeader.innerHTML = columns.map(c => `<th>${c}</th>`).join("");
+      dataTable = $("#resultsTable").DataTable({
+        data: [],
+        columns: columns.map(c => ({ data: c, defaultContent: "" })),
+        pageLength: 25,
+        lengthMenu: [10, 25, 50, 100, 250, 500, 1000],
+        order: [],
+        deferRender: true,
+      });
+    }
+
+    async function renderResults() {
+      const res = await fetch(`/api/jobs/${jobId}/results`);
+      if (!res.ok) return;
+      const rows = await res.json();
+      if (!rows.length) return;
+
+      if (!dataTable) {
+        initTable(Object.keys(rows[0]));
+      }
+
+      if (rows.length !== dataTable.rows().count()) {
+        dataTable.clear();
+        dataTable.rows.add(rows);
+        dataTable.draw(false); // false = keep current page/sort while live data streams in
+      }
+    }
+
+    async function poll() {
+      const res = await fetch(`/api/jobs/${jobId}`);
+      if (!res.ok) {
+        statusLine.textContent = "Job not found.";
+        clearInterval(pollTimer);
+        return;
+      }
+      const data = await res.json();
+      statusLine.textContent = `Status: ${data.status} | Results so far: ${data.result_count} | Elapsed: ${data.elapsed_seconds}s`;
+      progressBar.style.width = `${data.progress}%`;
+      progressBar.textContent = `${data.progress}%`;
+
+      if (data.error) {
+        errorBox.classList.remove("d-none");
+        errorBox.textContent = data.error;
+      }
+
+      await renderResults();
+
+      if (["completed", "failed", "cancelled"].includes(data.status)) {
+        clearInterval(pollTimer);
+        cancelBtn.classList.add("d-none");
+        if (data.result_count > 0) {
+          downloadBtn.classList.remove("d-none");
+          downloadBtn.href = `/api/jobs/${jobId}/download?format=csv`;
+        }
+      }
+    }
+
+    cancelBtn.addEventListener("click", async () => {
+      await fetch(`/api/jobs/${jobId}`, { method: "DELETE" });
+    });
+
+    poll();
+    pollTimer = setInterval(poll, 1000);
+  </script>
+{% endblock %}

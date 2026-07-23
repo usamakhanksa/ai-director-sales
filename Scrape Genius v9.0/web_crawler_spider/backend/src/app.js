@@ -12,6 +12,9 @@ const classifiedRoutes = require("./routes/classified.routes");
 const exportRoutes = require("./routes/export.routes");
 const dorkGeneratorRoutes = require("./routes/dorkGenerator.routes"); // NEW: Dork generator routes
 const leadQualifierRoutes = require("./routes/leadQualifier.routes");
+const linkedinProfileRoutes = require("./routes/linkedinProfileRoutes"); // NEW: LinkedIn profile scraper routes
+const linkedinSearchRoutes = require("./routes/linkedinSearchRoutes"); // NEW: LinkedIn search scraper routes
+const googleNewsRoutes = require("./routes/google-news.routes"); // NEW: Google News RSS routes
 
 const app = express();
 
@@ -71,6 +74,9 @@ app.use("/v1/classified", classifiedRoutes);
 app.use("/v1/export", exportRoutes);
 app.use("/v1/dorks", dorkGeneratorRoutes); // NEW: Register dork generator routes
 app.use("/v1/lead-qualifier", leadQualifierRoutes);
+app.use("/api/linkedin-profile", linkedinProfileRoutes); // NEW: Register LinkedIn profile scraper routes
+app.use("/api/linkedin-search", linkedinSearchRoutes); // NEW: Register LinkedIn search scraper routes
+app.use("/v1/scrape/google-news", googleNewsRoutes); // NEW: Register Google News RSS routes
 app.use(notFoundHandler);
 app.use(errorHandler);
 

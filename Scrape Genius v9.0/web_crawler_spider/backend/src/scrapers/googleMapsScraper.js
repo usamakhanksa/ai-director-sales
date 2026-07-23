@@ -284,7 +284,7 @@ async function scrapeListingPageWithAI(page, href) {
 
 // ORIGINAL scrapeListingPage function (unchanged for compatibility)
 async function scrapeListingPage(page, href) {
-  const detailUrl = `https://www.google.com${href}`;
+  const detailUrl = /^https?:\/\//i.test(href) ? href : `https://www.google.com${href}`;
   await page.goto(detailUrl, { waitUntil: "networkidle", timeout: 30000 });
 
   // Wait for the side panel to load

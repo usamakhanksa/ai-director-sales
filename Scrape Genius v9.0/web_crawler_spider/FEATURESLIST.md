@@ -83,3 +83,49 @@ half-wired.
   Express backend, which has `express-rate-limit` on auth endpoints) —
   Next.js App Router has no built-in middleware chaining per-route, so this
   needs either global `middleware.ts` or a per-route wrapper.
+
+---
+
+## Update — later pass (2026-07-14): several of the gaps above are now resolved
+
+This file is kept as a historical log of an early build; it is not a live
+status document. As of the latest pass, note that several "known gaps"
+listed above no longer apply:
+
+- **Google Custom Search is now called directly**: `POST /api/scrape/google-search`
+  picks an available key, calls the CSE API, and increments usage in one
+  route (see [apiurl.md](apiurl.md) §12).
+- **Email verification now exists**, as a free, no-external-API endpoint:
+  `POST /api/verify/email` — Zod syntax check + Node `dns.resolveMx`/`resolve4`
+  lookup + disposable/free-provider detection + typo suggestions. (Still
+  distinct from the signup-flow `isVerified` flag mentioned above, which
+  remains auto-true on signup.)
+- **Maps scraping is implemented**: `POST /api/scrape/google-maps` (direct,
+  synchronous) and the job-queue-based Google Maps Business Extractor Pro
+  (`/dashboard/tools/google-maps-pro`) both exist, producing
+  `ScrapedRecord.source = MAP` rows.
+- **Admin routes exist**: `GET/PATCH /api/admin/users`, `GET /api/admin/usage`,
+  `GET/POST /api/admin/purchase-codes`.
+
+### Four new features added this pass (see [Implementation.md](Implementation.md) for full build/verification notes)
+- **Zero-Cost AI Scraper** — `POST /api/scrape/ai-scraper`, fetches clean
+  Markdown via the free `r.jina.ai` reader and extracts emails/phones/company
+  names (Arabic + English).
+- **Google News RSS Scraper** — `GET /api/scrape/google-news` (Next.js proxy)
+  → backend `GET /v1/scrape/google-news` (was written but never mounted;
+  now wired into `backend/src/app.js`).
+- **Email verification dashboard entry** — same route as above, now reachable
+  from the sidebar (`/dashboard/tools/email-verifier`), not just via curl.
+- **Webhooks (registration)** — `POST`/`GET /api/webhooks/register`. The
+  route existed in an earlier draft but its Prisma `Webhook` model did not,
+  so every call would have thrown `Unknown model "webhook"` — this has been
+  fixed (model added, migrated, dashboard page added at
+  `/dashboard/settings/webhooks`). Event **dispatch** (actually POSTing to
+  registered URLs when a job completes) is still unbuilt — registration only.
+
+Still-open items from the original gap list remain open: no refresh/revoke
+token mechanism, no automated test suite, no rate limiting middleware on
+Next.js routes, and the parallel Express (`backend/`) auth/user schema is
+still a separate, incompatible identity system from the Prisma one (bridged
+only for the scrape job/backend proxy routes via `INTERNAL_API_SECRET`, not
+unified).

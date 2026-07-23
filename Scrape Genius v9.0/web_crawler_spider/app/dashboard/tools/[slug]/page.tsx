@@ -17,10 +17,25 @@ function responseToRows(fieldKind: string | undefined, data: any): Record<string
     return [data.result];
   }
 
+  if (fieldKind === "email") {
+    return [data];
+  }
+
   if (fieldKind === "file") {
     const emails = (data.emails ?? []).map((value: string) => ({ type: "email", value }));
     const phones = (data.phones ?? []).map((value: string) => ({ type: "phone", value }));
     return [...emails, ...phones];
+  }
+
+  if (fieldKind === "url") {
+    const emails = (data.emails ?? []).map((value: string) => ({ type: "email", value }));
+    const phones = (data.phones ?? []).map((value: string) => ({ type: "phone", value }));
+    const companies = (data.companies ?? []).map((value: string) => ({ type: "company", value }));
+    return [...emails, ...phones, ...companies];
+  }
+
+  if (Array.isArray(data.items)) {
+    return data.items.map((row: unknown) => (typeof row === "object" && row !== null ? row : { value: row }));
   }
 
   if (Array.isArray(data.results)) {
@@ -44,6 +59,8 @@ export default function ToolRunnerPage() {
   const [domain, setDomain] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [limit, setLimit] = useState(10);
+  const [url, setUrl] = useState("");
+  const [email, setEmail] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +74,7 @@ export default function ToolRunnerPage() {
     );
   }
 
-  const { apiRoute, fieldKind } = tool.run;
+  const { apiRoute, fieldKind, method = "POST" } = tool.run;
   const contactType = tool.run.contactType;
 
   async function handleSubmit(e: FormEvent) {
@@ -86,7 +103,7 @@ export default function ToolRunnerPage() {
         });
       } else {
         let body: Record<string, unknown> = {};
-        if (fieldKind === "query") body = { query, limit };
+        if (fieldKind === "query") body = { q: query, query, limit };
         else if (fieldKind === "urls") body = { urls: urls.split("\n").map((s) => s.trim()).filter(Boolean) };
         else if (fieldKind === "keyword-country") body = { keyword, country: country || undefined, limit };
         else if (fieldKind === "contact")
@@ -95,12 +112,25 @@ export default function ToolRunnerPage() {
               ? { type: contactType, url: contactValue }
               : { type: contactType, text: contactValue };
         else if (fieldKind === "domain") body = { domain };
+        else if (fieldKind === "url") body = { url };
+        else if (fieldKind === "email") body = { email };
 
-        res = await fetch(apiRoute!, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify(body),
-        });
+        if (method === "GET") {
+          const searchParams = new URLSearchParams();
+          for (const [key, value] of Object.entries(body)) {
+            if (value !== undefined && value !== null && value !== "") searchParams.set(key, String(value));
+          }
+          res = await fetch(`${apiRoute}?${searchParams.toString()}`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+          });
+        } else {
+          res = await fetch(apiRoute!, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify(body),
+          });
+        }
       }
 
       const json = await res.json();
@@ -224,6 +254,34 @@ export default function ToolRunnerPage() {
           <label style={label}>
             Domain
             <input value={domain} onChange={(e) => setDomain(e.target.value)} required placeholder="example.com" style={input} />
+          </label>
+        )}
+
+        {fieldKind === "url" && (
+          <label style={label}>
+            URL
+            <input
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+              type="url"
+              placeholder="https://example.com"
+              style={input}
+            />
+          </label>
+        )}
+
+        {fieldKind === "email" && (
+          <label style={label}>
+            Email address
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              type="email"
+              placeholder="name@example.com"
+              style={input}
+            />
           </label>
         )}
 

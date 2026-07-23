@@ -14,15 +14,27 @@ import {
   faBars,
   faPhone,
   faEnvelope,
+  faFolderOpen,
+  faSliders,
+  faLock,
+  faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { clearSession, getToken, getUser, type StoredUser } from "@/lib/client-auth";
-import { MAIN_NAV } from "@/lib/nav-data";
+import { getNavigationItems, NAVIGATION_BY_CATEGORY, type NavItem } from "@/lib/nav-data";
 import { useTranslation, LOCALE_LABEL, type Locale } from "@/lib/i18n";
 import styles from "./DashboardShell.module.css";
 
 const THEME_KEY = "sg_theme";
 const RUNNING_JOBS_POLL_MS = 15000;
+
+// Group navigation items by category with labels
+const NAVIGATION_GROUPS = [
+  { id: "main", label: "Main", icon: faFolderOpen },
+  { id: "tools", label: "Tools", icon: faWrench },
+  { id: "settings", label: "Settings", icon: faSliders },
+  { id: "admin", label: "Admin", icon: faLock },
+];
 
 export default function DashboardShell({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -89,7 +101,8 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
 
   if (!checked || !user) return null;
 
-  const visibleNav = MAIN_NAV.filter((item) => !item.adminOnly || user.role === "ADMIN");
+  // Get navigation items based on user role
+  const navigationItems = getNavigationItems(user.role);
 
   return (
     <div className={`${styles.shell} ${dark ? styles.dark : ""}`} dir={dir}>
@@ -100,29 +113,42 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
           </Link>
         </div>
 
-        <nav className={styles.navSection}>
-          <div className={styles.navSectionLabel}>{t("nav.main")}</div>
-          {visibleNav.map((item) => {
-            const active = pathname === item.href.split("#")[0] && item.href.split("#")[0] === "/dashboard";
-            const isJobs = item.href === "/dashboard/jobs";
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`${styles.navItem} ${active ? styles.navItemActive : ""}`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <FontAwesomeIcon icon={item.icon} className={styles.navIcon} />
-                {item.labelKey ? t(item.labelKey) : item.label}
-                {isJobs && runningJobs > 0 ? (
-                  <span className={styles.jobBadge}>{runningJobs}</span>
-                ) : (
-                  <FontAwesomeIcon icon={faChevronRight} className={styles.chevron} />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Render navigation grouped by category */}
+        {NAVIGATION_GROUPS.map((group) => {
+          const groupItems = NAVIGATION_BY_CATEGORY[group.id as keyof typeof NAVIGATION_BY_CATEGORY] || [];
+          const visibleItems = groupItems.filter((item) => !item.adminOnly || user.role === "ADMIN");
+          
+          if (visibleItems.length === 0) return null;
+          
+          return (
+            <nav key={group.id} className={styles.navSection}>
+              <div className={styles.navSectionLabel}>
+                <FontAwesomeIcon icon={group.icon} className={styles.navIcon} />
+                {group.label}
+              </div>
+              {visibleItems.map((item) => {
+                const active = pathname === item.href.split("#")[0];
+                const isJobs = item.href === "/dashboard/jobs";
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`${styles.navItem} ${active ? styles.navItemActive : ""}`}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <FontAwesomeIcon icon={item.icon} className={styles.navIcon} />
+                    {item.labelKey ? t(item.labelKey) : item.label}
+                    {isJobs && runningJobs > 0 ? (
+                      <span className={styles.jobBadge}>{runningJobs}</span>
+                    ) : (
+                      <FontAwesomeIcon icon={faChevronRight} className={styles.chevron} />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+          );
+        })}
 
         <nav className={styles.navSection} style={{ marginTop: "auto" }}>
           <div className={styles.navSectionLabel}>{t("nav.support")}</div>
@@ -134,12 +160,6 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
             <FontAwesomeIcon icon={faEnvelope} className={styles.navIcon} />
             {t("nav.emailUs")}
           </span>
-
-          <div className={styles.navSectionLabel}>{t("nav.settings")}</div>
-          <Link href="/dashboard" className={styles.navItem}>
-            <FontAwesomeIcon icon={faUser} className={styles.navIcon} />
-            {t("nav.profile")}
-          </Link>
         </nav>
       </aside>
 

@@ -47,7 +47,15 @@ function getStealthChromium() {
     // playwright-extra wraps playwright and applies stealth patches
     const { chromium } = require("playwright-extra");
     const StealthPlugin = require("puppeteer-extra-plugin-stealth");
-    chromium.use(StealthPlugin());
+    const stealth = StealthPlugin();
+    // This evasion crashes against current Chromium (throws reading a null
+    // regex match on the UA/version string), which corrupts
+    // navigator.userAgentData mid-patch and then crashes Google Maps' own
+    // bootstrap script before it ever renders the results feed. We already
+    // set a real userAgent via context options and spoof navigator.webdriver
+    // /platform/languages ourselves in createContext(), so it's redundant.
+    stealth.enabledEvasions.delete("user-agent-override");
+    chromium.use(stealth);
     _stealthChromium = chromium;
     console.log("[BrowserEngine] Using playwright-extra with stealth plugin ✅");
   } catch {
@@ -112,24 +120,33 @@ async function createBrowser({ headless = true, proxy, blockMedia = true } = {})
  * @returns {Promise<{ context: BrowserContext, page: Page }>}
  */
 async function createContext(browser, overrides = {}, blockMedia = true) {
-  // Generate a random fingerprint for this context
-  const fingerprint = fingerprintGenerator.getFingerprint({
+  // Generate a random fingerprint for this context. getFingerprint() returns
+  // { fingerprint: { screen, navigator, ... }, headers } — the actual data
+  // lives under the `.fingerprint` key, not at the top level.
+  const { fingerprint: fp } = fingerprintGenerator.getFingerprint({
     devices: ['desktop'],
     operatingSystems: ['windows', 'macos'],
     browsers: ['chrome'],
   });
 
-  const contextOpts = { 
-    ...getStealthContextOptions(), 
+  const contextOpts = {
+    ...getStealthContextOptions(),
     ...overrides,
-    viewport: fingerprint.viewport,
-    userAgent: fingerprint.userAgent,
+    viewport: { width: fp.screen.width, height: fp.screen.height },
+    userAgent: fp.navigator.userAgent,
   };
   
   const context = await browser.newContext(contextOpts);
 
-  // Inject the fingerprint into the context
-  await fingerprintInjector.attachFingerprintToPlaywright(context, fingerprint);
+  // NOTE: We deliberately do NOT call
+  // fingerprintInjector.attachFingerprintToPlaywright(context, fingerprint)
+  // here. It patches navigator.userAgentData (Client Hints) in a way that's
+  // incompatible with the Chromium build Playwright ships here, which throws
+  // inside Google Maps' own bootstrap script ("Cannot read properties of
+  // undefined (reading 'U')") and leaves the page permanently blank — no
+  // feed, no listings, 0 results, on every single job. The UA/viewport
+  // already set via contextOpts above plus the addInitScript patches below
+  // are sufficient and don't corrupt Client Hints.
 
   const page = await context.newPage();
 
@@ -139,8 +156,13 @@ async function createContext(browser, overrides = {}, blockMedia = true) {
     "Accept-Encoding": "gzip, deflate, br",
   });
 
-  // Inject JavaScript patches into every new page to defeat webdriver detection
-  await context.addInitScript(() => {
+  // Inject JavaScript patches into every new page to defeat webdriver detection.
+  // `fingerprint` is passed in as an argument (not closed over) because
+  // addInitScript serializes this function and re-evaluates it inside the
+  // page's own isolated JS context, where Node-side closures don't exist —
+  // referencing `fingerprint` directly threw "ReferenceError: fingerprint is
+  // not defined" on every single page load, before any page script ran.
+  await context.addInitScript((fp) => {
     // Delete the webdriver property (set by Playwright/CDP)
     Object.defineProperty(navigator, "webdriver", { get: () => undefined });
 
@@ -175,13 +197,13 @@ async function createContext(browser, overrides = {}, blockMedia = true) {
         get: () => ua.replace("HeadlessChrome", "Chrome"),
       });
     }
-    
+
     // Additional fingerprint spoofing
-    Object.defineProperty(navigator, "platform", { get: () => fingerprint.navigator.platform });
-    Object.defineProperty(navigator, "hardwareConcurrency", { get: () => fingerprint.navigator.hardwareConcurrency });
-    Object.defineProperty(navigator, "deviceMemory", { get: () => fingerprint.navigator.deviceMemory });
-    Object.defineProperty(navigator, "maxTouchPoints", { get: () => fingerprint.navigator.maxTouchPoints });
-  });
+    Object.defineProperty(navigator, "platform", { get: () => fp.navigator.platform });
+    Object.defineProperty(navigator, "hardwareConcurrency", { get: () => fp.navigator.hardwareConcurrency });
+    Object.defineProperty(navigator, "deviceMemory", { get: () => fp.navigator.deviceMemory });
+    Object.defineProperty(navigator, "maxTouchPoints", { get: () => fp.navigator.maxTouchPoints });
+  }, fp);
 
 
   // Setup request interception if enabled

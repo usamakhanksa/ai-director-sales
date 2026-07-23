@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard - Scraper Studio{% endblock %}
+{% block content %}
+<h4 class="mb-3">Dashboard</h4>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/google-maps">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">Google Maps Extractor</h6>
+      <p class="card-text text-muted small mb-0">Playwright deep crawl of Maps listings + website email enrichment.</p>
+    </div></div></a></div>
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/linkedin">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">LinkedIn People Search</h6>
+      <p class="card-text text-muted small mb-0">SERP-dork discovery + optional deep profile visit.</p>
+    </div></div></a></div>
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/instagram">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">Instagram Scraper</h6>
+      <p class="card-text text-muted small mb-0">Keyword/username discovery + public profile deep-visit.</p>
+    </div></div></a></div>
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/facebook">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">Facebook Scraper</h6>
+      <p class="card-text text-muted small mb-0">SERP dorking + stealth deep-visit of public pages.</p>
+    </div></div></a></div>
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/twitter">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">Twitter / X Scraper</h6>
+      <p class="card-text text-muted small mb-0">Stealth search-timeline scroll + tweet extraction.</p>
+    </div></div></a></div>
+  <div class="col-md-4"><a class="text-decoration-none" href="/tools/classifieds">
+    <div class="card shadow-sm h-100"><div class="card-body">
+      <h6 class="card-title">Classified Ads Scraper</h6>
+      <p class="card-text text-muted small mb-0">Haraj + MENA marketplaces, full RTL Arabic support.</p>
+    </div></div></a></div>
+</div>
+
+{% if jobs %}
+<h5>Recent Jobs</h5>
+<table class="table table-striped bg-white">
+  <thead><tr><th>Job ID</th><th>Source</th><th>Status</th><th>Progress</th><th>Results</th><th></th></tr></thead>
+  <tbody>
+    {% for job in jobs %}
+    <tr>
+      <td><code>{{ job.job_id }}</code></td>
+      <td>{{ job.source }}</td>
+      <td>{{ job.status }}</td>
+      <td>{{ job.progress }}%</td>
+      <td>{{ job.result_count }}</td>
+      <td><a href="/job?job_id={{ job.job_id }}" class="btn btn-sm btn-outline-primary">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="text-muted">No jobs yet - pick a scraper above or from the sidebar to get started.</p>
+{% endif %}
+{% endblock %}

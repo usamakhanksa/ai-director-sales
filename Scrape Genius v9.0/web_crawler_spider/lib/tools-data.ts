@@ -1,8 +1,10 @@
-export type ToolFieldKind = "query" | "urls" | "keyword-country" | "contact" | "file" | "domain";
+export type ToolFieldKind = "query" | "urls" | "keyword-country" | "contact" | "file" | "domain" | "url" | "email";
 
 export interface ToolRunConfig {
-  /** POST endpoint this tool calls to run a scrape. Omitted for tools with a dedicated custom page (CRM, custom API). */
+  /** Endpoint this tool calls to run a scrape. Omitted for tools with a dedicated custom page (CRM, custom API). */
   apiRoute?: string;
+  /** HTTP method used against apiRoute — defaults to POST. GET sends fields as query params instead of a JSON body. */
+  method?: "GET" | "POST";
   fieldKind?: ToolFieldKind;
   /** For "contact" field kind: which ScrapeSource this tool charges to. */
   contactType?: "EMAIL" | "PHONE";
@@ -134,6 +136,24 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         iconSrc: `${ICON_BASE}/facebook.png`,
         isNew: true,
         run: { customPage: "/dashboard/tools/social/facebook" },
+      },
+      {
+        slug: "linkedin-profile-scraper",
+        title: "LinkedIn Profile Scraper",
+        description:
+          "Extract public profile information from LinkedIn, including name, headline, location, experience, education, and skills.",
+        iconSrc: `${ICON_BASE}/linkedin.png`,
+        isNew: true,
+        run: { customPage: "/dashboard/tools/social/linkedin" },
+      },
+      {
+        slug: "linkedin-search-scraper",
+        title: "LinkedIn Search",
+        description:
+          "Keyword-search LinkedIn (e.g. \"hotel owner\") using your own session cookie and extract matching profiles' name, title, location, and public contact info when available.",
+        iconSrc: `${ICON_BASE}/linkedin.png`,
+        isNew: true,
+        run: { customPage: "/dashboard/tools/social/linkedin/search" },
       },
       {
         slug: "linkedin-email-finder",
@@ -324,6 +344,45 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
         iconSrc: `${ICON_BASE}/verify.png`,
         isNew: true,
         run: { customPage: "/dashboard/tools/ai-enrichment" },
+      },
+      {
+        slug: "ai-scraper",
+        title: "Zero-Cost AI Scraper",
+        description:
+          "Paste any URL — fetches clean Markdown via the free Jina AI reader and extracts emails, phone numbers, and company names in both Arabic and English, no API key required.",
+        iconSrc: `${ICON_BASE}/verify.png`,
+        isNew: true,
+        run: { apiRoute: "/api/scrape/ai-scraper/", fieldKind: "url" },
+      },
+    ],
+  },
+  {
+    id: "news",
+    label: "News & Media",
+    tools: [
+      {
+        slug: "google-news",
+        title: "Google News RSS Scraper",
+        description:
+          "Fetches Google News RSS results for any keyword and language (English or Arabic), returning structured title, link, source, and publish date — no API key required.",
+        iconSrc: `${ICON_BASE}/verify.png`,
+        isNew: true,
+        run: { apiRoute: "/api/scrape/google-news/", method: "GET", fieldKind: "query" },
+      },
+    ],
+  },
+  {
+    id: "verification",
+    label: "Email Verification",
+    tools: [
+      {
+        slug: "email-verifier",
+        title: "Email Verifier",
+        description:
+          "Checks email syntax and performs a free MX-record DNS lookup to estimate deliverability, flags disposable/free providers, and suggests typo corrections — no paid API required.",
+        iconSrc: `${ICON_BASE}/checker.png`,
+        isNew: true,
+        run: { apiRoute: "/api/verify/email/", fieldKind: "email" },
       },
     ],
   },

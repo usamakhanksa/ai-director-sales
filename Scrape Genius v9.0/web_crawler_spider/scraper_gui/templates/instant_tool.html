@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+{% block title %}{{ tool.title }} - Scraper Studio{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <h4>{{ tool.title }}</h4>
+    <p class="text-muted">{{ tool.description }}</p>
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <form id="toolForm" {% if tool.multipart %}enctype="multipart/form-data"{% endif %}>
+          {% for field in tool.fields %}
+          <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+            {% if field.type == "select" %}
+            <select class="form-select" name="{{ field.name }}">
+              {% for opt in field.options %}
+              <option value="{{ opt.value }}">{{ opt.label }}</option>
+              {% endfor %}
+            </select>
+            {% elif field.type == "textarea" %}
+            <textarea class="form-control" name="{{ field.name }}" rows="4" placeholder="{{ field.placeholder or '' }}"></textarea>
+            {% elif field.type == "file" %}
+            <input type="file" class="form-control" name="{{ field.name }}" accept="{{ field.accept or '' }}" {% if field.required %}required{% endif %}>
+            {% else %}
+            <input type="{{ field.type }}" class="form-control" name="{{ field.name }}" placeholder="{{ field.placeholder or '' }}" {% if field.required %}required{% endif %} dir="auto">
+            {% endif %}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary w-100" id="submitBtn">{{ tool.submit_label or "Run" }}</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="resultBox" class="d-none">
+      <h6>Result</h6>
+      <pre id="resultPre" class="bg-white p-3 border rounded" style="white-space: pre-wrap; word-break: break-word; max-height: 60vh; overflow: auto;"></pre>
+    </div>
+
+    {% if tool.list_endpoint %}
+    <hr class="my-4">
+    <button class="btn btn-sm btn-outline-dark mb-2" id="listBtn">{{ tool.list_label or "Refresh saved list" }}</button>
+    <pre id="listPre" class="bg-white p-3 border rounded d-none" style="white-space: pre-wrap; max-height: 40vh; overflow: auto;"></pre>
+    {% endif %}
+
+    {% if tool.secondary %}
+    <hr class="my-4">
+    <h5>{{ tool.secondary.title }}</h5>
+    <p class="text-muted">{{ tool.secondary.description }}</p>
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <form id="secondaryForm">
+          {% for field in tool.secondary.fields %}
+          <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+            <input type="{{ field.type }}" class="form-control" name="{{ field.name }}" placeholder="{{ field.placeholder or '' }}" {% if field.required %}required{% endif %}>
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-outline-secondary w-100">{{ tool.secondary.submit_label or "Submit" }}</button>
+        </form>
+      </div>
+    </div>
+    <div id="secondaryResultBox" class="d-none">
+      <pre id="secondaryResultPre" class="bg-white p-3 border rounded" style="white-space: pre-wrap; word-break: break-word;"></pre>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const form = document.getElementById("toolForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const resultBox = document.getElementById("resultBox");
+  const resultPre = document.getElementById("resultPre");
+  const endpoint = {{ tool.endpoint | tojson }};
+  const method = {{ (tool.method or "POST") | tojson }};
+  const isMultipart = {{ (tool.multipart or false) | tojson }};
+  const isGet = method === "GET";
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Running...";
+    resultBox.classList.remove("d-none");
+    resultPre.textContent = "Working...";
+
+    try {
+      let res;
+      if (isGet) {
+        const params = new URLSearchParams(new FormData(form));
+        res = await fetch(`${endpoint}?${params.toString()}`);
+      } else if (isMultipart) {
+        res = await fetch(endpoint, { method: "POST", body: new FormData(form) });
+      } else {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      }
+      const data = await res.json();
+      resultPre.textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+      resultPre.textContent = `Request failed: ${err}`;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = {{ (tool.submit_label or "Run") | tojson }};
+    }
+  });
+
+  {% if tool.list_endpoint %}
+  const listBtn = document.getElementById("listBtn");
+  const listPre = document.getElementById("listPre");
+  listBtn.addEventListener("click", async () => {
+    listPre.classList.remove("d-none");
+    listPre.textContent = "Loading...";
+    const res = await fetch({{ tool.list_endpoint | tojson }});
+    listPre.textContent = JSON.stringify(await res.json(), null, 2);
+  });
+  {% endif %}
+
+  {% if tool.secondary %}
+  const secondaryForm = document.getElementById("secondaryForm");
+  const secondaryResultBox = document.getElementById("secondaryResultBox");
+  const secondaryResultPre = document.getElementById("secondaryResultPre");
+  const secondaryEndpoint = {{ tool.secondary.endpoint | tojson }};
+  const secondaryMethod = {{ (tool.secondary.method or "POST") | tojson }};
+
+  secondaryForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    secondaryResultBox.classList.remove("d-none");
+    secondaryResultPre.textContent = "Working...";
+    try {
+      let res;
+      if (secondaryMethod === "GET") {
+        const params = new URLSearchParams(new FormData(secondaryForm));
+        res = await fetch(`${secondaryEndpoint}?${params.toString()}`);
+      } else {
+        const payload = Object.fromEntries(new FormData(secondaryForm).entries());
+        res = await fetch(secondaryEndpoint, {
+          method: secondaryMethod,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      }
+      const data = await res.json();
+      secondaryResultPre.textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+      secondaryResultPre.textContent = `Request failed: ${err}`;
+    }
+  });
+  {% endif %}
+</script>
+{% endblock %}

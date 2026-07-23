@@ -182,10 +182,24 @@ router.get("/:id/results", auth, async (req, res, next) => {
     let rowsQuery = db(table).where({ job_id: jobId }).orderBy("id", "asc");
     if (!showAll) rowsQuery = rowsQuery.limit(limit).offset(offset);
 
-    const [results, total] = await Promise.all([
+    const [rawResults, total] = await Promise.all([
       rowsQuery,
       db(table).where({ job_id: jobId }).count("id as count").first(),
     ]);
+
+    // raw_data holds extras (allEmails/allPhones/allWebsites, etc.) that don't
+    // have their own columns — merge them onto the row so the results table's
+    // contact-type filters (phone/email/website) can see them without every
+    // consumer having to know to dig into raw_data itself.
+    const results = rawResults.map((row) => {
+      if (!row.raw_data) return row;
+      try {
+        const extra = typeof row.raw_data === "string" ? JSON.parse(row.raw_data) : row.raw_data;
+        return { ...extra, ...row };
+      } catch {
+        return row;
+      }
+    });
 
     res.json({ success: true, data: results, total: Number(total.count), module: job.module });
   } catch (err) {

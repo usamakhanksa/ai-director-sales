@@ -1,101 +1,239 @@
-# ScrapeGenius API & Scraping Strategy Overview
+# ScrapeGenius API Reference (Complete)
 
-This document provides a comprehensive review of all APIs, their endpoints, the target websites they scrape, and the exact strategies employed. As requested, all data constraints (limits) are now fully unlocked for unlimited pagination (`limit` constraints like `.max(25)` have been successfully removed globally).
+Full, accurate reference of every API route in this codebase — both the Next.js route handlers under `app/api/**/route.ts` and the Express backend (`backend/`) endpoints under `/v1/*` they proxy to. This document supersedes any previous partial version; every route in the repo is listed below with method, auth requirement, request shape, and response shape.
 
-## 1. Next.js Frontend APIs (`/api/*`)
-
-These APIs handle rapid, synchronous scraping tasks directly from the Next.js server, often using lightweight HTTP requests and HTML parsing to return data instantly.
-
-### Search Engine Scrapers
-* **Google Search** (`/api/scrape/google-search`)
-  * **Target:** `google.com/search`
-  * **Strategy:** Lightweight HTTP GET requests using Axios with rotating User-Agents. Parses the HTML DOM using Cheerio to extract SERP titles, links, and snippets.
-  * **Limit:** Unlimited (Pagination enabled).
-* **Bing Search** (`/api/scrape/bing-search`)
-  * **Target:** `bing.com/search`
-  * **Strategy:** Axios + Cheerio. Extracts natural search results and snippets.
-  * **Limit:** Unlimited.
-* **Yahoo Search** (`/api/scrape/yahoo-search`)
-  * **Target:** `search.yahoo.com/search`
-  * **Strategy:** Axios + Cheerio.
-  * **Limit:** Unlimited.
-* **DuckDuckGo Search** (`/api/scrape/duckduckgo-search`)
-  * **Target:** `duckduckgo.com/html`
-  * **Strategy:** Axios + Cheerio using the non-JS HTML fallback version of DuckDuckGo.
-  * **Limit:** Unlimited.
-
-### Directory Scrapers (B2B/Indian Markets)
-* **IndiaMart** (`/api/scrape/indiamart`)
-  * **Target:** `dir.indiamart.com`
-  * **Strategy:** Axios + Cheerio. Parses supplier directories for company names, contact links, and product info.
-* **JustDial** (`/api/scrape/justdial`)
-  * **Target:** `justdial.com`
-  * **Strategy:** Axios + Cheerio. Scrapes local business listings.
-* **Sulekha** (`/api/scrape/sulekha`)
-  * **Target:** `sulekha.com`
-  * **Strategy:** Axios + Cheerio. 
-* **Business Directory Generic** (`/api/scrape/business-directory`)
-  * **Target:** Various standard directory structures.
-  * **Strategy:** HTML DOM Parsing looking for standard schema.org business data.
-
-### Utility Scrapers
-* **WHOIS Lookups** (`/api/scrape/whois`)
-  * **Target:** WHOIS TCP port 43 servers.
-  * **Strategy:** Uses the native Node.js `net` TCP module to directly ping WHOIS registrars to extract domain ownership, registration dates, and admin contacts.
-* **Website Data Center** (`/api/scrape/website-data-center`)
-  * **Target:** Any user-provided URL.
-  * **Strategy:** Fetches the page and runs regex patterns to harvest emails, phones, and social media handles.
-  * **Limit:** Unlocked (previously max 25 pages, now unlimited).
-* **Document & Image Scrapers** (`/api/scrape/document-data-scraper`, `/api/scrape/image-data-scraper`)
-  * **Target:** Direct file URLs or Web Pages.
-  * **Strategy:** Parses the DOM specifically for `<img>`, `<a>` (with document extensions like `.pdf`, `.docx`), and extracts metadata.
+Auth legend:
+- **Session (JWT cookie/header)** — `requireAuth()` helper, standard logged-in user.
+- **Public API key** — third-party callers authenticate with `x-api-key` header or `?api_key=`.
+- **Admin** — session auth + `role === "ADMIN"`.
+- **Internal** — service-to-service call validated by an internal secret/API key, not end-user auth.
+- **None** — no authentication.
 
 ---
 
-## 2. Express Backend APIs (`/v1/*`)
+## 1. Auth
 
-The Express backend handles long-running, asynchronous background scraping jobs using headless browser automation via Playwright.
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| POST | `/api/auth/login` | None | `{email, password}` | `{token, user:{id,name,email,role,isVerified}}`; 401 on bad credentials |
+| POST | `/api/auth/signup` | None | `{name, email, password}` | Created user (no password), 201; 409 if email exists |
 
-### Job Management APIs
-* **Create Job:** `POST /v1/jobs`
-* **List Jobs:** `GET /v1/jobs?status=&limit=` (Limit upgraded to 1000/unlimited pagination).
-* **Job Progress:** `GET /v1/jobs/:id`
-* **Live Network Logs:** `GET /v1/jobs/:id/logs` (Uses SSE - Server Sent Events. Updated to show live network links fetched by crawlers).
-* **Job Results:** `GET /v1/jobs/:id/results?limit=` (Pagination upgraded to unlimited).
+## 2. Purchase Codes / Licensing
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| POST | `/api/purchase-code/activate` | Session | `{code}` | Links code to current user; 404 invalid, 410 expired, 409 already claimed |
+| GET | `/api/admin/purchase-codes` | Admin | — | List of up to 500 codes with owning user |
+| POST | `/api/admin/purchase-codes` | Admin | `{expiresAt?}` | New random hex purchase code |
+
+## 3. Saved Records & Dashboard Stats
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| POST | `/api/saved` | Session | `{source, query, data, stat_type}` | `{scraped_record_id, dashboard_stat}` — persists record + bumps stat atomically |
+| GET | `/api/dashboard/stats` | Session | — | `[{title, records}]` per-user stat totals |
+
+## 4. Google Custom Search Key Management
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| GET | `/api/keys` | Session | — | User's search keys (masked) + today's usage |
+| POST | `/api/keys` | Session | `{googleApiKey, searchEngineId, dailyLimit}` | Created key |
+| PATCH | `/api/keys/[id]` | Session (owner) | `{isActive?, dailyLimit?}` | Updated key |
+| DELETE | `/api/keys/[id]` | Session (owner) | — | Deletes key |
+| GET | `/api/get_keys` | Session | — | Legacy-shape list of active keys with `remaining_today`, filtered to keys with quota left |
+| POST | `/api/update_usage` | Session | `{api_key_id, increment_by}` | Atomically increments daily usage; 429 if limit exceeded |
+
+## 5. Public API Keys (for `/api/v1/scrape`)
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| POST | `/api/user/api-keys` | Session | `{name, rateLimit=1000, expiresAt?}` | Raw API key (shown once) |
+| GET | `/api/user/api-keys` | Session | — | Active keys, masked |
+| DELETE | `/api/user/api-keys?id=` | Session | — | Soft-deletes (deactivates) key |
+
+## 6. Public Scrape API
+
+| Method | Path | Auth | Body / Query | Response |
+|---|---|---|---|---|
+| POST | `/api/v1/scrape` | Public API key | `{module, keywords, config}` | Forwards to backend module (instagram/google_maps/facebook/linkedin/twitter), logs usage |
+| GET | `/api/v1/scrape?jobId=&module=` | Public API key | — | Job status/results from backend, logs usage |
+
+## 7. Job Queue (Express backend proxy)
+
+| Method | Path | Auth | Query/Body | Response |
+|---|---|---|---|---|
+| GET | `/api/jobs?status=&limit=&offset=` | Session | — | Paginated job list scoped to user (proxies `/v1/jobs`) |
+| POST | `/api/jobs` | Session | `{module, keywords, config}` | Creates job (proxies `/v1/jobs`) |
+| GET | `/api/jobs/[id]` | Session | — | Job status/progress/result counts |
+| DELETE | `/api/jobs/[id]` | Session | — | Cancels job |
+| GET | `/api/jobs/[id]/logs` | Session | — | SSE stream (`text/event-stream`) of live job logs |
+| GET | `/api/jobs/[id]/results?limit=&offset=&all=` | Session | — | Unified result rows for any module |
+
+## 8. Export
+
+| Method | Path | Auth | Query/Body | Response |
+|---|---|---|---|---|
+| GET | `/api/export?limit=&offset=` | Session | — | Export history |
+| POST | `/api/export` | Session | `{jobId, format}` | Generates export (XLSX/CSV/HTML/TXT) |
+| GET | `/api/export/[id]/download` | Session | — | Streams generated file (passthrough Content-Type/Content-Disposition) |
+
+## 9. Admin
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| GET | `/api/admin/users` | Admin | — | Up to 500 users (id, name, email, role, isVerified, createdAt) |
+| PATCH | `/api/admin/users/[id]` | Admin | `{role?, isVerified?}` | Updated user |
+| GET | `/api/admin/usage` | Admin | — | `{totalUsers, totalRecords, totalActiveApiKeys, bySource}` |
+| GET / POST | `/api/admin/purchase-codes` | Admin | see §2 | — |
+
+## 10. Custom API Connectors
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| GET | `/api/api-connectors` | Session | — | User's connectors (API key masked) |
+| POST | `/api/api-connectors` | Session | `{name, method, url, apiKey?, authType, authParam?, resultsPath?, fieldMap?}` | Created connector |
+| GET | `/api/api-connectors/[id]` | Session (owner) | — | One connector (masked); 404 for others' |
+| DELETE | `/api/api-connectors/[id]` | Session (owner) | — | Removes connector |
+| POST | `/api/api-connectors/[id]/run` | Session (owner) | `{query}` | Executes saved connector call, maps fields, persists results (source `CUSTOM_API`) |
+
+## 11. CRM Connections (JustDial / IndiaMART)
+
+`[provider]` ∈ `justdial`, `indiamart`
+
+| Method | Path | Auth | Body | Response |
+|---|---|---|---|---|
+| POST | `/api/crm/[provider]` | Session | `{loginId, secret}` | Upserts connection; secret AES-encrypted at rest |
+| GET | `/api/crm/[provider]` | Session | — | Connection status (never returns decrypted secret) |
+| DELETE | `/api/crm/[provider]` | Session | — | Removes connection |
+| POST | `/api/crm/[provider]/sync` | Session | — | Best-effort Playwright login + scrape using saved creds; updates `lastSyncedAt`/`lastStatus`; never 500s on scrape failure |
+
+## 12. Search Engine Scrapers (direct, synchronous)
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/scrape/google-search` | Session | `{query, limit?}` | Uses user's own Google CSE key + quota; source `GOOGLE` |
+| POST | `/api/scrape/bing-search` | Session | `{query, limit?}` | HTTP+Cheerio, decodes Bing redirect wrapper; source `BING` |
+| POST | `/api/scrape/yahoo-search` | Session | `{query, limit?}` | HTTP+Cheerio, decodes Yahoo redirect; source `YAHOO` |
+| POST | `/api/scrape/duckduckgo-search` | Session | `{query, limit?}` | HTTP+Cheerio HTML fallback UI; source `DUCKDUCKGO` |
+| POST | `/api/scrape/google-maps` | Session | `{query, limit?≤40}` | Playwright headless scroll+scrape of Maps feed; 45s timeout; source `MAP` |
+| GET / POST | `/api/search` | Session | `{q, engines[]=all, page?, limit?≤30, lang?, safeSearch?}` | Unified multi-engine search across google/bing/duckduckgo/yahoo; 502 if all engines fail |
+
+## 13. Directory Scrapers
+
+| Method | Path | Auth | Body | Source tag |
+|---|---|---|---|---|
+| POST | `/api/scrape/indiamart` | Session | `{urls[]≤10}` | `INDIAMART` |
+| POST | `/api/scrape/justdial` | Session | `{urls[]≤10}` | `JUSTDIAL` |
+| POST | `/api/scrape/sulekha` | Session | `{urls[]≤10}` | `SULEKHA` |
+| POST | `/api/scrape/business-directory` | Session | `{urls[]≤10}` | `BUSINESS_DIRECTORY` (generic) |
+
+## 14. Utility / Contact / File Scrapers
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/scrape/whois` | Session | `{domain}` | Raw TCP WHOIS (IANA referral chase); source `WHOIS` |
+| POST | `/api/scrape/website-data-center` | Session | `{keyword, country?, limit=10}` | Self-contained DDG search + page extraction; source `WEBSITE` |
+| POST | `/api/scrape/website-data-scraper` | Session | `{urls[]≤20}` | Batch fetch + extraction, returns `results` + `failed[]`; source `WEBSITE` |
+| POST | `/api/scrape/contact-scraper` | Session | `{type:"EMAIL"|"PHONE", url? \| text?}` | Extracts emails/phones; source = type |
+| POST | `/api/scrape/document-data-scraper` | Session | multipart `file` (.txt/.csv/.docx, ≤20MB) | Text extraction + email/phone harvest; source `DOCUMENT` |
+| POST | `/api/scrape/image-data-scraper` | Session | multipart `file` (image, ≤15MB) | Tesseract OCR + email/phone harvest; source `IMAGE` |
+
+## 15. Social Media
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/social/instagram` | Session (JWT) | `{keywords[], config?}` | Proxies to backend `/api/social/instagram` |
+| GET | `/api/social/instagram?jobId=` | Session (JWT) | — | Proxies to backend `/api/social/instagram/:jobId` |
+| POST | `/api/social/facebook` | Session | `{keywords, config}` | Creates backend scrape job `/v1/social/facebook` |
+| POST | `/api/social/twitter` | Session | `{keywords, config}` | Creates backend scrape job `/v1/social/twitter` |
+| POST | `/api/social/linkedin` | Internal API key | `{profileUrl, sessionCookieValue}` | Validates LinkedIn URL, forwards to scraper backend `/api/linkedin-profile`; returns full profile (experience, education, skills, contact info) |
+| GET | `/api/social/linkedin` | — | — | 405 Method Not Allowed (POST only) |
+
+## 16. Classified Ads
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/classified` | Session | `{site:"haraj"|"generic", keywords, config}` | Routes to backend `/v1/classified/haraj` or `/v1/classified/generic`; 400 on unknown site |
+
+## 17. Search Dorks
+
+| Method | Path | Auth | Body/Query | Notes |
+|---|---|---|---|---|
+| POST | `/api/dorks` | Session | `{keyword, location, country, intent, platforms, language}` | Generates dork queries via backend `/v1/dorks/generate` |
+| GET | `/api/dorks?action=history\|templates&limit=&offset=` | Session | — | Default `templates`; history via `/v1/dorks/history` |
+
+## 18. AI Features
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/ai-enrichment` | Session | `{email?, phone?, website?, socialLinks?, reviews?}` | Local heuristic lead scoring (0-100) + review sentiment analysis, no external AI call |
+| POST | `/api/lead-qualifier` | Session | `{mode:"classify"\|"classify-job", text?, jobId?, product?, limit?}` | Routes to backend `/v1/lead-qualifier/classify[-job]` |
+
+## 19. Professional Contact Finder
+
+| Method | Path | Auth | Body | Notes |
+|---|---|---|---|---|
+| POST | `/api/professional-contacts` | None (zod-validated) | `{firstName?, lastName?, domain?, keyword?, company?}` (domain or company required) | Hunter.io domain-search (if `HUNTER_API_KEY` set) or demo fallback; returns `{success, count, results[]}` |
+| GET | `/api/professional-contacts` | None | — | Usage/help info only, not a functional search |
+
+---
+
+## 20. Express Backend (`/v1/*`) — long-running job architecture
+
+The Express backend (in `backend/`) runs Playwright-based scrapers as async jobs; the Next.js routes above proxy to it.
+
+### Job Management
+- `POST /v1/jobs` — create job
+- `GET /v1/jobs?status=&limit=&offset=` — list jobs
+- `GET /v1/jobs/:id` — job progress/status
+- `DELETE /v1/jobs/:id` — cancel job
+- `GET /v1/jobs/:id/logs` — SSE live logs
+- `GET /v1/jobs/:id/results?limit=&offset=&all=` — unified results
 
 ### Social Media Scrapers
-* **Facebook Scraper** (`backend/src/scrapers/facebookScraper.js`)
-  * **Target:** `facebook.com`
-  * **Strategy:** **SERP Dorking + Playwright Deep-Visit.** Since Facebook requires login for search, the scraper first uses search engines with dorks (e.g., `site:facebook.com "keyword" (phone OR email)`). It then launches a stealth Playwright browser to deep-visit the discovered Facebook profiles/pages to extract the phone, email, and description.
-* **LinkedIn Scraper** (`backend/src/scrapers/linkedinScraper.js`)
-  * **Target:** `linkedin.com/in` and `linkedin.com/company`
-  * **Strategy:** **SERP Dorking + Pattern Guessing.** Uses Google/Bing/Yahoo with queries like `site:linkedin.com/in "keyword" email "@gmail.com"`. It reads the email directly from the SERP snippet (bypassing LinkedIn login blocks) and uses educated guessing based on Name + Company domain.
-* **Twitter / X Scraper** (`backend/src/scrapers/twitterScraper.js`)
-  * **Target:** `twitter.com/search`
-  * **Strategy:** **Playwright Stealth.** Directly loads the Twitter public search page (`/search?q=...&f=live`). Uses Playwright to execute JS, perform human-like infinite scrolling, and extracts tweets. Regex is then applied to the tweet bodies to harvest phones and emails.
+- **Facebook** (`facebookScraper.js`) — SERP dorking (`site:facebook.com "keyword" (phone OR email)`) + stealth Playwright deep-visit of discovered profiles/pages.
+- **LinkedIn** (`linkedinScraper.js`) — SERP dorking across Google/Bing/Yahoo, reads email from SERP snippet, falls back to Name+domain guessing.
+- **Twitter/X** (`twitterScraper.js`) — Playwright stealth load of `/search?q=...&f=live`, human-like infinite scroll, regex extraction from tweet bodies.
 
-### Google Maps Scraper
-* **Google Maps** (`backend/src/scrapers/googleMapsScraper.js`)
-  * **Target:** `maps.google.com` and `Business Websites`
-  * **Strategy:** **Playwright + Deep Crawl.** Navigates to Maps search. Automatically scrolls the results panel injecting Javascript to force lazy-loading until all listings are found. Clicks each listing to parse the side-panel for Name, Phone, Rating, and Website.
-  * **Secondary Strategy:** Deep-visits the discovered business website using Axios to harvest the business Email and Social Media links (Instagram, Facebook, etc).
-  * **Limit:** Unlocked (previously max 60 per keyword, now default 1000 or Infinity).
+### Google Maps Scraper (`googleMapsScraper.js`)
+- Playwright deep crawl of Maps search results panel with forced lazy-load scrolling; parses side-panel details per listing.
+- Secondary pass deep-visits each business website via Axios to harvest email + social links.
 
-### Classified Ads Scraper
-* **Haraj & MENA Classifieds** (`backend/src/scrapers/harajScraper.js`)
-  * **Target:** 20+ Platforms including `haraj.com.sa`, `opensooq.com`, `dubizzle.com`, `olx.com.eg`, `propertyfinder.sa`, etc.
-  * **Strategy:** Uses specific site routing logic to navigate to search result pages. Scrapes listing cards and optionally deep-visits individual posts to extract seller phone numbers, prices, and locations. Fully supports RTL Arabic keywords.
+### Classified Ads Scraper (`harajScraper.js`)
+- Covers 20+ platforms (haraj.com.sa, opensooq.com, dubizzle.com, olx.com.eg, propertyfinder.sa, etc.), full RTL Arabic keyword support, optional deep-visit per listing for seller phone/price/location.
 
-### Deep Website Crawler (Live Website Data)
-* **AnyWebsite Deep Crawler** (`backend/src/scrapers/websiteCrawler.js`)
-  * **Target:** Any provided seed URLs.
-  * **Strategy:** **BFS (Breadth-First Search) Hybrid.** Fast-fetches the initial URL using Axios. It analyzes the text-to-HTML ratio. If the page is a modern JS-heavy SPA (React/Vue), it automatically falls back to spinning up a Playwright instance to execute the JS. It recursively crawls internal links up to a specified depth, extracting all emails, phones, and social links it encounters. 
+### Deep Website Crawler (`websiteCrawler.js`)
+- BFS crawl from seed URLs; fast Axios fetch first, falls back to Playwright when the text-to-HTML ratio indicates a JS-heavy SPA; recursively follows internal links to a configured depth, harvesting emails/phones/social links.
+
+### Lead Qualifier / Dorks (backend)
+- `POST /v1/lead-qualifier/classify` / `/classify-job` — text or job-scoped classification.
+- `POST /v1/dorks/generate`, `GET /v1/dorks/templates`, `GET /v1/dorks/history` — dork query generation and history (internal-secret + `X-User-ID` header auth).
+
+### Export (backend)
+- `GET /v1/export?limit=&offset=` — export history
+- `POST /v1/export/:jobId` — generate export file (XLSX/CSV/HTML/TXT)
+- `GET /v1/export/:id/download` — stream generated file
 
 ---
 
-## 3. Data Limits & Configuration Review
-Following the complete code review, all limiting factors preventing massive data scraping have been resolved:
-* **UI/Frontend:** The `<input>` maximum constraints (`max="25"`, `max="40"`) have been removed from the Next.js UI component forms.
-* **API Validation:** Zod schema limits (e.g. `.max(25)`) have been stripped out of the API route definitions. DataTables AJAX can now request sizes of 1000, 4000, or unlimited without throwing validation errors.
-* **Database Queries:** Backend SQL queries now properly respect the `limit=0` or `all=true` flags to stream out complete record sets to the CSV exporters and UI tables.
-* **Scraper Engines:** Hardcoded fallback caps (like 60 places per keyword on Google Maps) have been pushed to 1000/Infinity to guarantee deep extraction runs continuously until completion.
+## 20a. Zero-Cost AI Scraper, Webhooks, Email Verification, Google News (added post-audit)
+
+See [Implementation.md](Implementation.md) for the full build/verification log for these four features.
+
+| Method | Path | Auth | Body / Query | Response |
+|---|---|---|---|---|
+| POST | `/api/scrape/ai-scraper` | Session | `{url}` | Fetches clean Markdown via `https://r.jina.ai` (no key needed), extracts `{emails[], phones[], companies[], title?, description?}` (Arabic + English); persists source `WEBSITE` |
+| POST | `/api/webhooks/register` | Session | `{url, events: [JOB_STARTED\|JOB_COMPLETED\|JOB_FAILED\|EXPORT_READY\|SCRAPE_DATA_AVAILABLE], isActive?}` | Registers a webhook; 409 if URL already registered for this user. **Registration only — nothing yet dispatches events to it.** |
+| GET | `/api/webhooks/register` | Session | — | Lists the user's webhooks |
+| POST | `/api/verify/email` | None | `{email}` | Zod syntax check + free MX-record DNS lookup (Node `dns` module) + disposable/free-provider detection + typo suggestions; no auth, no paid API |
+| GET | `/api/scrape/google-news` | Session | `?q=&hl=&gl=&ceid=&dateRestrict=&limit=&offset=` | Proxies to backend `/v1/scrape/google-news`; parses Google News RSS via `xml2js`; returns `{items:[{title,link,pubDate,description,source,guid}], total, query, language, geographicLocation, url}`; persists source `NEWS_RSS` |
+
+Backend: `GET /v1/scrape/google-news` (mounted in `backend/src/app.js`, auth via `requireAuthOrInternal`).
+
+## 21. Data Limits & Configuration
+
+- Frontend `<input>` max constraints have been raised/removed where the underlying route accepts larger volumes.
+- Zod validation limits are enforced per-route as documented above (not globally uniform — check each route's table entry for its actual cap, e.g. directory scrapers cap `urls[]` at 10, Google Maps caps `limit` at 40).
+- Backend job queries support `limit=0` / `all=true` to stream complete result sets to exporters and UI tables.
+- Do not assume a route is unlimited unless stated in its row above — several routes intentionally cap batch size (10/20/40) to protect scrape reliability and target-site rate limits.
